@@ -196,7 +196,7 @@ const steps = [
 export function HowItWorks() {
   return (
     <section
-      id="plataforma"
+      id="como-funciona"
       style={{
         backgroundImage: `url('${asset("/bg-gradient.png")}')`,
         backgroundSize: "cover",

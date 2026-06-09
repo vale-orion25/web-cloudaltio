@@ -226,7 +226,7 @@ export function WhyFinOps() {
             <img
               src={asset("/Disenado-para-equipos-transversales.jpg")}
               alt="Equipos transversales"
-              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transform: "scaleX(-1)" }}
+              style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block", transform: "scaleX(-1)" }}
             />
             <div style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg, rgba(127,47,140,0.3) 0%, transparent 40%)" }} />
           </div>
