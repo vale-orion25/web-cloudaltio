@@ -1,0 +1,304 @@
+Compare the current landing page text with the updated content document and replace only the text that has changed.
+
+Important rules:
+- Keep the current layout, structure, spacing, components, hierarchy and visual design exactly as they are.
+- Do not redesign the page.
+- Do not add new sections.
+- Do not remove existing components unless the updated content clearly requires it.
+- Only update the copy so the page matches the new document exactly.
+- Keep the tone clear, simple, professional and commercial.
+- Replace technical wording with simpler wording where specified below.
+- Use the updated wording exactly as written below.
+
+Apply these text replacements and content updates:
+
+HERO
+Replace title:
+“Descubre en qué se va tu presupuesto cloud”
+with:
+“Entiende en qué se está yendo tu gasto cloud”
+
+SECCIÓN 1
+Replace title:
+“Conecta tu operación cloud en minutos”
+with:
+“Conecta tu cloud de forma simple”
+
+Replace body text:
+“AWS, Azure, Google Cloud y Oracle en un solo panel.
+Estandariza tus costos y toma el control de tu infraestructura.”
+with:
+“AWS, Azure, Google Cloud y Oracle Cloud en un solo panel.
+Estandariza tus costos y obtén una visión clara de tu operación cloud.”
+
+Replace bullets:
+“4 nubes nativas integradas”
+with:
+“4 nubes integradas en un solo panel”
+
+“Implementación zero-code en < 1h”
+with:
+“Implementación sin código en menos de 1 hora”
+
+“Detección proactiva de anomalías”
+with:
+“Lectura de costos y metadata sin intervenir tu infraestructura”
+
+SECCIÓN 2
+Replace section title:
+“De la factura al ahorro, en tres pasos”
+with:
+“De la conexión a la visibilidad, en tres pasos”
+
+Replace section text:
+“Sin meses de implementación. Sin consultores externos. Solo datos claros y acciones concretas.”
+with:
+“Sin meses de implementación. Sin procesos complejos. Solo datos claros para tomar mejores decisiones.”
+
+Paso 1
+Replace text:
+“Integra AWS, Azure, Google Cloud y Oracle Cloud en menos de una hora. Sin agentes, sin modificar tu infraestructura. Solo lectura de costos y metadata.”
+with:
+“Integra AWS, Azure, Google Cloud y Oracle Cloud de forma simple. Sin agentes, sin modificar tu infraestructura y con acceso de solo lectura.”
+
+Replace support:
+“< 1 hora”
+with:
+“Menos de 1 hora”
+
+Paso 2
+Replace text:
+“Un dashboard unificado que traduce facturas complejas en información clara. Gasto por equipo, proyecto, región, servicio y etiqueta.”
+with:
+“Un dashboard unificado que convierte información compleja en una vista clara de tu gasto por equipo, proyecto, región, servicio y etiquetas.”
+
+Paso 3
+Replace title:
+“Optimiza y ahorra”
+with:
+“Prepárate para optimizar”
+
+Replace text:
+“CloudAltio identifica recursos ociosos, instancias sobredimensionadas y oportunidades de Reserved Instance. Recomendaciones accionables con impacto en dólares.”
+with:
+“Próximamente podrás identificar oportunidades de ahorro y priorizar acciones según su impacto económico.”
+
+Replace supports:
+“Análisis predictivo”
+with:
+“Próximamente”
+
+“Recomendaciones”
+with:
+“Oportunidades de ahorro”
+
+“ROI claro”
+with:
+“Impacto estimado”
+
+SECCIÓN 3
+Keep the main title:
+“El cloud no es caro.
+El cloud sin visibilidad sí.”
+
+Replace section text:
+“Las empresas de LATAM gastan en promedio entre 25% y 40% más de lo necesario en cloud. No por falta de recursos técnicos, sino por falta de un proceso FinOps maduro que conecte datos, equipos y decisiones.”
+with:
+“Muchas empresas terminan gastando más de lo necesario en cloud no por falta de capacidad técnica, sino por falta de visibilidad, contexto y coordinación entre equipos.”
+
+Bloque 1
+Replace title:
+“Cero visibilidad”
+with:
+“Poca visibilidad”
+
+Replace text:
+“Las facturas cloud son incomprensibles. Nadie sabe en qué se gasta realmente el presupuesto.”
+with:
+“Las facturas cloud son difíciles de interpretar. Cuesta entender en qué se está yendo realmente el gasto.”
+
+Bloque 2
+Replace title:
+“Silos financieros”
+with:
+“Equipos desconectados”
+
+Replace text:
+“Finanzas no habla con Ingeniería. Nadie tiene la misma versión de los números.”
+with:
+“Tecnología, finanzas y operaciones no siempre trabajan con la misma información ni toman decisiones con el mismo contexto.”
+
+Bloque 3
+Replace title:
+“Gasto descontrolado”
+with:
+“Desvíos que llegan tarde”
+
+Replace text:
+“Sin alertas ni forecasts, el gasto sorprende al final del mes cuando ya no hay nada que hacer.”
+with:
+“Sin alertas ni proyecciones, el gasto puede crecer durante el mes sin que nadie lo detecte a tiempo.”
+
+Bloque 4
+Replace title:
+“Tags sin criterio”
+with:
+“Costos difíciles de asignar”
+
+Replace text:
+“Sin taxonomía de tagging, es imposible asignar costos a equipos, proyectos o clientes.”
+with:
+“Sin una estructura clara, es difícil distribuir costos entre equipos, proyectos o clientes.”
+
+SECCIÓN 4
+Replace title:
+“Datos normalizados bajo el estándar global”
+with:
+“Datos normalizados bajo un estándar global”
+
+Replace text:
+“CloudAltio implementa FOCUS (FinOps Open Cost & Usage Specification), el estándar abierto de la FinOps Foundation para normalizar y comparar costos entre clouds sin ambigüedades.”
+with:
+“CloudAltio implementa FOCUS, el estándar abierto de la FinOps Foundation para normalizar y comparar costos entre distintos proveedores cloud de forma clara y consistente.”
+
+SECCIÓN 5
+Replace title:
+“Todo lo que necesitas para operar cloud con criterio financiero”
+with:
+“Todo lo que necesitas para gestionar cloud con criterio financiero”
+
+Replace text:
+“Diseñado para equipos de tecnología, finanzas y operaciones que necesitan hablar el mismo idioma.”
+with:
+“Diseñado para equipos de tecnología, finanzas y operaciones que necesitan trabajar con una misma fuente de verdad.”
+
+Replace tab label:
+“Forecast”
+with:
+“Proyecciones”
+
+Keep tab order exactly as it currently exists unless the design already supports the updated order from the content file.
+
+TAB 1 - MULTI-CLOUD
+Replace text:
+“Un panel único que consolida el gasto de todos tus clouds. Sin cambiar de pestaña, sin exportar CSV, sin fórmulas en Excel.”
+with:
+“Un panel único para entender el gasto de todos tus clouds en un solo lugar, sin exportar archivos ni consolidar datos manualmente.”
+
+TAB 2 - ALERTAS
+Replace title:
+“Anomalías y presupuestos”
+with:
+“Alertas y control de desvíos”
+
+Replace text:
+“Detecta spikes de gasto en tiempo real. Configura alertas por equipo, servicio o región antes de que impacten tu P&L.”
+with:
+“Detecta cambios inesperados en tu gasto y configura alertas por equipo, servicio o región para actuar a tiempo.”
+
+TAB 3 - FORECAST / PROYECCIONES
+Replace label:
+“FORECAST”
+with:
+“PROYECCIONES”
+
+Replace title:
+“Proyecciones inteligentes”
+with:
+“Proyecciones más claras”
+
+Replace text:
+“Modelos predictivos basados en tu historial real. Anticipa el cierre de mes y planifica presupuestos sin sorpresas.”
+with:
+“Anticipa el cierre del mes usando tu historial de consumo y visualiza tendencias para planificar con más confianza.”
+
+TAB 4 - OPTIMIZACIÓN
+Replace title:
+“Recomendaciones accionables”
+with:
+“Optimización próximamente”
+
+Replace text:
+“Lista priorizada de optimizaciones con impacto en dólares. Rightsizing, Reserved Instances, Savings Plans y más.”
+with:
+“Esta funcionalidad estará disponible próximamente para ayudarte a detectar oportunidades de ahorro con mayor precisión.”
+
+TAB 5 - REPORTES
+Replace text:
+“Desglosa el gasto por tag, proyecto, equipo o cuenta. Exporta reportes ejecutivos para finanzas y operaciones.”
+with:
+“Desglosa el gasto por etiquetas, proyectos, equipos o cuentas y comparte reportes claros con finanzas y operaciones.”
+
+SECCIÓN 6
+If the current page includes the section “CONTROL Y ALERTAS”, remove it from the home page content or hide it from this landing page, because this content should live inside the Plataforma page, not in the home page.
+
+SECCIÓN 7 - PLANES
+Keep the main structure and plan cards, but update the copy below.
+
+Replace section text:
+“Sin precios confusos. Conversamos, entendemos tu operación y te ofrecemos lo que realmente necesitas.”
+with:
+“Sin precios confusos. Entendemos tu operación y te proponemos la opción que mejor se ajusta a tu necesidad.”
+
+Plan 1 - Starter
+Replace:
+“Breakdown por servicio y región”
+with:
+“Desglose por servicio y región”
+
+Plan 2 - Professional
+Replace text:
+“Para empresas con operaciones cloud activas que necesitan control real”
+with:
+“Para empresas con operaciones cloud activas que necesitan mayor visibilidad y control”
+
+Replace included item:
+“Forecast y proyecciones”
+with:
+“Proyecciones”
+
+Replace included item:
+“Recomendaciones de optimización”
+with:
+“Optimización próximamente”
+
+Replace included item:
+“Tagging y cost allocation avanzado”
+with:
+“Asignación de costos por equipo y proyecto”
+
+Replace included item:
+“Reportes por equipo y proyecto”
+with:
+“Reportes avanzados”
+
+Plan 3 - Enterprise
+Replace text:
+“Para corporaciones con múltiples cuentas, equipos y requerimientos de compliance”
+with:
+“Para organizaciones con múltiples cuentas, equipos y necesidades avanzadas de gobierno y escalabilidad”
+
+Replace included item:
+“Reportes ejecutivos y de audit”
+with:
+“Reportes ejecutivos y de auditoría”
+
+SECCIÓN 8 - FAQ
+Keep the FAQ section structure.
+If a question title says:
+“¿Qué clouds soporta CloudAltio?”
+replace it with:
+“¿Qué nubes soporta CloudAltio?”
+Only update that wording if needed.
+
+SECCIÓN 9 - CTA FINAL
+Keep the title:
+“Empieza a tomar decisiones cloud con datos, no con intuición”
+
+Replace text:
+“CloudAltio se configura en menos de una hora. Sin instalaciones, sin consultores, sin contrato largo. Solo visibilidad real de tu gasto cloud.”
+with:
+“CloudAltio se configura en menos de una hora. Sin instalaciones, sin procesos complejos. Solo visibilidad real de tu gasto cloud.”
+
+Final instruction:
+Make sure the landing page text matches the updated document exactly in meaning and tone, while preserving the existing design.
