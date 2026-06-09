@@ -1,60 +1,7 @@
 import { useState } from "react";
 import { motion } from "motion/react";
 import { asset } from "@/lib/asset";
-
-const plans = [
-  {
-    id: "starter",
-    name: "Starter",
-    badgeLabel: "Próximamente",
-    badgeStyle: "soon",
-    available: false,
-    tagline: "Próximamente",
-    clouds: "Multi-cloud",
-    accentColor: "#36AAC1",
-    features: [
-      "Dashboard unificado multi-cloud",
-      "Alertas de presupuesto básicas",
-      "Reportes mensuales",
-    ],
-  },
-  {
-    id: "professional",
-    name: "Professional",
-    badgeLabel: "Próximamente",
-    badgeStyle: "soon",
-    available: false,
-    tagline: "Próximamente",
-    clouds: "Multi-cloud",
-    accentColor: "#FE1F3D",
-    features: [
-      "Proyecciones",
-      "Detección de anomalías",
-      "Asignación de costos por equipo",
-    ],
-  },
-  {
-    id: "enterprise",
-    name: "Enterprise",
-    badgeLabel: "Disponible ahora",
-    badgeStyle: "available",
-    available: true,
-    tagline: "Para organizaciones con múltiples cuentas, equipos y necesidades avanzadas de gobierno",
-    clouds: "Clouds ilimitados",
-    accentColor: "#023660",
-    features: [
-      "Todo lo de Professional",
-      "Cuentas y usuarios ilimitados",
-      "SSO / SAML",
-      "SLA con uptime garantizado",
-      "Integraciones personalizadas",
-      "Implementación asistida",
-      "Customer Success Manager dedicado",
-      "Reportes ejecutivos y de auditoría",
-      "Soporte 24/7",
-    ],
-  },
-];
+import { useLanguage } from "@/lib/i18n";
 
 function CheckIcon({ color }: { color: string }) {
   return (
@@ -65,7 +12,44 @@ function CheckIcon({ color }: { color: string }) {
 }
 
 export function Plans() {
+  const { tr } = useLanguage();
   const [ctaHovered, setCtaHovered] = useState(false);
+
+  const plans = [
+    {
+      id: "starter",
+      name: "Starter",
+      badgeLabel: tr.plans.soon,
+      badgeStyle: "soon",
+      available: false,
+      tagline: tr.plans.taglines[0],
+      clouds: tr.plans.clouds[0],
+      accentColor: "#36AAC1",
+      features: tr.plans.features[0],
+    },
+    {
+      id: "professional",
+      name: "Professional",
+      badgeLabel: tr.plans.soon,
+      badgeStyle: "soon",
+      available: false,
+      tagline: tr.plans.taglines[1],
+      clouds: tr.plans.clouds[1],
+      accentColor: "#FE1F3D",
+      features: tr.plans.features[1],
+    },
+    {
+      id: "enterprise",
+      name: "Enterprise",
+      badgeLabel: tr.plans.available,
+      badgeStyle: "available",
+      available: true,
+      tagline: tr.plans.taglines[2],
+      clouds: tr.plans.clouds[2],
+      accentColor: "#023660",
+      features: tr.plans.features[2],
+    },
+  ];
 
   return (
     <section
@@ -88,23 +72,23 @@ export function Plans() {
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           pointerEvents: "none",
-          opacity: 0.55,
+          opacity: 0.85,
         }}
-        animate={{ x: [0, -60, 20, -40, 0], y: [0, -30, 45, -20, 0] }}
-        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+        animate={{ x: [0, -120, 40, -80, 0], y: [0, -60, 90, -40, 0] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
       />
 
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 40px", position: "relative", zIndex: 1 }}>
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: 72 }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: "#023660", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: 16 }}>
-            Planes
+            {tr.plans.eyebrow}
           </div>
           <h2 style={{ fontSize: 40, fontWeight: 800, color: "#023660", letterSpacing: "-1px", marginBottom: 14, lineHeight: 1.15 }}>
-            El nivel correcto para cada organización
+            {tr.plans.title}
           </h2>
           <p style={{ fontSize: 16, color: "#023660", opacity: 0.65, maxWidth: 520, margin: "0 auto" }}>
-            Actualmente disponible para Enterprise. Los planes Starter y Professional estarán disponibles próximamente.
+            {tr.plans.subtitle}
           </p>
         </div>
 
@@ -229,7 +213,7 @@ export function Plans() {
                     onMouseEnter={() => setCtaHovered(true)}
                     onMouseLeave={() => setCtaHovered(false)}
                   >
-                    Solicitar demo
+                    {tr.plans.cta}
                   </a>
                 ) : (
                   <div style={{
@@ -245,7 +229,7 @@ export function Plans() {
                     cursor: "not-allowed",
                     fontFamily: "Inter, sans-serif",
                   }}>
-                    Próximamente
+                    {tr.plans.soon}
                   </div>
                 )}
               </div>{/* fin contenido interno */}

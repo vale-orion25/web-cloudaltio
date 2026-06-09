@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { BgNetwork } from "./BgNetwork";
 import { asset } from "@/lib/asset";
+import { useLanguage } from "@/lib/i18n";
 const cloudLogos: Record<string, string> = {
   AWS: asset("/AWS.png"),
   GCP: asset("/Google-Cloud.png"),
@@ -23,53 +24,55 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import { DashboardMockup } from "./DashboardMockup";
+import { motion } from "motion/react";
 
-// ─────────────────────────────────────────────
-// Slide 1 visual: ilustración de problema
-// ─────────────────────────────────────────────
-function ProblemVisual() {
+function DashboardScreenshot() {
   return (
-    <div className="relative w-full max-w-md mx-auto">
-      {/* Card central de "sorpresa" */}
-      <div className="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-xl shadow-2xl">
-        <div className="flex items-center justify-between mb-6">
-          <span className="text-white/50 text-xs uppercase tracking-widest font-bold">Resumen de gasto</span>
-          <span className="bg-[#FE1F3D]/20 text-[#FE1F3D] text-xs font-black px-3 py-1 rounded-full border border-[#FE1F3D]/30 uppercase tracking-wide">
-            ¡Alerta!
-          </span>
-        </div>
-        {/* Barras de gasto */}
-        <div className="space-y-3 mb-6">
-          {[
-            { label: "AWS", pct: 78, color: "#FF9900" },
-            { label: "Azure", pct: 54, color: "#0078D4" },
-            { label: "GCP", pct: 42, color: "#4285F4" },
-            { label: "OCI", pct: 30, color: "#F80000" },
-          ].map((c) => (
-            <div key={c.label} className="flex items-center gap-3">
-              <span className="text-white/60 text-xs w-10 font-bold">{c.label}</span>
-              <div className="flex-1 h-2 bg-white/10 rounded-full overflow-hidden">
-                <div
-                  className="h-full rounded-full transition-all"
-                  style={{ width: `${c.pct}%`, backgroundColor: c.color }}
-                />
-              </div>
-              <span className="text-white/50 text-xs w-8 text-right">{c.pct}%</span>
-            </div>
+    <div style={{
+      width: "100%",
+      background: "#FFFFFF",
+      borderRadius: 16,
+      border: "1px solid rgba(255,255,255,0.12)",
+      overflow: "hidden",
+      boxShadow: "0 32px 80px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.06)",
+      fontFamily: "Inter, sans-serif",
+    }}>
+      {/* Topbar estilo browser */}
+      <div style={{
+        background: "#F8FAFC",
+        borderBottom: "1px solid #E2E8F0",
+        padding: "10px 16px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        flexShrink: 0,
+      }}>
+        <div style={{ display: "flex", gap: 6 }}>
+          {["#E2E8F0", "#CBD5E1", "#94A3B8"].map((bg, i) => (
+            <div key={i} style={{ width: 10, height: 10, borderRadius: "50%", background: bg }} />
           ))}
         </div>
-        {/* Mensaje de alerta */}
-        <div className="bg-[#FE1F3D]/10 border border-[#FE1F3D]/20 rounded-2xl p-4">
-          <p className="text-white text-sm font-semibold">Incremento inesperado del 34%</p>
-          <p className="text-white/50 text-xs mt-1">No había contexto para anticiparlo</p>
+        <div style={{
+          fontSize: 10,
+          color: "#475569",
+          background: "#FFFFFF",
+          padding: "3px 12px",
+          borderRadius: 5,
+          border: "1px solid #E2E8F0",
+        }}>
+          app.cloudaltio.com/dashboard
         </div>
+        <div style={{ width: 50 }} />
       </div>
-      {/* Badges flotantes */}
-      <div className="absolute -top-4 -left-4 bg-[#023660] border border-[#36AAC1]/40 rounded-2xl px-4 py-2 shadow-xl backdrop-blur-md">
-        <span className="text-[#36AAC1] text-xs font-black uppercase tracking-widest">+ Visibilidad</span>
-      </div>
-      <div className="absolute -bottom-4 -right-4 bg-[#023660] border border-[#FE1F3D]/40 rounded-2xl px-4 py-2 shadow-xl backdrop-blur-md">
-        <span className="text-[#FE1F3D] text-xs font-black uppercase tracking-widest">+ Control</span>
+      {/* Contenedor fijo con auto-scroll */}
+      <div style={{ height: 420, overflow: "hidden" }}>
+        <motion.img
+          src={asset("/cloudaltio-es-dashboard.png")}
+          alt="CloudAltio Dashboard"
+          style={{ width: "100%", display: "block" }}
+          animate={{ y: [0, -520, 0] }}
+          transition={{ duration: 14, repeat: Infinity, ease: "easeInOut", times: [0, 0.5, 1] }}
+        />
       </div>
     </div>
   );
@@ -187,6 +190,7 @@ function FinOpsFlowVisual() {
 // Main component
 // ─────────────────────────────────────────────
 export function HeroSlider() {
+  const { tr, lang } = useLanguage();
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
     Autoplay({ delay: 6000, stopOnInteraction: false }),
   ]);
@@ -212,14 +216,14 @@ export function HeroSlider() {
       bg: "bg-[#023660]",
       bgGradient: "from-[#023660] via-[#012d52] to-[#011e38]",
       badgeIcon: <BarChart3 className="w-4 h-4 text-[#FE1F3D]" />,
-      badge: "El problema",
-      title: "El gasto cloud no debería ser una sorpresa.",
-      highlight: "sorpresa.",
-      subtitle: "Centraliza, entiende y controla tu operación multicloud para tomar decisiones con información real.",
-      cta: "Agenda una demo",
-      ctaLink: "/demo",
+      badge: tr.hero.s1.badge,
+      title: tr.hero.s1.title,
+      highlight: tr.hero.s1.highlight,
+      subtitle: tr.hero.s1.subtitle,
+      cta: tr.hero.s1.cta,
+      ctaLink: `/contacto?motivo=${encodeURIComponent("Hola, quiero agendar una demo para ver cómo CloudAltio gestiona mis costos cloud.")}`,
       ctaStyle: "red",
-      visual: <ProblemVisual />,
+      visual: <DashboardScreenshot />,
     },
     // SLIDE 2 — Dolor multicloud
     {
@@ -229,17 +233,12 @@ export function HeroSlider() {
       bg: "bg-[#f1f5f9]",
       bgGradient: "",
       badgeIcon: <Layers className="w-4 h-4 text-[#36AAC1]" />,
-      badge: "El dolor del multicloud",
-      title: "El problema del multicloud no es la tecnología. Es la gestión.",
-      highlight: "no es la tecnología.",
+      badge: tr.hero.s2.badge,
+      title: `${tr.hero.s2.titlePre}${tr.hero.s2.highlight}${tr.hero.s2.titlePost}`,
+      highlight: tr.hero.s2.highlight,
       subtitle: null,
-      painPoints: [
-        "Datos en distintos formatos",
-        "Equipos en silos",
-        "Dificultad para comparar gastos",
-        "Falta de contexto para decidir",
-      ],
-      cta: "Ver cómo lo resolvemos",
+      painPoints: tr.hero.s2.painPoints,
+      cta: tr.hero.s2.cta,
       ctaLink: "/plataforma",
       ctaStyle: "teal",
       visual: <MulticloudPainVisual />,
@@ -252,18 +251,18 @@ export function HeroSlider() {
       bg: "bg-slate-100",
       bgGradient: "",
       badgeIcon: <Eye className="w-4 h-4 text-[#FE1F3D]" />,
-      badge: "La solución CloudAltio",
-      title: "Una sola plataforma para entender y controlar tu operación cloud.",
-      highlight: "entender y controlar",
+      badge: tr.hero.s3.badge,
+      title: `${tr.hero.s3.titlePre}${tr.hero.s3.highlight}${tr.hero.s3.titlePost}`,
+      highlight: tr.hero.s3.highlight,
       subtitle: null,
       benefits: [
-        { icon: <Eye className="w-4 h-4" />, label: "Visibilidad unificada" },
-        { icon: <Layers className="w-4 h-4" />, label: "Estandarización FOCUS" },
-        { icon: <Target className="w-4 h-4" />, label: "Control proactivo" },
-        { icon: <BarChart3 className="w-4 h-4" />, label: "Asignación de costos" },
+        { icon: <Eye className="w-4 h-4" />, label: tr.hero.s3.benefits[0] },
+        { icon: <Layers className="w-4 h-4" />, label: tr.hero.s3.benefits[1] },
+        { icon: <Target className="w-4 h-4" />, label: tr.hero.s3.benefits[2] },
+        { icon: <BarChart3 className="w-4 h-4" />, label: tr.hero.s3.benefits[3] },
       ],
-      cta: "Solicitar demo",
-      ctaLink: "/demo",
+      cta: tr.hero.s3.cta,
+      ctaLink: `/contacto?motivo=${encodeURIComponent("Hola, me gustaría solicitar una demo de la plataforma CloudAltio.")}`,
       ctaStyle: "red",
       visual: <DashboardMockup />,
     },
@@ -275,11 +274,11 @@ export function HeroSlider() {
       bg: "bg-[#f1f5f9]",
       bgGradient: "",
       badgeIcon: <TrendingUp className="w-4 h-4 text-[#36AAC1]" />,
-      badge: "Enfoque FinOps",
-      title: "No puedes optimizar lo que no entiendes.",
-      highlight: "optimizar lo que no entiendes.",
-      subtitle: "FinOps no empieza por ahorrar. Empieza por ordenar.",
-      cta: "Conocer la metodología",
+      badge: tr.hero.s4.badge,
+      title: tr.hero.s4.title,
+      highlight: tr.hero.s4.highlight,
+      subtitle: tr.hero.s4.subtitle,
+      cta: tr.hero.s4.cta,
       ctaLink: "/finops",
       ctaStyle: "teal",
       visual: <FinOpsFlowVisual />,
@@ -348,18 +347,18 @@ export function HeroSlider() {
                       {slide.type === "pain" ? (
                         <>
                           <span className={isDark(slide) ? "text-white" : "text-[#023660]"}>
-                            El problema del multicloud{" "}
+                            {tr.hero.s2.titlePre}
                           </span>
                           <span className="text-[#FE1F3D]">
-                            no es la tecnología.
+                            {tr.hero.s2.highlight}
                           </span>
-                          <span className={isDark(slide) ? " text-white" : " text-[#023660]"}> Es la gestión.</span>
+                          <span className={isDark(slide) ? " text-white" : " text-[#023660]"}>{tr.hero.s2.titlePost}</span>
                         </>
                       ) : slide.type === "solution" ? (
                         <>
-                          <span className="text-[#023660]">Una sola plataforma para </span>
-                          <span className="text-[#FE1F3D]">entender y controlar</span>
-                          <span className="text-[#023660]"> tu operación cloud.</span>
+                          <span className="text-[#023660]">{tr.hero.s3.titlePre}</span>
+                          <span className="text-[#FE1F3D]">{tr.hero.s3.highlight}</span>
+                          <span className="text-[#023660]">{tr.hero.s3.titlePost}</span>
                         </>
                       ) : (
                         <>
@@ -423,10 +422,10 @@ export function HeroSlider() {
                     {slide.type === "problem" && (
                       <div className="flex gap-3 mt-5">
                         <span className="bg-[#36AAC1]/15 border border-[#36AAC1]/30 text-[#36AAC1] text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-widest">
-                          + Visibilidad
+                          {tr.hero.badge1}
                         </span>
                         <span className="bg-[#FE1F3D]/15 border border-[#FE1F3D]/30 text-[#FE1F3D] text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-widest">
-                          + Control
+                          {tr.hero.badge2}
                         </span>
                       </div>
                     )}

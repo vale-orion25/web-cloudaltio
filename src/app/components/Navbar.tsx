@@ -1,12 +1,24 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Globe } from "lucide-react";
 import { asset } from "@/lib/asset";
+import { useLanguage, Lang } from "@/lib/i18n";
 
 export function Navbar() {
+  const { tr, lang, setLang } = useLanguage();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [ctaHover, setCtaHover] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [langOpen, setLangOpen] = useState(false);
+  const langRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (langRef.current && !langRef.current.contains(e.target as Node)) setLangOpen(false);
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -16,12 +28,12 @@ export function Navbar() {
   }, []);
 
   const navLinks = [
-    { label: "Inicio", href: "/" },
-    { label: "Plataforma", href: "/plataforma" },
-    { label: "FinOps", href: "/finops" },
-    { label: "Integraciones", href: "/integraciones" },
-    { label: "Planes", href: "/planes" },
-    { label: "Blog", href: "/blog" },
+    { label: tr.nav.home, href: "/" },
+    { label: tr.nav.platform, href: "/plataforma" },
+    { label: tr.nav.finops, href: "/finops" },
+    { label: tr.nav.integrations, href: "/integraciones" },
+    { label: tr.nav.plans, href: "/planes" },
+    { label: tr.nav.blog, href: "/blog" },
   ];
 
   const linkColor = scrolled ? "#64748b" : "rgba(255,255,255,0.9)";
@@ -96,9 +108,57 @@ export function Navbar() {
         </div>
 
         {/* Desktop CTA Actions */}
-        <div className="navbar-desktop-nav hidden md:flex" style={{ alignItems: "center", gap: 20 }}>
-          <Link
-            to="/login"
+        <div className="navbar-desktop-nav hidden md:flex" style={{ alignItems: "center", gap: 16 }}>
+          {/* Language selector */}
+          <div ref={langRef} style={{ position: "relative" }}>
+            <button
+              onClick={() => setLangOpen((v) => !v)}
+              style={{
+                display: "flex", alignItems: "center", gap: 4,
+                background: "transparent", border: "none", cursor: "pointer",
+                padding: "6px 8px", borderRadius: 8,
+                color: linkColor, transition: "color 0.2s, background 0.2s",
+              }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = linkHoverBg; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "transparent"; }}
+            >
+              <Globe size={15} />
+              <span style={{ fontSize: 12, fontWeight: 600, letterSpacing: "0.04em" }}>{lang.toUpperCase()}</span>
+            </button>
+            {langOpen && (
+              <div style={{
+                position: "absolute", top: "calc(100% + 8px)", right: 0,
+                background: "#ffffff", border: "1px solid #E2E8F0",
+                borderRadius: 10, boxShadow: "0 8px 24px rgba(15,23,42,0.1)",
+                overflow: "hidden", minWidth: 130, zIndex: 200,
+              }}>
+                {[
+                  { code: "ES", label: "Español" },
+                  { code: "EN", label: "English" },
+                ].map((item) => (
+                  <a
+                    key={item.code}
+                    href="#"
+                    onClick={(e) => { e.preventDefault(); setLang(item.code.toLowerCase() as Lang); setLangOpen(false); }}
+                    style={{
+                      display: "flex", alignItems: "center", justifyContent: "space-between",
+                      padding: "10px 14px", textDecoration: "none",
+                      fontSize: 13, fontWeight: 500, color: "#023660",
+                      background: lang.toUpperCase() === item.code ? "rgba(2,54,96,0.04)" : "transparent",
+                      transition: "background 0.15s",
+                    }}
+                    onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "rgba(2,54,96,0.06)"; }}
+                    onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = lang.toUpperCase() === item.code ? "rgba(2,54,96,0.04)" : "transparent"; }}
+                  >
+                    {item.label}
+                    {lang.toUpperCase() === item.code && <span style={{ fontSize: 10, fontWeight: 700, color: "#7f2f8c" }}>✓</span>}
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+          <a
+            href="https://cloudaltio.com/es/"
             style={{
               fontSize: 14,
               fontWeight: 500,
@@ -109,10 +169,10 @@ export function Navbar() {
             onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = linkHoverColor; }}
             onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = linkColor; }}
           >
-            Ingresar
-          </Link>
+            {tr.nav.login}
+          </a>
           <Link
-            to="/demo"
+            to={`/contacto?motivo=${encodeURIComponent("Hola, me gustaría solicitar una demo de CloudAltio.")}`}
             style={{
               fontSize: 14,
               fontWeight: 600,
@@ -131,7 +191,7 @@ export function Navbar() {
             onMouseEnter={() => setCtaHover(true)}
             onMouseLeave={() => setCtaHover(false)}
           >
-            Solicitar demo
+            {tr.nav.demo}
           </Link>
         </div>
 
@@ -188,24 +248,40 @@ export function Navbar() {
             ))}
           </div>
           <div style={{ marginTop: 16, paddingTop: 16, borderTop: "1px solid #E2E8F0", display: "flex", flexDirection: "column", gap: 10 }}>
+            <div style={{ display: "flex", gap: 8 }}>
+              <a
+                href="https://cloudaltio.com/es/"
+                onClick={() => setMobileOpen(false)}
+                style={{
+                  flex: 1, fontSize: 14, fontWeight: 500, color: "#64748b", textDecoration: "none",
+                  padding: "12px 16px", borderRadius: 10, textAlign: "center", border: "1px solid #E2E8F0",
+                }}
+              >
+                {tr.nav.login}
+              </a>
+              <div style={{ display: "flex", border: "1px solid #E2E8F0", borderRadius: 10, overflow: "hidden", fontSize: 12, fontWeight: 600 }}>
+                {[
+                  { code: "ES" },
+                  { code: "EN" },
+                ].map((item) => (
+                  <a
+                    key={item.code}
+                    href="#"
+                    onClick={(e) => { e.preventDefault(); setLang(item.code.toLowerCase() as Lang); setMobileOpen(false); }}
+                    style={{
+                      padding: "0 14px", display: "flex", alignItems: "center", height: "100%",
+                      textDecoration: "none",
+                      background: lang.toUpperCase() === item.code ? "#023660" : "transparent",
+                      color: lang.toUpperCase() === item.code ? "#ffffff" : "#64748b",
+                    }}
+                  >
+                    {item.code}
+                  </a>
+                ))}
+              </div>
+            </div>
             <Link
-              to="/login"
-              onClick={() => setMobileOpen(false)}
-              style={{
-                fontSize: 14,
-                fontWeight: 500,
-                color: "#64748b",
-                textDecoration: "none",
-                padding: "12px 16px",
-                borderRadius: 10,
-                textAlign: "center",
-                border: "1px solid #E2E8F0",
-              }}
-            >
-              Ingresar
-            </Link>
-            <Link
-              to="/demo"
+              to={`/contacto?motivo=${encodeURIComponent("Hola, me gustaría solicitar una demo de CloudAltio.")}`}
               onClick={() => setMobileOpen(false)}
               style={{
                 fontSize: 14,
@@ -219,7 +295,7 @@ export function Navbar() {
                 boxShadow: "0 4px 20px rgba(254,31,61,0.3)",
               }}
             >
-              Solicitar demo
+              {tr.nav.demo}
             </Link>
           </div>
         </div>

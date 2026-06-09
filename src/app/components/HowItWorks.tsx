@@ -1,4 +1,5 @@
 import { asset } from "@/lib/asset";
+import { useLanguage } from "@/lib/i18n";
 const cloudLogos: Record<string, string> = {
   aws: asset("/AWS.png"),
   az: asset("/Azure.png"),
@@ -6,194 +7,193 @@ const cloudLogos: Record<string, string> = {
   oci: asset("/Oracle.png"),
 };
 
-const steps = [
-  {
-    number: "01",
-    title: "Conecta tus clouds",
-    description:
-      "Integra AWS, Azure, Google Cloud y Oracle Cloud de forma simple. Sin agentes, sin modificar tu infraestructura y con acceso de solo lectura.",
-    tags: ["API nativa", "Sin agentes", "Onboarding asistido"],
-    icon: <img src={asset("/05.png")} alt="Conecta" style={{ width: 28, height: 28, objectFit: "contain" }} />,
-    visual: (
-      <div
-        style={{
-          background: "#F8FAFC",
-          borderRadius: 10,
-          border: "1px solid #E2E8F0",
-          padding: "14px 16px",
-          marginTop: 16,
-        }}
-      >
-        {["AWS · us-east-1", "Azure · East US", "GCP · us-central1", "Oracle · São Paulo"].map(
-          (cloud, i) => {
-            const logoKeys = ["aws", "az", "gcp", "oci"];
-            const logos = logoKeys.map(k => (
-              <img key={k} src={cloudLogos[k]} alt={k} style={{ width: 12, height: 12, objectFit: "contain" }} />
-            ));
-            return (
+export function HowItWorks() {
+  const { tr } = useLanguage();
+
+  const steps = [
+    {
+      number: "01",
+      title: tr.how.steps[0].title,
+      description: tr.how.steps[0].desc,
+      tags: tr.how.steps[0].tags,
+      icon: <img src={asset("/05.png")} alt="Conecta" style={{ width: 28, height: 28, objectFit: "contain" }} />,
+      visual: (
+        <div
+          style={{
+            background: "#F8FAFC",
+            borderRadius: 10,
+            border: "1px solid #E2E8F0",
+            padding: "14px 16px",
+            marginTop: 16,
+          }}
+        >
+          {["AWS · us-east-1", "Azure · East US", "GCP · us-central1", "Oracle · São Paulo"].map(
+            (cloud, i) => {
+              const logoKeys = ["aws", "az", "gcp", "oci"];
+              const logos = logoKeys.map(k => (
+                <img key={k} src={cloudLogos[k]} alt={k} style={{ width: 12, height: 12, objectFit: "contain" }} />
+              ));
+              return (
+              <div
+                key={cloud}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  padding: "7px 0",
+                  borderBottom: i < 3 ? "1px solid #E2E8F0" : "none",
+                }}
+              >
+                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                  {logos[i]}
+                  <span style={{ fontSize: 11, color: "#023660", fontFamily: "Inter, sans-serif" }}>
+                    {cloud}
+                  </span>
+                </div>
+                <div
+                  style={{
+                    fontSize: 10,
+                    color: "#36AAC1",
+                    background: "rgba(54,170,193,0.08)",
+                    border: "1px solid rgba(54,170,193,0.2)",
+                    padding: "2px 8px",
+                    borderRadius: 100,
+                    fontFamily: "Inter, sans-serif",
+                    fontWeight: 600,
+                  }}
+                >
+                  {tr.how.steps[0].connected}
+                </div>
+              </div>
+              );
+            }
+          )}
+        </div>
+      ),
+    },
+    {
+      number: "02",
+      title: tr.how.steps[1].title,
+      description: tr.how.steps[1].desc,
+      tags: tr.how.steps[1].tags,
+      icon: <img src={asset("/06.png")} alt="Visualiza" style={{ width: 28, height: 28, objectFit: "contain" }} />,
+      visual: (
+        <div
+          style={{
+            background: "#F8FAFC",
+            borderRadius: 10,
+            border: "1px solid #E2E8F0",
+            padding: "14px 16px",
+            marginTop: 16,
+          }}
+        >
+          {[
+            { label: "Compute", pct: 68, cost: "$48.2k", color: "#023660" },
+            { label: "Storage", pct: 42, cost: "$12.4k", color: "#36AAC1" },
+            { label: "Database", pct: 34, cost: "$9.8k", color: "#FE1F3D" },
+          ].map((item) => (
+            <div key={item.label} style={{ marginBottom: 10 }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  marginBottom: 5,
+                }}
+              >
+                <span style={{ fontSize: 10, color: "#023660", fontFamily: "Inter, sans-serif" }}>
+                  {item.label}
+                </span>
+                <span
+                  style={{ fontSize: 10, fontWeight: 700, color: "#0F172A", fontFamily: "Inter, sans-serif" }}
+                >
+                  {item.cost}
+                </span>
+              </div>
+              <div style={{ height: 4, background: "#E2E8F0", borderRadius: 4 }}>
+                <div
+                  style={{
+                    height: "100%",
+                    width: `${item.pct}%`,
+                    background: item.color,
+                    borderRadius: 4,
+                  }}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      ),
+    },
+    {
+      number: "03",
+      title: tr.how.steps[2].title,
+      description: tr.how.steps[2].desc,
+      tags: tr.how.steps[2].tags,
+      icon: <img src={asset("/07.png")} alt="Optimiza" style={{ width: 28, height: 28, objectFit: "contain" }} />,
+      visual: (
+        <div
+          style={{
+            background: "#F8FAFC",
+            borderRadius: 10,
+            border: "1px solid #E2E8F0",
+            padding: "14px 16px",
+            marginTop: 16,
+          }}
+        >
+          {[
+            { rec: "Rightsizing EC2", saving: "$8,200/mes", effort: "Bajo" },
+            { rec: "Reserved Instances", saving: "$6,400/mes", effort: "Medio" },
+            { rec: "S3 Lifecycle", saving: "$2,100/mes", effort: "Bajo" },
+          ].map((item) => (
             <div
-              key={cloud}
+              key={item.rec}
               style={{
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
                 padding: "7px 0",
-                borderBottom: i < 3 ? "1px solid #E2E8F0" : "none",
+                borderBottom: "1px solid #E2E8F0",
               }}
             >
-              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                {logos[i]}
-                <span style={{ fontSize: 11, color: "#023660", fontFamily: "Inter, sans-serif" }}>
-                  {cloud}
-                </span>
+              <div>
+                <div
+                  style={{
+                    fontSize: 10,
+                    fontWeight: 600,
+                    color: "#0F172A",
+                    fontFamily: "Inter, sans-serif",
+                    marginBottom: 2,
+                  }}
+                >
+                  {item.rec}
+                </div>
+                <div
+                  style={{
+                    fontSize: 9,
+                    color: "#475569",
+                    fontFamily: "Inter, sans-serif",
+                  }}
+                >
+                  {tr.how.steps[2].effort}: {item.effort}
+                </div>
               </div>
               <div
                 style={{
-                  fontSize: 10,
-                  color: "#36AAC1",
-                  background: "rgba(54,170,193,0.08)",
-                  border: "1px solid rgba(54,170,193,0.2)",
-                  padding: "2px 8px",
-                  borderRadius: 100,
-                  fontFamily: "Inter, sans-serif",
-                  fontWeight: 600,
-                }}
-              >
-                Conectado
-              </div>
-            </div>
-            );
-          }
-        )}
-      </div>
-    ),
-  },
-  {
-    number: "02",
-    title: "Visualiza y entiende tu gasto",
-    description:
-      "Un dashboard unificado que convierte información compleja en una vista clara de tu gasto por equipo, proyecto, región, servicio y etiquetas.",
-    tags: ["Multi-cloud", "Por equipo", "Por proyecto"],
-    icon: <img src={asset("/06.png")} alt="Visualiza" style={{ width: 28, height: 28, objectFit: "contain" }} />,
-    visual: (
-      <div
-        style={{
-          background: "#F8FAFC",
-          borderRadius: 10,
-          border: "1px solid #E2E8F0",
-          padding: "14px 16px",
-          marginTop: 16,
-        }}
-      >
-        {[
-          { label: "Compute", pct: 68, cost: "$48.2k", color: "#023660" },
-          { label: "Storage", pct: 42, cost: "$12.4k", color: "#36AAC1" },
-          { label: "Database", pct: 34, cost: "$9.8k", color: "#FE1F3D" },
-        ].map((item) => (
-          <div key={item.label} style={{ marginBottom: 10 }}>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                marginBottom: 5,
-              }}
-            >
-              <span style={{ fontSize: 10, color: "#023660", fontFamily: "Inter, sans-serif" }}>
-                {item.label}
-              </span>
-              <span
-                style={{ fontSize: 10, fontWeight: 700, color: "#0F172A", fontFamily: "Inter, sans-serif" }}
-              >
-                {item.cost}
-              </span>
-            </div>
-            <div style={{ height: 4, background: "#E2E8F0", borderRadius: 4 }}>
-              <div
-                style={{
-                  height: "100%",
-                  width: `${item.pct}%`,
-                  background: item.color,
-                  borderRadius: 4,
-                }}
-              />
-            </div>
-          </div>
-        ))}
-      </div>
-    ),
-  },
-  {
-    number: "03",
-    title: "Prepárate para optimizar",
-    description:
-      "Próximamente podrás identificar oportunidades de ahorro y priorizar acciones según su impacto económico.",
-    tags: ["Próximamente", "Oportunidades de ahorro", "Impacto estimado"],
-    icon: <img src={asset("/07.png")} alt="Optimiza" style={{ width: 28, height: 28, objectFit: "contain" }} />,
-    visual: (
-      <div
-        style={{
-          background: "#F8FAFC",
-          borderRadius: 10,
-          border: "1px solid #E2E8F0",
-          padding: "14px 16px",
-          marginTop: 16,
-        }}
-      >
-        {[
-          { rec: "Rightsizing EC2", saving: "$8,200/mes", effort: "Bajo" },
-          { rec: "Reserved Instances", saving: "$6,400/mes", effort: "Medio" },
-          { rec: "S3 Lifecycle", saving: "$2,100/mes", effort: "Bajo" },
-        ].map((item) => (
-          <div
-            key={item.rec}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              padding: "7px 0",
-              borderBottom: "1px solid #E2E8F0",
-            }}
-          >
-            <div>
-              <div
-                style={{
-                  fontSize: 10,
-                  fontWeight: 600,
-                  color: "#0F172A",
-                  fontFamily: "Inter, sans-serif",
-                  marginBottom: 2,
-                }}
-              >
-                {item.rec}
-              </div>
-              <div
-                style={{
-                  fontSize: 9,
-                  color: "#475569",
+                  fontSize: 11,
+                  fontWeight: 700,
+                  color: "#FE1F3D",
                   fontFamily: "Inter, sans-serif",
                 }}
               >
-                Esfuerzo: {item.effort}
+                {item.saving}
               </div>
             </div>
-            <div
-              style={{
-                fontSize: 11,
-                fontWeight: 700,
-                color: "#FE1F3D",
-                fontFamily: "Inter, sans-serif",
-              }}
-            >
-              {item.saving}
-            </div>
-          </div>
-        ))}
-      </div>
-    ),
-  },
-];
+          ))}
+        </div>
+      ),
+    },
+  ];
 
-export function HowItWorks() {
   return (
     <section
       id="como-funciona"
@@ -219,7 +219,7 @@ export function HowItWorks() {
               marginBottom: 16,
             }}
           >
-            Cómo funciona
+            {tr.how.eyebrow}
           </div>
           <h2
             style={{
@@ -231,12 +231,12 @@ export function HowItWorks() {
               lineHeight: 1.15,
             }}
           >
-            De la conexión a la visibilidad,
+            {tr.how.title1}
             <br />
-            en tres pasos
+            {tr.how.title2}
           </h2>
           <p style={{ fontSize: 16, color: "#023660", maxWidth: 480, margin: "0 auto" }}>
-            Sin meses de implementación. Sin procesos complejos. Solo datos claros para tomar mejores decisiones.
+            {tr.how.subtitle}
           </p>
         </div>
 

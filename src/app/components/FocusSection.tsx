@@ -1,29 +1,66 @@
-import { Sparkles, Users, Database, ArrowRight } from "lucide-react";
-import { ImageWithFallback } from "./figma/ImageWithFallback";
-import focusImage from "../../imports/Captura_de_pantalla_2026-06-03_a_la_s__10.05.53_a.m..png";
+import { motion } from "motion/react";
+import { useLanguage } from "@/lib/i18n";
 
-const cards = [
-  {
-    icon: <Database className="w-6 h-6 text-[#FE1F3D]" />,
-    title: "Estándar FOCUS",
-    desc: "Normalizamos los datos de AWS, Azure, GCP y OCI bajo el estándar FOCUS para comparaciones precisas entre proveedores.",
-    accent: "#FE1F3D",
-  },
-  {
-    icon: <Users className="w-6 h-6 text-[#023660]" />,
-    title: "Cultura FinOps",
-    desc: "Unificamos a Finanzas, Tecnología y Operaciones en un solo lenguaje de datos para decisiones estratégicas.",
-    accent: "#023660",
-  },
-  {
-    icon: <Sparkles className="w-6 h-6 text-[#36AAC1]" />,
-    title: "Asistente de IA",
-    desc: "Insights inmediatos sobre anomalías y proyecciones de ahorro mediante nuestro asistente FinOps especializado.",
-    accent: "#36AAC1",
-  },
-];
+const gradientId = "iconGrad";
+
+const GradientDefs = () => (
+  <defs>
+    <linearGradient id={gradientId} x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stopColor="#fb2e50" />
+      <stop offset="50%" stopColor="#7f2f8c" />
+      <stop offset="100%" stopColor="#003d80" />
+    </linearGradient>
+  </defs>
+);
+
+const IconDatabase = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <GradientDefs />
+    <ellipse cx="12" cy="5" rx="9" ry="3" stroke={`url(#${gradientId})`} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5" stroke={`url(#${gradientId})`} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3" stroke={`url(#${gradientId})`} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+const IconUsers = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <GradientDefs />
+    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" stroke={`url(#${gradientId})`} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <circle cx="9" cy="7" r="4" stroke={`url(#${gradientId})`} strokeWidth="2"/>
+    <path d="M22 21v-2a4 4 0 0 0-3-3.87" stroke={`url(#${gradientId})`} strokeWidth="2" strokeLinecap="round"/>
+    <path d="M16 3.13a4 4 0 0 1 0 7.75" stroke={`url(#${gradientId})`} strokeWidth="2" strokeLinecap="round"/>
+  </svg>
+);
+
+const IconSparkles = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <GradientDefs />
+    <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" stroke={`url(#${gradientId})`} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M20 3v4M22 5h-4M4 17v2M5 18H3" stroke={`url(#${gradientId})`} strokeWidth="2" strokeLinecap="round"/>
+  </svg>
+);
 
 export function FocusSection() {
+  const { tr } = useLanguage();
+
+  const cards = [
+    {
+      icon: <IconDatabase />,
+      title: tr.focus.cards[0].title,
+      desc: tr.focus.cards[0].desc,
+    },
+    {
+      icon: <IconUsers />,
+      title: tr.focus.cards[1].title,
+      desc: tr.focus.cards[1].desc,
+    },
+    {
+      icon: <IconSparkles />,
+      title: tr.focus.cards[2].title,
+      desc: tr.focus.cards[2].desc,
+    },
+  ];
+
   return (
     <section className="py-20 bg-white overflow-hidden">
       <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-12">
@@ -45,87 +82,58 @@ export function FocusSection() {
               <line x1="16" y1="17" x2="8" y2="17" stroke="url(#pilarGrad)" strokeWidth="2" strokeLinecap="round"/>
               <line x1="10" y1="9" x2="8" y2="9" stroke="url(#pilarGrad)" strokeWidth="2" strokeLinecap="round"/>
             </svg>
-            <span className="text-[11px] font-bold text-[#023660] uppercase tracking-widest">Pilar Fundamental</span>
+            <span className="text-[11px] font-bold text-[#023660] uppercase tracking-widest">{tr.focus.badge}</span>
           </div>
           <h2 className="text-4xl lg:text-5xl font-black text-[#023660] leading-[1.1] mb-5">
-            Gestión Multi-cloud con{" "}
-            <span className="text-[#FE1F3D]">Criterio Financiero</span>
+            {tr.focus.title}{" "}
+            <span className="text-[#FE1F3D]">{tr.focus.highlight}</span>
           </h2>
           <p className="text-lg text-slate-500 leading-relaxed">
-            CloudAltio elimina la complejidad de comparar facturas de distintos proveedores. Unificamos bajo estándares internacionales de transparencia y cumplimiento técnico.
+            {tr.focus.subtitle}
           </p>
         </div>
 
         {/* ── 3 Cards horizontales ── */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-14">
-          {cards.map((card, idx) => (
-            <div
+          {cards.map((card, idx) => {
+            const origins = [
+              { x: -60, y: 30 },
+              { x: 0,   y: 60 },
+              { x: 60,  y: 30 },
+            ];
+            return (
+            <motion.div
               key={idx}
-              className="group flex flex-col gap-4 p-7 rounded-2xl border border-slate-100 bg-slate-50/60 hover:bg-white hover:border-slate-200 hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300"
+              className="group flex flex-col gap-4 p-7 rounded-2xl border border-slate-100 bg-slate-50/60"
+              initial={{ opacity: 0, x: origins[idx].x, y: origins[idx].y, scale: 0.92 }}
+              whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-40px" }}
+              animate={{ scale: [1, 1.025, 1] }}
+              transition={{
+                opacity: { duration: 0.55, delay: idx * 0.15 },
+                x:       { duration: 0.7,  delay: idx * 0.15, ease: [0.22, 1, 0.36, 1] },
+                y:       { duration: 0.7,  delay: idx * 0.15, ease: [0.22, 1, 0.36, 1] },
+                scale:   { duration: 3.2 + idx * 0.5, repeat: Infinity, ease: "easeInOut", delay: idx * 0.9 },
+              }}
+              style={{ transformStyle: "preserve-3d" }}
+              whileHover={{ y: -12, scale: 1.04, boxShadow: "0 28px 52px rgba(127,47,140,0.22)", backgroundColor: "#ffffff" }}
             >
-              <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform"
-                style={{ backgroundColor: card.accent + "12", border: `1.5px solid ${card.accent}25` }}
-              >
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform"
+                style={{ background: "linear-gradient(135deg, rgba(251,46,80,0.08) 0%, rgba(0,61,128,0.08) 100%)", border: "1.5px solid rgba(127,47,140,0.15)" }}>
                 {card.icon}
               </div>
               <div>
                 <h3 className="text-base font-bold text-[#023660] mb-2">{card.title}</h3>
                 <p className="text-sm text-slate-500 leading-relaxed">{card.desc}</p>
               </div>
-              <div
-                className="mt-auto h-0.5 w-8 rounded-full group-hover:w-16 transition-all duration-300"
-                style={{ backgroundColor: card.accent }}
+              <div className="mt-auto h-0.5 w-8 rounded-full group-hover:w-16 transition-all duration-300"
+                style={{ background: "linear-gradient(90deg, #fb2e50 0%, #7f2f8c 50%, #003d80 100%)" }}
               />
-            </div>
-          ))}
+            </motion.div>
+            );
+          })}
         </div>
 
-        {/* ── Imagen + CTA ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
-
-          {/* Imagen — ocupa 3/5 */}
-          <div className="lg:col-span-3 relative group">
-            <div className="absolute -inset-3 bg-gradient-to-tr from-[#023660]/8 to-[#FE1F3D]/8 rounded-[2.5rem] -z-10 blur-2xl opacity-70 group-hover:opacity-100 transition-opacity duration-700" />
-            <div className="relative bg-white border border-slate-200 rounded-2xl p-3 shadow-xl shadow-slate-200/50 overflow-hidden">
-              <div className="rounded-xl overflow-hidden">
-                <ImageWithFallback
-                  src={focusImage}
-                  alt="CloudAltio FOCUS Standard Visualization"
-                  className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-[1.02]"
-                />
-              </div>
-            </div>
-            {/* Badge flotante */}
-            <div className="absolute -top-4 -right-4 bg-white border border-slate-200 px-4 py-3 rounded-xl shadow-lg hidden md:flex items-center gap-3 z-20">
-              <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              <span className="text-xs font-black text-[#023660] uppercase tracking-widest">FOCUS 1.0 Live</span>
-            </div>
-          </div>
-
-          {/* CTA block — ocupa 2/5 */}
-          <div className="lg:col-span-2 flex flex-col gap-6 lg:pl-6">
-            <div className="space-y-4">
-              <p className="text-2xl font-black text-[#023660] leading-tight">
-                Un solo estándar para todos tus proveedores cloud.
-              </p>
-              <p className="text-sm text-slate-500 leading-relaxed">
-                Sin hojas de cálculo, sin interpretaciones distintas. Solo datos unificados y listos para decidir.
-              </p>
-            </div>
-            <div className="flex flex-col gap-3">
-              <button className="bg-[#FE1F3D] hover:bg-[#d81932] text-white font-bold py-3.5 px-8 rounded-full transition-all shadow-lg shadow-[#FE1F3D]/25 flex items-center gap-2 group w-fit">
-                Comenzar ahora
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
-              <button className="text-[#023660] font-semibold text-sm flex items-center gap-1.5 hover:gap-3 transition-all w-fit">
-                Ver documentación FOCUS
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
-
-        </div>
       </div>
     </section>
   );

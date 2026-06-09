@@ -7,6 +7,7 @@ import { PlansPage } from "./pages/PlansPage";
 import { FAQPage } from "./pages/FAQPage";
 import { BlogPage } from "./pages/BlogPage";
 import { BlogPostPage } from "./pages/BlogPostPage";
+import { ContactPage } from "./pages/ContactPage";
 
 export const router = createBrowserRouter([
   {
@@ -40,5 +41,9 @@ export const router = createBrowserRouter([
   {
     path: "/blog/:slug",
     Component: BlogPostPage,
+  },
+  {
+    path: "/contacto",
+    Component: ContactPage,
   },
 ], { basename: '/web-cloudaltio' });

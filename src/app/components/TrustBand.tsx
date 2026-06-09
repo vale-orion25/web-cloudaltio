@@ -1,6 +1,7 @@
 import { ShieldCheck, Zap, Cpu } from "lucide-react";
 import { motion } from "motion/react";
 import { asset } from "@/lib/asset";
+import { useLanguage } from "@/lib/i18n";
 
 const providers: { name: string; logo: string; raw: string }[] = [
   { name: "AWS",          logo: asset("/AWS.png"),          raw: "$12,400" },
@@ -10,6 +11,7 @@ const providers: { name: string; logo: string; raw: string }[] = [
 ];
 
 export function TrustBand() {
+  const { tr } = useLanguage();
   return (
     <section className="relative py-24 border-y border-slate-100 overflow-hidden">
       {/* Texture Background */}
@@ -30,16 +32,26 @@ export function TrustBand() {
         {/* Header - Centered */}
         <div className="text-center mb-20 max-w-2xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#023660]/5 border border-[#023660]/10 mb-6">
-            <ShieldCheck className="w-4 h-4 text-[#023660]" />
-            <span className="text-[11px] font-bold text-[#023660] tracking-widest uppercase">
-              Pipeline de Datos FOCUS
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <defs>
+                <linearGradient id="pipelineGrad" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stopColor="#fb2e50" />
+                  <stop offset="50%" stopColor="#7f2f8c" />
+                  <stop offset="100%" stopColor="#003d80" />
+                </linearGradient>
+              </defs>
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="url(#pipelineGrad)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="m9 12 2 2 4-4" stroke="url(#pipelineGrad)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            <span className="text-[11px] font-bold tracking-widest uppercase" style={{ background: "linear-gradient(90deg, #fb2e50, #7f2f8c, #003d80)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+              {tr.trust.badge}
             </span>
           </div>
           <h2 className="text-3xl md:text-4xl font-extrabold text-[#023660] leading-tight mb-4">
-            Estandarización Multicloud en Tiempo Real
+            {tr.trust.title}
           </h2>
           <p className="text-slate-600 text-lg">
-            Utilizamos el estándar <strong>FOCUS</strong> para unificar, estandarizar y comparar consumos generados desde AWS, Azure, GCP y OCI en una sola fuente de verdad.
+            {tr.trust.subtitle}
           </p>
         </div>
 
@@ -51,11 +63,10 @@ export function TrustBand() {
             {providers.map((p, i) => (
               <motion.div
                 key={p.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
-                viewport={{ once: true }}
-                className="border border-slate-200 p-5 rounded-2xl flex flex-col items-center gap-3 group hover:border-[#023660]/30 transition-colors bg-[#ffffff]"
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut", delay: i * 0.7 }}
+                whileHover={{ scale: 1.08, boxShadow: "0 20px 40px rgba(127,47,140,0.18)" }}
+                className="border border-slate-200 p-5 rounded-2xl flex flex-col items-center gap-3 group bg-[#ffffff] cursor-pointer"
               >
                 <img src={p.logo} alt={p.name} style={{ width: 48, height: 48, objectFit: "contain" }} />
                 <div className="text-center">
@@ -86,14 +97,14 @@ export function TrustBand() {
             className="relative z-30 p-8 md:p-10 rounded-3xl shadow-2xl flex flex-col items-center gap-4 text-center border-4 border-white"
           >
             <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-[#FE1F3D] text-white text-[10px] font-black uppercase tracking-[0.2em] rounded-full whitespace-nowrap">
-              Engine Core
+              {tr.trust.engineLabel}
             </div>
             <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-sm border border-white/20">
               <Cpu className="w-8 h-8 text-white" />
             </div>
             <div>
-              <h3 className="text-xl font-black text-white tracking-tight uppercase">FOCUS Standard</h3>
-              <p className="text-white/60 text-xs font-medium mt-1">Normalización multicloud automatizada</p>
+              <h3 className="text-xl font-black text-white tracking-tight uppercase">{tr.trust.engineTitle}</h3>
+              <p className="text-white/60 text-xs font-medium mt-1">{tr.trust.engineSub}</p>
             </div>
             <div className="flex gap-2 mt-2">
               {[0, 1, 2].map((i) => (
@@ -124,20 +135,20 @@ export function TrustBand() {
             className="w-full max-w-lg bg-white border border-slate-200 shadow-xl rounded-2xl overflow-hidden"
           >
             <div className="bg-slate-50 px-6 py-3 border-b border-slate-100 flex items-center justify-between">
-              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Vista Unificada</span>
+              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{tr.trust.unifiedLabel}</span>
               <div className="flex items-center gap-1.5">
                 <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                <span className="text-[10px] font-bold text-green-600 uppercase">Validado</span>
+                <span className="text-[10px] font-bold text-green-600 uppercase">{tr.trust.validado}</span>
               </div>
             </div>
             <div className="p-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
               <div className="flex flex-col">
-                <div className="text-xs font-bold text-[#023660]/60 uppercase mb-1">Inversión Mensual</div>
+                <div className="text-xs font-bold text-[#023660]/60 uppercase mb-1">{tr.trust.monthly}</div>
                 <div className="text-4xl font-black text-[#023660]">$27,000.00</div>
               </div>
               <div className="hidden sm:block h-12 w-px bg-slate-100" />
               <div className="flex flex-col items-center sm:items-start">
-                <div className="text-xs font-bold text-[#FE1F3D] uppercase mb-1">Metadata FOCUS</div>
+                <div className="text-xs font-bold text-[#FE1F3D] uppercase mb-1">{tr.trust.focusMeta}</div>
                 <div className="flex -space-x-2">
                   {providers.map((p) => (
                     <div key={p.name} className="w-8 h-8 rounded-full border-2 border-white bg-white shadow-sm flex items-center justify-center">
@@ -159,9 +170,9 @@ export function TrustBand() {
           >
             <div className="flex items-center gap-2 mb-2">
               <Zap className="w-4 h-4 text-[#FE1F3D]" />
-              <span className="text-[10px] font-black text-[#FE1F3D] uppercase tracking-wider">Detección FOCUS</span>
+              <span className="text-[10px] font-black text-[#FE1F3D] uppercase tracking-wider">{tr.trust.alertBadge}</span>
             </div>
-            <div className="text-xs font-bold text-[#023660] leading-snug">Variación detectada: +$3,400 en EC2</div>
+            <div className="text-xs font-bold text-[#023660] leading-snug">{tr.trust.alertText}</div>
           </motion.div>
 
         </div>
@@ -169,9 +180,9 @@ export function TrustBand() {
         {/* Feature Grid - Bottom */}
         <div className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-12">
           {[
-            { icon: asset("/02.png"), title: "Consolidación", desc: "4 nubes principales integradas nativamente." },
-            { icon: asset("/03.png"), title: "Sin Código", desc: "Implementación técnica sin agentes ni fricción." },
-            { icon: asset("/04.png"), title: "Sin Impacto", desc: "Lectura de costos sin afectar tu infraestructura." },
+            { icon: asset("/02.png"), title: tr.trust.features[0], desc: tr.trust.featuresDesc[0] },
+            { icon: asset("/03.png"), title: tr.trust.features[1], desc: tr.trust.featuresDesc[1] },
+            { icon: asset("/04.png"), title: tr.trust.features[2], desc: tr.trust.featuresDesc[2] },
           ].map((item, i) => (
             <div key={i} className="flex flex-col items-center text-center px-4">
               <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center mb-4">

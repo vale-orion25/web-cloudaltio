@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { asset } from "@/lib/asset";
 import { ArrowRight } from "lucide-react";
+import { useLanguage } from "@/lib/i18n";
 
 const cloudLogos: Record<string, string> = {
   AWS: asset("/AWS.png"),
@@ -163,41 +164,43 @@ function CapabilityVisual5() {
   );
 }
 
-const capabilities = [
-  {
-    tag: "MULTI-CLOUD",
-    title: "Visibilidad unificada",
-    desc: "Un panel único para entender el gasto de todos tus clouds en un solo lugar, sin exportar archivos ni consolidar datos manualmente.",
-    visual: <CapabilityVisual1 />,
-  },
-  {
-    tag: "ALERTAS",
-    title: "Alertas y control de desvíos",
-    desc: "Detecta cambios inesperados en tu gasto y configura alertas por equipo, servicio o región para actuar a tiempo.",
-    visual: <CapabilityVisual2 />,
-  },
-  {
-    tag: "PROYECCIONES",
-    title: "Proyecciones más claras",
-    desc: "Anticipa el cierre del mes usando tu historial de consumo y visualiza tendencias para planificar con más confianza.",
-    visual: <CapabilityVisual3 />,
-  },
-  {
-    tag: "REPORTES",
-    title: "Análisis por equipo y proyecto",
-    desc: "Desglosa el gasto por etiquetas, proyectos, equipos o cuentas y comparte reportes claros con finanzas y operaciones.",
-    visual: <CapabilityVisual5 />,
-  },
-  {
-    tag: "OPTIMIZACIÓN",
-    title: "Optimización próximamente",
-    desc: "Esta funcionalidad estará disponible próximamente para ayudarte a detectar oportunidades de eficiencia con mayor precisión.",
-    visual: <CapabilityVisual4 />,
-  },
-];
-
 export function Capabilities() {
+  const { tr } = useLanguage();
   const [active, setActive] = useState(0);
+
+  const capabilities = [
+    {
+      tag: tr.caps.items[0].tag,
+      title: tr.caps.items[0].title,
+      desc: tr.caps.items[0].desc,
+      visual: <CapabilityVisual1 />,
+    },
+    {
+      tag: tr.caps.items[1].tag,
+      title: tr.caps.items[1].title,
+      desc: tr.caps.items[1].desc,
+      visual: <CapabilityVisual2 />,
+    },
+    {
+      tag: tr.caps.items[2].tag,
+      title: tr.caps.items[2].title,
+      desc: tr.caps.items[2].desc,
+      visual: <CapabilityVisual3 />,
+    },
+    {
+      tag: tr.caps.items[3].tag,
+      title: tr.caps.items[3].title,
+      desc: tr.caps.items[3].desc,
+      visual: <CapabilityVisual5 />,
+    },
+    {
+      tag: tr.caps.items[4].tag,
+      title: tr.caps.items[4].title,
+      desc: tr.caps.items[4].desc,
+      visual: <CapabilityVisual4 />,
+    },
+  ];
+
   const cap = capabilities[active];
 
   return (
@@ -215,13 +218,13 @@ export function Capabilities() {
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: 44 }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.75)", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: 16 }}>
-            CAPACIDADES DE LA PLATAFORMA
+            {tr.caps.eyebrow}
           </div>
           <h2 style={{ fontSize: 42, fontWeight: 800, color: "#FFFFFF", letterSpacing: "-1px", lineHeight: 1.2, margin: "0 auto 16px", maxWidth: 680 }}>
-            Todo lo que necesitas para gestionar cloud con criterio financiero
+            {tr.caps.title}
           </h2>
           <p style={{ fontSize: 16, color: "rgba(255,255,255,0.85)", maxWidth: 560, margin: "0 auto" }}>
-            Diseñado para equipos de tecnología, finanzas y operaciones que necesitan trabajar con una misma fuente de verdad.
+            {tr.caps.subtitle}
           </p>
         </div>
 
@@ -295,7 +298,7 @@ export function Capabilities() {
                 fontFamily: "Inter, sans-serif",
               }}
             >
-              Solicitar demo <ArrowRight size={16} />
+              {tr.nav.demo} <ArrowRight size={16} />
             </a>
           </div>
 
