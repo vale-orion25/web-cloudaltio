@@ -109,6 +109,7 @@ const es = {
       ["Todo lo de Professional", "Cuentas y usuarios ilimitados", "SSO / SAML", "SLA con uptime garantizado", "Integraciones personalizadas", "Customer Success Manager dedicado", "Reportes ejecutivos y de auditoría", "Soporte 24/7"],
     ],
     cta: "Solicitar demo Enterprise",
+    ctaDemo: "Solicitar demo",
     ctaDemoMotivo: "Hola, me gustaría solicitar una demo del plan Enterprise de CloudAltio.",
   },
   faq: {
@@ -263,6 +264,7 @@ const en: typeof es = {
       ["Everything in Professional", "Unlimited accounts and users", "SSO / SAML", "Guaranteed SLA uptime", "Custom integrations", "Dedicated Customer Success Manager", "Executive and audit reports", "24/7 Support"],
     ],
     cta: "Request Enterprise demo",
+    ctaDemo: "Request a demo",
     ctaDemoMotivo: "Hello, I'd like to request a demo of CloudAltio's Enterprise plan.",
   },
   faq: {

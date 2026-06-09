@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router";
 import { motion } from "motion/react";
 import { asset } from "@/lib/asset";
 import { useLanguage } from "@/lib/i18n";
@@ -26,6 +27,7 @@ export function Plans() {
       clouds: tr.plans.clouds[0],
       accentColor: "#36AAC1",
       features: tr.plans.features[0],
+      ctaLink: "/contacto?motivo=Hola%2C%20me%20gustar%C3%ADa%20solicitar%20una%20demo%20del%20plan%20Starter%20de%20CloudAltio.",
     },
     {
       id: "professional",
@@ -37,6 +39,7 @@ export function Plans() {
       clouds: tr.plans.clouds[1],
       accentColor: "#FE1F3D",
       features: tr.plans.features[1],
+      ctaLink: "/contacto?motivo=Hola%2C%20me%20gustar%C3%ADa%20solicitar%20una%20demo%20del%20plan%20Professional%20de%20CloudAltio.",
     },
     {
       id: "enterprise",
@@ -48,6 +51,7 @@ export function Plans() {
       clouds: tr.plans.clouds[2],
       accentColor: "#023660",
       features: tr.plans.features[2],
+      ctaLink: `/contacto?motivo=${encodeURIComponent(tr.plans.ctaDemoMotivo)}`,
     },
   ];
 
@@ -192,46 +196,34 @@ export function Plans() {
                 </div>
 
                 {/* CTA */}
-                {plan.available ? (
-                  <a
-                    href="#demo"
-                    style={{
-                      display: "block",
-                      textAlign: "center",
-                      fontSize: 14,
-                      fontWeight: 700,
-                      color: "#FFFFFF",
-                      textDecoration: "none",
-                      padding: "14px",
-                      borderRadius: 100,
-                      background: ctaHovered ? "#d81932" : "#FE1F3D",
-                      boxShadow: ctaHovered ? "0 8px 28px rgba(254,31,61,0.35)" : "0 4px 20px rgba(254,31,61,0.2)",
-                      transition: "background 0.2s, box-shadow 0.2s",
-                      cursor: "pointer",
-                      fontFamily: "Inter, sans-serif",
-                    }}
-                    onMouseEnter={() => setCtaHovered(true)}
-                    onMouseLeave={() => setCtaHovered(false)}
-                  >
-                    {tr.plans.cta}
-                  </a>
-                ) : (
-                  <div style={{
+                <Link
+                  to={plan.ctaLink}
+                  style={{
                     display: "block",
                     textAlign: "center",
                     fontSize: 14,
-                    fontWeight: 600,
-                    color: "#94a3b8",
+                    fontWeight: 700,
+                    color: "#FFFFFF",
+                    textDecoration: "none",
                     padding: "14px",
                     borderRadius: 100,
-                    background: "#F1F5F9",
-                    border: "1px solid #E2E8F0",
-                    cursor: "not-allowed",
+                    background: plan.available ? "#FE1F3D" : "#023660",
+                    boxShadow: plan.available
+                      ? "0 4px 20px rgba(254,31,61,0.2)"
+                      : "0 4px 20px rgba(2,54,96,0.18)",
+                    transition: "background 0.2s, box-shadow 0.2s",
+                    cursor: "pointer",
                     fontFamily: "Inter, sans-serif",
-                  }}>
-                    {tr.plans.soon}
-                  </div>
-                )}
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLElement).style.background = plan.available ? "#d81932" : "#01243f";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLElement).style.background = plan.available ? "#FE1F3D" : "#023660";
+                  }}
+                >
+                  {plan.available ? tr.plans.cta : tr.plans.ctaDemo}
+                </Link>
               </div>{/* fin contenido interno */}
               </div>{/* fin card */}
             </div>

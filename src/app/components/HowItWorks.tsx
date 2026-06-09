@@ -1,3 +1,4 @@
+import { motion } from "motion/react";
 import { asset } from "@/lib/asset";
 import { useLanguage } from "@/lib/i18n";
 const cloudLogos: Record<string, string> = {
@@ -249,8 +250,12 @@ export function HowItWorks() {
           }}
         >
           {steps.map((step, i) => (
-            <div
+            <motion.div
               key={step.number}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.6, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
               style={{
                 background: "#FFFFFF",
                 border: "1px solid #E2E8F0",
@@ -293,7 +298,9 @@ export function HowItWorks() {
               </div>
 
               {/* Icon */}
-              <div
+              <motion.div
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: i * 0.7 }}
                 style={{
                   width: 52,
                   height: 52,
@@ -307,7 +314,7 @@ export function HowItWorks() {
                 }}
               >
                 {step.icon}
-              </div>
+              </motion.div>
 
               <h3
                 style={{
@@ -346,7 +353,7 @@ export function HowItWorks() {
               </div>
 
               {step.visual}
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
