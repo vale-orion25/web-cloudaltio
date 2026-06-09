@@ -41,4 +41,4 @@ export const router = createBrowserRouter([
     path: "/blog/:slug",
     Component: BlogPostPage,
   },
-]);
+], { basename: '/web-cloudaltio' });

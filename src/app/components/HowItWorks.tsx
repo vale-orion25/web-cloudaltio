@@ -1,8 +1,9 @@
+import { asset } from "@/lib/asset";
 const cloudLogos: Record<string, string> = {
-  aws: "/logo-aws.svg",
-  az: "/logo-azure.svg",
-  gcp: "/logo-gcp.svg",
-  oci: "/logo-oracle.svg",
+  aws: asset("/AWS.png"),
+  az: asset("/Azure.png"),
+  gcp: asset("/Google-Cloud.png"),
+  oci: asset("/Oracle.png"),
 };
 
 const steps = [
@@ -12,23 +13,7 @@ const steps = [
     description:
       "Integra AWS, Azure, Google Cloud y Oracle Cloud de forma simple. Sin agentes, sin modificar tu infraestructura y con acceso de solo lectura.",
     tags: ["API nativa", "Sin agentes", "Onboarding asistido"],
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <path
-          d="M8 14C8 10.69 10.69 8 14 8H18C20.76 8 23 10.24 23 13C23 15.76 20.76 18 18 18H8"
-          stroke="#023660"
-          strokeWidth="2"
-          strokeLinecap="round"
-        />
-        <circle cx="10" cy="18" r="2.5" fill="#023660" />
-        <path
-          d="M12 9C12 7.34 13.34 6 15 6C17.21 6 19 7.79 19 10"
-          stroke="rgba(2,54,96,0.4)"
-          strokeWidth="1.8"
-          strokeLinecap="round"
-        />
-      </svg>
-    ),
+    icon: <img src={asset("/05.png")} alt="Conecta" style={{ width: 28, height: 28, objectFit: "contain" }} />,
     visual: (
       <div
         style={{
@@ -58,7 +43,7 @@ const steps = [
             >
               <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                 {logos[i]}
-                <span style={{ fontSize: 11, color: "#475569", fontFamily: "Inter, sans-serif" }}>
+                <span style={{ fontSize: 11, color: "#023660", fontFamily: "Inter, sans-serif" }}>
                   {cloud}
                 </span>
               </div>
@@ -89,15 +74,7 @@ const steps = [
     description:
       "Un dashboard unificado que convierte información compleja en una vista clara de tu gasto por equipo, proyecto, región, servicio y etiquetas.",
     tags: ["Multi-cloud", "Por equipo", "Por proyecto"],
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <rect x="4" y="16" width="4" height="8" rx="1.5" fill="#36AAC1" />
-        <rect x="10" y="12" width="4" height="12" rx="1.5" fill="#36AAC1" opacity="0.7" />
-        <rect x="16" y="8" width="4" height="16" rx="1.5" fill="#36AAC1" opacity="0.5" />
-        <rect x="22" y="5" width="4" height="19" rx="1.5" fill="#36AAC1" opacity="0.3" />
-        <path d="M4 4h22" stroke="rgba(54,170,193,0.2)" strokeWidth="1" />
-      </svg>
-    ),
+    icon: <img src={asset("/06.png")} alt="Visualiza" style={{ width: 28, height: 28, objectFit: "contain" }} />,
     visual: (
       <div
         style={{
@@ -121,7 +98,7 @@ const steps = [
                 marginBottom: 5,
               }}
             >
-              <span style={{ fontSize: 10, color: "#475569", fontFamily: "Inter, sans-serif" }}>
+              <span style={{ fontSize: 10, color: "#023660", fontFamily: "Inter, sans-serif" }}>
                 {item.label}
               </span>
               <span
@@ -151,17 +128,7 @@ const steps = [
     description:
       "Próximamente podrás identificar oportunidades de ahorro y priorizar acciones según su impacto económico.",
     tags: ["Próximamente", "Oportunidades de ahorro", "Impacto estimado"],
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <path
-          d="M14 5L8 14H14L12 23L20 12H14L16 5H14z"
-          stroke="#FE1F3D"
-          strokeWidth="1.8"
-          strokeLinejoin="round"
-          fill="rgba(254,31,61,0.12)"
-        />
-      </svg>
-    ),
+    icon: <img src={asset("/07.png")} alt="Optimiza" style={{ width: 28, height: 28, objectFit: "contain" }} />,
     visual: (
       <div
         style={{
@@ -231,7 +198,9 @@ export function HowItWorks() {
     <section
       id="plataforma"
       style={{
-        background: "#FFFFFF",
+        backgroundImage: `url('${asset("/bg-gradient.png")}')`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
         padding: "120px 0",
         fontFamily: "Inter, sans-serif",
       }}
@@ -244,7 +213,7 @@ export function HowItWorks() {
               display: "inline-block",
               fontSize: 11,
               fontWeight: 700,
-              color: "#0F172A",
+              color: "#023660",
               textTransform: "uppercase",
               letterSpacing: "0.12em",
               marginBottom: 16,
@@ -256,7 +225,7 @@ export function HowItWorks() {
             style={{
               fontSize: 40,
               fontWeight: 800,
-              color: "#0F172A",
+              color: "#023660",
               letterSpacing: "-1px",
               marginBottom: 16,
               lineHeight: 1.15,
@@ -266,7 +235,7 @@ export function HowItWorks() {
             <br />
             en tres pasos
           </h2>
-          <p style={{ fontSize: 16, color: "#475569", maxWidth: 480, margin: "0 auto" }}>
+          <p style={{ fontSize: 16, color: "#023660", maxWidth: 480, margin: "0 auto" }}>
             Sin meses de implementación. Sin procesos complejos. Solo datos claros para tomar mejores decisiones.
           </p>
         </div>
@@ -312,7 +281,7 @@ export function HowItWorks() {
                 style={{
                   fontSize: 48,
                   fontWeight: 900,
-                  color: "rgba(15,23,42,0.04)",
+                  color: "rgba(2,54,96,0.06)",
                   position: "absolute",
                   top: 16,
                   right: 24,
@@ -344,7 +313,7 @@ export function HowItWorks() {
                 style={{
                   fontSize: 18,
                   fontWeight: 700,
-                  color: "#0F172A",
+                  color: "#023660",
                   marginBottom: 12,
                   letterSpacing: "-0.3px",
                 }}
@@ -352,7 +321,7 @@ export function HowItWorks() {
                 {step.title}
               </h3>
 
-              <p style={{ fontSize: 14, lineHeight: 1.65, color: "#475569", marginBottom: 16 }}>
+              <p style={{ fontSize: 14, lineHeight: 1.65, color: "#023660", marginBottom: 16 }}>
                 {step.description}
               </p>
 

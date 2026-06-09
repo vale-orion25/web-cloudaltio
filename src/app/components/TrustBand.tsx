@@ -1,11 +1,12 @@
-import { Check, ShieldCheck, Zap, Database, Cpu, Layers } from "lucide-react";
+import { ShieldCheck, Zap, Cpu } from "lucide-react";
 import { motion } from "motion/react";
+import { asset } from "@/lib/asset";
 
 const providers: { name: string; logo: string; raw: string }[] = [
-  { name: "AWS",          logo: "/logo-aws.svg",    raw: "$12,400" },
-  { name: "Azure",        logo: "/logo-azure.svg",  raw: "$8,200"  },
-  { name: "Google Cloud", logo: "/logo-gcp.svg",    raw: "$4,100"  },
-  { name: "Oracle Cloud", logo: "/logo-oracle.svg", raw: "$2,300"  },
+  { name: "AWS",          logo: asset("/AWS.png"),          raw: "$12,400" },
+  { name: "Azure",        logo: asset("/Azure.png"),        raw: "$8,200"  },
+  { name: "Google Cloud", logo: asset("/Google-Cloud.png"), raw: "$4,100"  },
+  { name: "Oracle Cloud", logo: asset("/Oracle.png"),       raw: "$2,300"  },
 ];
 
 export function TrustBand() {
@@ -16,13 +17,13 @@ export function TrustBand() {
         className="absolute pointer-events-none"
         style={{
           inset: "-10%",
-          backgroundImage: "url('/bg-texture.svg')",
+          backgroundImage: `url('${asset("/bg-texture.svg")}')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
         }}
-        animate={{ x: [0, -20, 8, -12, 0], y: [0, -10, 14, -6, 0] }}
-        transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
+        animate={{ x: [0, -60, 20, -40, 0], y: [0, -30, 45, -20, 0] }}
+        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
       />
 
       <div className="relative z-10 max-w-5xl mx-auto px-6">
@@ -168,13 +169,13 @@ export function TrustBand() {
         {/* Feature Grid - Bottom */}
         <div className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-12">
           {[
-            { icon: Database, title: "Consolidación", desc: "4 nubes principales integradas nativamente." },
-            { icon: Layers, title: "Sin Código", desc: "Implementación técnica sin agentes ni fricción." },
-            { icon: Check, title: "Sin Impacto", desc: "Lectura de costos sin afectar tu infraestructura." },
+            { icon: asset("/02.png"), title: "Consolidación", desc: "4 nubes principales integradas nativamente." },
+            { icon: asset("/03.png"), title: "Sin Código", desc: "Implementación técnica sin agentes ni fricción." },
+            { icon: asset("/04.png"), title: "Sin Impacto", desc: "Lectura de costos sin afectar tu infraestructura." },
           ].map((item, i) => (
             <div key={i} className="flex flex-col items-center text-center px-4">
-              <div className="w-10 h-10 rounded-xl bg-[#023660]/5 flex items-center justify-center mb-4">
-                <item.icon className="w-5 h-5 text-[#023660]" />
+              <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center mb-4">
+                <img src={item.icon} alt={item.title} style={{ width: 22, height: 22, objectFit: "contain" }} />
               </div>
               <h4 className="text-sm font-bold text-[#023660] mb-2 uppercase tracking-wide">{item.title}</h4>
               <p className="text-xs text-slate-500 leading-relaxed max-w-[200px]">{item.desc}</p>

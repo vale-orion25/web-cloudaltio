@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { BgNetwork } from "./BgNetwork";
+import { asset } from "@/lib/asset";
 const cloudLogos: Record<string, string> = {
-  AWS: "/logo-aws.svg",
-  GCP: "/logo-gcp.svg",
-  Azure: "/logo-azure.svg",
-  OCI: "/logo-oracle.svg",
+  AWS: asset("/AWS.png"),
+  GCP: asset("/Google-Cloud.png"),
+  Azure: asset("/Azure.png"),
+  OCI: asset("/Oracle.png"),
 };
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
@@ -301,7 +302,7 @@ export function HeroSlider() {
                 {slide.type === "problem" && (
                   <div
                     className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                    style={{ backgroundImage: "url('/Header_1.jpg')" }}
+                    style={{ backgroundImage: `url('${asset("/Header_1.jpg")}')` }}
                   />
                 )}
 

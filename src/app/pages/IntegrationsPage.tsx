@@ -1,13 +1,14 @@
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { ArrowRight, Link as LinkIcon, ShieldCheck, Settings, LineChart, XCircle, Zap, HelpCircle, AlertCircle } from "lucide-react";
+import { asset } from "@/lib/asset";
 const cloudProviders = [
   {
     name: "Amazon Web Services",
     short: "AWS",
     desc: "Conecta tus cuentas AWS para consolidar datos de Cost Explorer, S3 Cost & Usage Reports y APIs de billing en una vista unificada.",
     details: ["Cost Explorer API", "S3 CUR (Cost & Usage Reports)", "Permisos IAM de solo lectura", "Soporte multi-cuenta y Organizations"],
-    logo: "/logo-aws.svg",
+    logo: asset("/AWS.png"),
     accent: "#FF9900",
     accentBg: "rgba(255,153,0,0.07)",
   },
@@ -16,7 +17,7 @@ const cloudProviders = [
     short: "Azure",
     desc: "Integra datos de consumo y billing desde Azure Cost Management para analizar tu gasto junto al resto de tu operación cloud.",
     details: ["Azure Cost Management API", "Consumption API", "Service Principal de solo lectura", "Soporte multi-subscripción"],
-    logo: "/logo-azure.svg",
+    logo: asset("/Azure.png"),
     accent: "#0078D4",
     accentBg: "rgba(0,120,212,0.07)",
   },
@@ -25,7 +26,7 @@ const cloudProviders = [
     short: "GCP",
     desc: "Centraliza costos y uso desde Google Cloud Billing para compararlos junto al resto de tu operación multi-cloud.",
     details: ["Cloud Billing API", "BigQuery Billing Export", "Service Account de solo lectura", "Soporte multi-proyecto"],
-    logo: "/logo-gcp.svg",
+    logo: asset("/Google-Cloud.png"),
     accent: "#4285F4",
     accentBg: "rgba(66,133,244,0.07)",
   },
@@ -34,7 +35,7 @@ const cloudProviders = [
     short: "OCI",
     desc: "Agrega visibilidad sobre consumo y costos desde Oracle Cloud Infrastructure dentro de una sola plataforma unificada.",
     details: ["OCI Usage API", "Cost Reports", "API Key de solo lectura", "Soporte multi-tenancy"],
-    logo: "/logo-oracle.svg",
+    logo: asset("/Oracle.png"),
     accent: "#F80000",
     accentBg: "rgba(248,0,0,0.06)",
   },

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router";
 import { Menu, X } from "lucide-react";
+import { asset } from "@/lib/asset";
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -59,7 +60,7 @@ export function Navbar() {
         {/* Logo: color en blanco, degradé en blanco/negro */}
         <Link to="/" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
           <img
-            src={scrolled ? "/Logo-CloudAltio-color.png" : "/Logo-CloudAltio-bn.png"}
+            src={scrolled ? asset("/Logo-CloudAltio-color.png") : asset("/Logo-CloudAltio-bn.png")}
             alt="CloudAltio by Orión"
             style={{ height: 28, width: "auto", display: "block", transition: "opacity 0.3s" }}
           />

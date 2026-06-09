@@ -1,9 +1,10 @@
 import { useState } from "react";
+import { asset } from "@/lib/asset";
 const cloudLogos: Record<string, string> = {
-  AWS: "/logo-aws.svg",
-  Azure: "/logo-azure.svg",
-  GCP: "/logo-gcp.svg",
-  OCI: "/logo-oracle.svg",
+  AWS: asset("/AWS.png"),
+  Azure: asset("/Azure.png"),
+  GCP: asset("/Google-Cloud.png"),
+  OCI: asset("/Oracle.png"),
 };
 import { ArrowRight } from "lucide-react";
 

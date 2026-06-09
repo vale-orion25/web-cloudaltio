@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import { asset } from "@/lib/asset";
 
 export function Footer() {
   const links = {
@@ -25,7 +26,7 @@ export function Footer() {
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
               <Link to="/">
                 <img
-                  src="/Logo-CloudAltio-color.png"
+                  src={asset("/Logo-CloudAltio-color.png")}
                   alt="CloudAltio"
                   style={{ height: 28, width: "auto", display: "block" }}
                 />

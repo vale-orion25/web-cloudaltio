@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "build": "vite build",
-    "dev": "vite"
+    "dev": "vite",
+    "predeploy": "pnpm build && cp dist/index.html dist/404.html",
+    "deploy": "gh-pages -d dist -r git@github.com:vale-orion25/web-cloudaltio.git"
   },
   "dependencies": {
     "@emotion/react": "11.14.0",
@@ -71,6 +73,7 @@
   "devDependencies": {
     "@tailwindcss/vite": "4.1.12",
     "@vitejs/plugin-react": "4.7.0",
+    "gh-pages": "^6.3.0",
     "tailwindcss": "4.1.12",
     "vite": "6.3.5"
   },
