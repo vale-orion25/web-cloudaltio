@@ -216,11 +216,25 @@ export function IntegrationsPage() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 relative">
-            {/* Step connectors */}
+            {/* Connection line with traveling dot */}
+            <div className="hidden md:block absolute left-[15%] right-[15%] h-0.5 z-0 overflow-visible rounded-full"
+              style={{ top: "2.4rem", background: "linear-gradient(90deg, #fb2e50 0%, #7f2f8c 50%, #003d80 100%)", opacity: 0.35 }}>
+              <motion.div
+                style={{
+                  position: "absolute", top: "50%", translateY: "-50%",
+                  width: 10, height: 10, borderRadius: "50%", background: "white",
+                  boxShadow: "0 0 10px 3px rgba(251,46,80,0.7), 0 0 20px 6px rgba(127,47,140,0.4)",
+                }}
+                animate={{ left: ["-1%", "101%"] }}
+                transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut", repeatDelay: 0.6 }}
+              />
+            </div>
+
+            {/* Hidden step connectors (kept for structure, visually replaced) */}
             {[0, 1].map((connIdx) => (
               <div
                 key={connIdx}
-                className="hidden md:flex absolute items-center gap-0.5 z-0"
+                className="hidden"
                 style={{ top: "2.3rem", left: connIdx === 0 ? "28%" : "61.5%", transform: "translateX(-50%)" }}
               >
                 {[0, 1, 2, 3].map((i) => (
@@ -238,8 +252,10 @@ export function IntegrationsPage() {
             {tr.integrations.steps.map((step, i) => (
               <div key={i} className="relative z-10 flex flex-col items-center text-center group">
                 <div
-                  className="w-20 h-20 rounded-full flex items-center justify-center mb-8 shadow-lg transition-transform group-hover:-translate-y-1"
-                  style={{ background: i % 2 === 0 ? "linear-gradient(135deg, #fb2e50 0%, #7f2f8c 50%, #003d80 100%)" : "#023660" }}
+                  className="w-20 h-20 rounded-full flex items-center justify-center mb-8 shadow-lg transition-all duration-300 group-hover:-translate-y-1"
+                  style={{ background: "linear-gradient(135deg, #fb2e50 0%, #7f2f8c 50%, #003d80 100%)" }}
+                  onMouseEnter={e => (e.currentTarget as HTMLElement).style.background = "#023660"}
+                  onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = "linear-gradient(135deg, #fb2e50 0%, #7f2f8c 50%, #003d80 100%)"}
                 >
                   <span className="text-white font-black text-3xl leading-none">{i + 1}</span>
                 </div>
