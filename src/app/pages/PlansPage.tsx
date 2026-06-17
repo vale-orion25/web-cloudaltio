@@ -3,31 +3,15 @@ import { Footer } from "../components/Footer";
 import { Check, ArrowRight, Zap, TrendingUp, Building2, Cloud, Clock, HelpCircle, Target, ShieldCheck } from "lucide-react";
 import React, { useState } from "react";
 import { motion } from "motion/react";
-
-const faqs = [
-  {
-    q: "¿Qué plan me conviene más?",
-    a: "El plan Professional es ideal para empresas que buscan estandarizar su consumo multi-cloud con herramientas avanzadas como nuestro asistente FinOps con IA. El plan Enterprise está diseñado para organizaciones con requisitos complejos de cumplimiento, seguridad (SSO) y acompañamiento personalizado.",
-  },
-  {
-    q: "¿Qué incluye el plan Enterprise?",
-    a: "Enterprise incluye todo lo de Professional más integración SSO/SAML, Service Manager dedicado, reportes de auditoría avanzados, soporte 24/7 e implementación asistida.",
-  },
-  {
-    q: "¿Cómo se define el precio de Enterprise?",
-    a: "Enterprise se cotiza a medida según el volumen de datos, complejidad de la infraestructura y necesidades específicas de soporte. El proceso comienza con una sesión de descubrimiento con nuestro equipo.",
-  },
-  {
-    q: "¿Puedo probar la plataforma antes de contratar?",
-    a: "Sí, puedes solicitar una demo personalizada donde exploraremos tus cuentas cloud y te mostraremos cómo FOCUS puede aportar claridad inmediata a tu gasto.",
-  },
-];
-
 import { FinalCTA } from "../components/FinalCTA";
 import { Plans } from "../components/Plans";
+import { useLanguage } from "@/lib/i18n";
 
 export function PlansPage() {
+  const { tr } = useLanguage();
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+
+  const faqs = tr.plansPage.faqs;
 
   const plans = [
     {
@@ -93,9 +77,9 @@ export function PlansPage() {
       <main>
         {/* PRICING CARDS */}
         <Plans
-          eyebrow="Planes y Precios"
-          title="Escalabilidad bajo control"
-          subtitle="Estandariza tus consumos cloud con FOCUS y elige el plan que mejor se adapte a la escala de tu organización."
+          eyebrow={tr.plansPage.eyebrow}
+          title={tr.plansPage.title}
+          subtitle={tr.plansPage.subtitle}
         />
 
         {/* TECHNICAL BLOCK */}
@@ -104,22 +88,22 @@ export function PlansPage() {
             <div className="grid md:grid-cols-3 gap-10">
               {[
                 {
-                  title: "Implementación asistida",
-                  desc: "Nuestro equipo técnico acompaña la conexión de tus cuentas cloud para garantizar la integridad de los datos.",
+                  title: tr.plansPage.techItems[0].title,
+                  desc: tr.plansPage.techItems[0].desc,
                   icon: <Zap className="w-5 h-5" />,
                 },
                 {
-                  title: "Soporte dedicado",
-                  desc: "Acceso directo a especialistas FinOps para maximizar la visibilidad bajo el estándar FOCUS.",
+                  title: tr.plansPage.techItems[1].title,
+                  desc: tr.plansPage.techItems[1].desc,
                   icon: <Target className="w-5 h-5" />,
                 },
                 {
-                  title: "Gobernanza avanzada",
-                  desc: "Control total del acceso mediante integración SSO/SAML y auditoría completa de acciones.",
+                  title: tr.plansPage.techItems[2].title,
+                  desc: tr.plansPage.techItems[2].desc,
                   icon: <ShieldCheck className="w-5 h-5" />,
                 },
               ].map((item, idx) => (
-                <motion.div 
+                <motion.div
                   key={idx}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -141,13 +125,13 @@ export function PlansPage() {
         <section className="py-24 bg-slate-50 px-6">
           <div className="max-w-2xl mx-auto">
             <div className="text-center mb-16">
-              <div className="text-[#FE1F3D] font-black text-[9px] uppercase tracking-[0.3em] mb-4">FAQ</div>
-              <h2 className="text-xl md:text-2xl font-black text-[#023660]">Preguntas frecuentes</h2>
+              <div className="text-[#FE1F3D] font-black text-[9px] uppercase tracking-[0.3em] mb-4">{tr.plansPage.faqEyebrow}</div>
+              <h2 className="text-xl md:text-2xl font-black text-[#023660]">{tr.plansPage.faqTitle}</h2>
             </div>
-            
+
             <div className="space-y-3">
               {faqs.map((faq, i) => (
-                <motion.div 
+                <motion.div
                   key={i}
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -168,7 +152,7 @@ export function PlansPage() {
                     </div>
                   </button>
                   {openFaq === i && (
-                    <motion.div 
+                    <motion.div
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       className="px-5 pb-5 pt-1 border-t border-slate-50"
@@ -184,8 +168,8 @@ export function PlansPage() {
 
         {/* Final CTA */}
         <FinalCTA
-          title="¿Listo para hablar con nuestro equipo?"
-          subtitle="Cuéntanos sobre tu operación cloud y encontramos juntos la mejor forma de empezar."
+          title={tr.plansPage.ctaTitle}
+          subtitle={tr.plansPage.ctaSubtitle}
           showFeatures={false}
           backgroundColor="#023660"
         />

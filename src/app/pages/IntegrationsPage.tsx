@@ -4,46 +4,50 @@ import { FinalCTA } from "../components/FinalCTA";
 import { ArrowRight, Link as LinkIcon, ShieldCheck, XCircle, Zap, HelpCircle, AlertCircle, ChevronRight } from "lucide-react";
 import { motion } from "motion/react";
 import { asset } from "@/lib/asset";
-const cloudProviders = [
-  {
-    name: "Amazon Web Services",
-    short: "AWS",
-    desc: "Conecta tus cuentas AWS para consolidar datos de Cost Explorer, S3 Cost & Usage Reports y APIs de billing en una vista unificada.",
-    details: ["Cost Explorer API", "S3 CUR (Cost & Usage Reports)", "Permisos IAM de solo lectura", "Soporte multi-cuenta y Organizations"],
-    logo: asset("/AWS.png"),
-    accent: "#FF9900",
-    accentBg: "rgba(255,153,0,0.07)",
-  },
-  {
-    name: "Microsoft Azure",
-    short: "Azure",
-    desc: "Integra datos de consumo y billing desde Azure Cost Management para analizar tu gasto junto al resto de tu operación cloud.",
-    details: ["Azure Cost Management API", "Consumption API", "Service Principal de solo lectura", "Soporte multi-subscripción"],
-    logo: asset("/Azure.png"),
-    accent: "#0078D4",
-    accentBg: "rgba(0,120,212,0.07)",
-  },
-  {
-    name: "Google Cloud",
-    short: "GCP",
-    desc: "Centraliza costos y uso desde Google Cloud Billing para compararlos junto al resto de tu operación multi-cloud.",
-    details: ["Cloud Billing API", "BigQuery Billing Export", "Service Account de solo lectura", "Soporte multi-proyecto"],
-    logo: asset("/Google-Cloud.png"),
-    accent: "#4285F4",
-    accentBg: "rgba(66,133,244,0.07)",
-  },
-  {
-    name: "Oracle Cloud",
-    short: "OCI",
-    desc: "Agrega visibilidad sobre consumo y costos desde Oracle Cloud Infrastructure dentro de una sola plataforma unificada.",
-    details: ["OCI Usage API", "Cost Reports", "API Key de solo lectura", "Soporte multi-tenancy"],
-    logo: asset("/Oracle.png"),
-    accent: "#F80000",
-    accentBg: "rgba(248,0,0,0.06)",
-  },
-];
+import { useLanguage } from "@/lib/i18n";
 
 export function IntegrationsPage() {
+  const { tr } = useLanguage();
+
+  const cloudProviders = [
+    {
+      name: "Amazon Web Services",
+      short: "AWS",
+      desc: tr.integrations.cloudProviders[0].desc,
+      details: tr.integrations.cloudProviders[0].details,
+      logo: asset("/AWS.png"),
+      accent: "#FF9900",
+      accentBg: "rgba(255,153,0,0.07)",
+    },
+    {
+      name: "Microsoft Azure",
+      short: "Azure",
+      desc: tr.integrations.cloudProviders[1].desc,
+      details: tr.integrations.cloudProviders[1].details,
+      logo: asset("/Azure.png"),
+      accent: "#0078D4",
+      accentBg: "rgba(0,120,212,0.07)",
+    },
+    {
+      name: "Google Cloud",
+      short: "GCP",
+      desc: tr.integrations.cloudProviders[2].desc,
+      details: tr.integrations.cloudProviders[2].details,
+      logo: asset("/Google-Cloud.png"),
+      accent: "#4285F4",
+      accentBg: "rgba(66,133,244,0.07)",
+    },
+    {
+      name: "Oracle Cloud",
+      short: "OCI",
+      desc: tr.integrations.cloudProviders[3].desc,
+      details: tr.integrations.cloudProviders[3].details,
+      logo: asset("/Oracle.png"),
+      accent: "#F80000",
+      accentBg: "rgba(248,0,0,0.06)",
+    },
+  ];
+
   return (
     <div className="font-sans min-h-screen bg-white">
       <Navbar />
@@ -56,20 +60,20 @@ export function IntegrationsPage() {
         <div className="relative z-10 mx-auto max-w-4xl">
           <div className="inline-flex items-center gap-2 rounded-full bg-[#E7F4F6] px-3 py-1 mb-6 border border-[#36AAC1]/20">
             <LinkIcon className="w-3.5 h-3.5 text-[#36AAC1]" />
-            <span className="text-xs font-semibold text-[#023660] tracking-wide uppercase">Integraciones Nativas</span>
+            <span className="text-xs font-semibold text-[#023660] tracking-wide uppercase">{tr.integrations.badge}</span>
           </div>
-          
+
           <h1 className="text-2xl md:text-[29px] lg:text-[37px] font-extrabold tracking-tight text-[#023660] mb-6 leading-tight">
-            Conecta tus clouds <br className="hidden sm:block" /> sin complicarte
+            {tr.integrations.title}
           </h1>
-          
+
           <p className="mx-auto max-w-2xl text-lg text-slate-600 mb-8 leading-relaxed">
-            Integra AWS, Azure, Google Cloud y Oracle Cloud con acceso de solo lectura, sin agentes y sin modificar tu infraestructura. Plug & play desde el primer día.
+            {tr.integrations.subtitle}
           </p>
-          
+
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <button className="group inline-flex items-center justify-center gap-2 rounded-xl bg-[#FE1F3D] px-6 py-3 text-sm font-semibold text-white hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 w-full sm:w-auto">
-              Solicitar demo
+              {tr.integrations.ctaDemo}
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
@@ -89,10 +93,10 @@ export function IntegrationsPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
           <div className="text-center mb-14">
             <h2 className="text-3xl font-bold tracking-tight text-[#023660] mb-4">
-              Proveedores soportados
+              {tr.integrations.providersTitle}
             </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Conecta uno o todos tus proveedores cloud. Cada integración usa las APIs nativas del proveedor con permisos mínimos de solo lectura.
+              {tr.integrations.providersSubtitle}
             </p>
           </div>
 
@@ -131,7 +135,7 @@ export function IntegrationsPage() {
           <div className="mt-8 flex items-start gap-3 bg-amber-50 border border-amber-200 rounded-2xl p-5 max-w-3xl mx-auto">
             <AlertCircle className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
             <p className="text-sm text-amber-800 leading-relaxed">
-              <strong>Nota sobre costos de API:</strong> El acceso a las APIs de billing y extracción de datos de algunos proveedores cloud puede generar cargos marginales en tu cuenta de cloud. Estos costos son generalmente bajos, pero te recomendamos revisarlo con tu proveedor antes de conectar.
+              <strong>{tr.integrations.apiNoteTitle}</strong> {tr.integrations.apiNote}
             </p>
           </div>
         </div>
@@ -144,10 +148,10 @@ export function IntegrationsPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white mb-4">
-              Qué necesitas (y qué no) para empezar
+              {tr.integrations.whatYouNeedTitle}
             </h2>
             <p className="text-lg text-white/70 max-w-2xl mx-auto">
-              Modelo plug & play: sin agentes, sin cambios en infraestructura, sin proyectos largos.
+              {tr.integrations.whatYouNeedSubtitle}
             </p>
           </div>
 
@@ -158,15 +162,10 @@ export function IntegrationsPage() {
                 <div className="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center">
                   <ShieldCheck className="w-5 h-5 text-[#36AAC1]" />
                 </div>
-                <h3 className="text-xl font-bold text-white">Lo que sí necesitas</h3>
+                <h3 className="text-xl font-bold text-white">{tr.integrations.needTitle}</h3>
               </div>
               <div className="space-y-5">
-                {[
-                  { label: "Permisos de solo lectura en tu cuenta de cloud", note: "IAM Role en AWS, Service Principal en Azure, Service Account en GCP" },
-                  { label: "Acceso a datos de billing o costos habilitado", note: "Cost Explorer, Azure Cost Management, Cloud Billing, OCI Cost Reports" },
-                  { label: "Configuración inicial por proveedor", note: "Proceso guiado y asistido por proveedor" },
-                  { label: "Validación de conexión", note: "CloudAltio verifica el acceso antes de procesar datos" },
-                ].map((item, i) => (
+                {tr.integrations.needItems.map((item, i) => (
                   <div key={i} className="flex gap-4 items-start">
                     <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center border border-[#36AAC1]/40 flex-shrink-0 text-[#36AAC1] mt-0.5">
                       <ShieldCheck className="w-3.5 h-3.5" />
@@ -186,16 +185,10 @@ export function IntegrationsPage() {
                 <div className="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center">
                   <XCircle className="w-5 h-5 text-[#FE1F3D]" />
                 </div>
-                <h3 className="text-xl font-bold text-white">Lo que NO necesitas</h3>
+                <h3 className="text-xl font-bold text-white">{tr.integrations.noNeedTitle}</h3>
               </div>
               <div className="space-y-5">
-                {[
-                  { label: "Instalar agentes o software en tus servidores", note: "100% agentless, sin tocar tu infraestructura" },
-                  { label: "Modificar workloads o arquitectura", note: "Tu ambiente productivo no se toca" },
-                  { label: "Intervenir infraestructura productiva", note: "Solo lectura, cero escritura, cero cambios" },
-                  { label: "Desarrollar integraciones custom para comenzar", note: "Las integraciones nativas están listas desde el primer día" },
-                  { label: "Proyectos largos de implementación", note: "Onboarding ágil y directo" },
-                ].map((item, i) => (
+                {tr.integrations.noNeedItems.map((item, i) => (
                   <div key={i} className="flex gap-4 items-start">
                     <div className="flex-shrink-0 text-[#FE1F3D] mt-0.5">
                       <XCircle className="w-5 h-5" />
@@ -217,9 +210,9 @@ export function IntegrationsPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16 lg:mb-24">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-[#023660] mb-6">
-              El proceso de integración
+              {tr.integrations.processTitle}
             </h2>
-            <p className="text-lg text-slate-600">Tres pasos para empezar a ver tus datos cloud unificados.</p>
+            <p className="text-lg text-slate-600">{tr.integrations.processSubtitle}</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 relative">
@@ -242,31 +235,15 @@ export function IntegrationsPage() {
               </div>
             ))}
 
-            {[
-              {
-                title: "Configura permisos",
-                desc: "Habilita acceso de solo lectura según el proveedor cloud para que CloudAltio pueda consultar costos y uso. Sin escribir ni modificar nada.",
-                bg: "linear-gradient(135deg, #fb2e50 0%, #7f2f8c 50%, #003d80 100%)",
-              },
-              {
-                title: "Conecta tus cuentas",
-                desc: "Agrega las cuentas, proyectos o suscripciones que quieres visualizar. Puedes empezar con uno y agregar más después.",
-                bg: "#023660",
-              },
-              {
-                title: "Visualiza y controla",
-                desc: "CloudAltio normaliza los datos al estándar FOCUS y los presenta en un dashboard unificado. Datos listos tras la sincronización inicial.",
-                bg: "linear-gradient(135deg, #fb2e50 0%, #7f2f8c 50%, #003d80 100%)",
-              }
-            ].map((step, i) => (
+            {tr.integrations.steps.map((step, i) => (
               <div key={i} className="relative z-10 flex flex-col items-center text-center group">
                 <div
                   className="w-20 h-20 rounded-full flex items-center justify-center mb-8 shadow-lg transition-transform group-hover:-translate-y-1"
-                  style={{ background: step.bg }}
+                  style={{ background: i % 2 === 0 ? "linear-gradient(135deg, #fb2e50 0%, #7f2f8c 50%, #003d80 100%)" : "#023660" }}
                 >
                   <span className="text-white font-black text-3xl leading-none">{i + 1}</span>
                 </div>
-                <div className="text-[#36AAC1] font-bold mb-2 text-sm uppercase tracking-wide">Paso {i + 1}</div>
+                <div className="text-[#36AAC1] font-bold mb-2 text-sm uppercase tracking-wide">{tr.integrations.stepLabel} {i + 1}</div>
                 <h3 className="text-xl font-bold text-[#023660] mb-4">{step.title}</h3>
                 <p className="text-slate-600 leading-relaxed px-4">{step.desc}</p>
               </div>
@@ -282,10 +259,10 @@ export function IntegrationsPage() {
             <Zap className="w-8 h-8" />
           </div>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white mb-6">
-            Conexión ágil y transparente
+            {tr.integrations.quickTitle}
           </h2>
           <p className="text-xl text-white/80 leading-relaxed max-w-3xl mx-auto">
-            Cuando los permisos están listos, la conexión inicial es directa. Sin proyectos largos, sin consultoras, sin semanas de configuración. Tus equipos de tecnología, finanzas y operaciones pueden empezar a ver datos de forma consistente.
+            {tr.integrations.quickSubtitle}
           </p>
         </div>
       </section>
@@ -296,36 +273,15 @@ export function IntegrationsPage() {
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 rounded-full bg-[#E7F4F6] px-3 py-1 mb-6 border border-[#36AAC1]/20">
               <HelpCircle className="w-4 h-4 text-[#36AAC1]" />
-              <span className="text-xs font-semibold text-[#023660] uppercase tracking-wide">Preguntas Frecuentes</span>
+              <span className="text-xs font-semibold text-[#023660] uppercase tracking-wide">{tr.integrations.faqBadge}</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-[#023660]">
-              Respuestas rápidas sobre integración
+              {tr.integrations.faqTitle}
             </h2>
           </div>
 
           <div className="space-y-6">
-            {[
-              {
-                q: "¿CloudAltio modifica recursos en mi nube?",
-                a: "No. CloudAltio opera estrictamente con permisos de solo lectura. No tiene capacidad ni permisos para crear, modificar o eliminar recursos en tu infraestructura."
-              },
-              {
-                q: "¿Qué permisos necesita?",
-                a: "Solo requiere acceso a las APIs de facturación y administración de costos de cada proveedor, además de lectura básica de metadatos para organizar la información. No necesita acceso a datos de negocio ni workloads."
-              },
-              {
-                q: "¿Cuánto tarda la implementación?",
-                a: "Si cuentas con los accesos requeridos listos, la conexión inicial es un proceso asistido y directo. La visualización completa se habilita tras el procesamiento del histórico de datos."
-              },
-              {
-                q: "¿Puedo conectar más de un proveedor?",
-                a: "Sí. La plataforma está diseñada para la visibilidad multi-cloud, permitiendo unificar AWS, Azure, Google Cloud y Oracle Cloud. Puedes empezar con uno e ir agregando el resto."
-              },
-              {
-                q: "¿Hay costos de API en mi cuenta de cloud?",
-                a: "El acceso a las APIs de billing puede generar cargos marginales dependiendo del proveedor y el volumen de datos. Generalmente son bajos, pero te recomendamos revisarlo con tu proveedor antes de conectar."
-              }
-            ].map((faq, i) => (
+            {tr.integrations.faqs.map((faq, i) => (
               <div key={i} className="bg-slate-50 border border-slate-200 rounded-2xl p-6">
                 <h4 className="text-lg font-bold text-[#023660] mb-2">{faq.q}</h4>
                 <p className="text-slate-600 leading-relaxed">{faq.a}</p>
@@ -337,8 +293,8 @@ export function IntegrationsPage() {
 
       {/* 7. Final CTA */}
       <FinalCTA
-        title="Empieza con una implementación simple"
-        subtitle="Conecta tu operación cloud con una configuración mínima y empieza a visualizar tu gasto con más claridad."
+        title={tr.integrations.ctaTitle}
+        subtitle={tr.integrations.ctaSubtitle}
         showFeatures={false}
         backgroundImage="/cta-bg.jpg"
       />

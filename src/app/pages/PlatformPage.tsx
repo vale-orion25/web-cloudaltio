@@ -1,19 +1,22 @@
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
-import { ArrowRight, Play, CheckCircle2, LayoutDashboard, LineChart, PieChart, ShieldAlert, Zap, Layers, BarChart3, Users, Cloud, ArrowUpRight } from "lucide-react";
+import { ArrowRight, CheckCircle2, LayoutDashboard, LineChart, PieChart, ShieldAlert, Zap, Layers, BarChart3, Users, Cloud, ArrowUpRight } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { asset } from "@/lib/asset";
 import { motion } from "motion/react";
+import { useLanguage } from "@/lib/i18n";
 
 // Import screenshots
 import dashImg from "../../imports/screencapture-dev-cloudaltio-es-dashboard-2026-04-20-13_56_19.png";
 import { FinalCTA } from "../components/FinalCTA";
 
 export function PlatformPage() {
+  const { tr } = useLanguage();
+
   return (
     <div className="font-sans min-h-screen bg-white">
       <Navbar />
-      
+
       {/* 1. Compact Intro */}
       <section className="pt-32 pb-12 lg:pt-40 lg:pb-16 px-6 lg:px-8 text-center border-b border-slate-200/50 relative overflow-hidden">
         <div
@@ -36,20 +39,20 @@ export function PlatformPage() {
         <div className="mx-auto max-w-4xl relative z-10">
           <div className="inline-flex items-center gap-2 rounded-full bg-[#E7F4F6] px-3 py-1 mb-6 border border-[#36AAC1]/20">
             <span className="flex h-2 w-2 rounded-full bg-[#36AAC1]"></span>
-            <span className="text-xs font-semibold text-[#023660] tracking-wide uppercase">La Plataforma</span>
+            <span className="text-xs font-semibold text-[#023660] tracking-wide uppercase">{tr.platform.badge}</span>
           </div>
 
           <h1 className="text-2xl md:text-[29px] lg:text-[37px] font-extrabold tracking-tight text-[#023660] mb-6 leading-tight">
-            Visibilidad y control cloud en un solo lugar
+            {tr.platform.title}
           </h1>
-          
+
           <p className="mx-auto max-w-2xl text-lg text-slate-600 mb-8 leading-relaxed">
-            CloudAltio centraliza AWS, Azure, Google Cloud y Oracle Cloud para ayudarte a entender gasto, detectar desvíos y compartir información clara entre equipos.
+            {tr.platform.subtitle}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button className="group inline-flex items-center justify-center gap-2 rounded-xl bg-[#FE1F3D] px-6 py-3 text-sm font-semibold text-white hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 w-full sm:w-auto">
-              Solicitar demo
+              {tr.platform.ctaDemo}
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
@@ -61,12 +64,12 @@ export function PlatformPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
            {/* Wide Dashboard Mockup with Floating Callouts */}
            <div className="relative mx-auto w-full max-w-6xl flex flex-col items-center">
-              
+
               {/* Main Central Mockup */}
               <div className="w-full lg:w-[85%] relative z-10 rounded-2xl lg:rounded-[32px] overflow-hidden border border-slate-200/50 shadow-2xl shadow-[#023660]/10 bg-white p-2">
                  <div className="rounded-xl lg:rounded-[24px] overflow-hidden border border-slate-200/60 bg-slate-50 relative w-full aspect-[16/9] md:aspect-[16/10]">
-                    <ImageWithFallback 
-                      src={dashImg} 
+                    <ImageWithFallback
+                      src={dashImg}
                       alt="CloudAltio Dashboard"
                       className="absolute top-0 left-0 w-[105%] h-[115%] max-w-[105%] -left-[2.5%] -top-[8%] object-cover object-left-top"
                     />
@@ -79,36 +82,36 @@ export function PlatformPage() {
                  <div className="absolute top-[10%] left-0 w-72 bg-white/95 backdrop-blur-xl p-5 rounded-2xl border border-slate-200/80 shadow-[0_8px_30px_rgb(0,0,0,0.06)] pointer-events-auto transform -translate-x-6 hover:-translate-y-1 transition-transform duration-300">
                     <h4 className="text-sm font-extrabold text-[#023660] mb-2 flex items-center gap-2">
                        <div className="w-7 h-7 rounded-lg bg-[#E7F4F6] flex items-center justify-center flex-shrink-0"><Cloud className="w-3.5 h-3.5 text-[#36AAC1]" /></div>
-                       Visibilidad multi-cloud
+                       {tr.platform.callouts[0].title}
                     </h4>
-                    <p className="text-xs text-slate-600 leading-relaxed pl-9">Consolida AWS, Azure, Google Cloud y Oracle Cloud en una sola vista.</p>
+                    <p className="text-xs text-slate-600 leading-relaxed pl-9">{tr.platform.callouts[0].desc}</p>
                  </div>
 
                  {/* Callout 2: Top Right */}
                  <div className="absolute top-[25%] right-0 w-72 bg-white/95 backdrop-blur-xl p-5 rounded-2xl border border-slate-200/80 shadow-[0_8px_30px_rgb(0,0,0,0.06)] pointer-events-auto transform translate-x-6 hover:-translate-y-1 transition-transform duration-300">
                     <h4 className="text-sm font-extrabold text-[#023660] mb-2 flex items-center gap-2">
                        <div className="w-7 h-7 rounded-lg bg-[#FE1F3D]/10 flex items-center justify-center flex-shrink-0"><ShieldAlert className="w-3.5 h-3.5 text-[#FE1F3D]" /></div>
-                       Desvíos detectados a tiempo
+                       {tr.platform.callouts[1].title}
                     </h4>
-                    <p className="text-xs text-slate-600 leading-relaxed pl-9">Identifica variaciones relevantes antes del cierre de mes.</p>
+                    <p className="text-xs text-slate-600 leading-relaxed pl-9">{tr.platform.callouts[1].desc}</p>
                  </div>
 
                  {/* Callout 3: Bottom Left */}
                  <div className="absolute bottom-[20%] left-4 w-72 bg-[#023660]/95 backdrop-blur-xl p-5 rounded-2xl border border-[#36AAC1]/20 shadow-[0_8px_40px_rgb(2,54,96,0.25)] pointer-events-auto transform -translate-x-10 hover:-translate-y-1 transition-transform duration-300">
                     <h4 className="text-sm font-extrabold text-white mb-2 flex items-center gap-2">
                        <div className="w-7 h-7 rounded-lg bg-[#36AAC1]/20 flex items-center justify-center flex-shrink-0"><LineChart className="w-3.5 h-3.5 text-[#36AAC1]" /></div>
-                       Proyecciones más claras
+                       {tr.platform.callouts[2].title}
                     </h4>
-                    <p className="text-xs text-[#E7F4F6]/80 leading-relaxed pl-9">Revisa tendencias y anticipa el comportamiento del gasto.</p>
+                    <p className="text-xs text-[#E7F4F6]/80 leading-relaxed pl-9">{tr.platform.callouts[2].desc}</p>
                  </div>
 
                  {/* Callout 4: Bottom Right */}
                  <div className="absolute bottom-[10%] right-2 w-72 bg-white/95 backdrop-blur-xl p-5 rounded-2xl border border-slate-200/80 shadow-[0_8px_30px_rgb(0,0,0,0.06)] pointer-events-auto transform translate-x-10 hover:-translate-y-1 transition-transform duration-300">
                     <h4 className="text-sm font-extrabold text-[#023660] mb-2 flex items-center gap-2">
                        <div className="w-7 h-7 rounded-lg bg-[#E7F4F6] flex items-center justify-center flex-shrink-0"><LayoutDashboard className="w-3.5 h-3.5 text-[#36AAC1]" /></div>
-                       Reportes por equipo y servicio
+                       {tr.platform.callouts[3].title}
                     </h4>
-                    <p className="text-xs text-slate-600 leading-relaxed pl-9">Comparte contexto entre tecnología, finanzas y operaciones.</p>
+                    <p className="text-xs text-slate-600 leading-relaxed pl-9">{tr.platform.callouts[3].desc}</p>
                  </div>
               </div>
 
@@ -117,30 +120,30 @@ export function PlatformPage() {
                  <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
                     <h4 className="text-sm font-extrabold text-[#023660] mb-2 flex items-center gap-2">
                        <div className="w-7 h-7 rounded-lg bg-[#E7F4F6] flex items-center justify-center flex-shrink-0"><Cloud className="w-3.5 h-3.5 text-[#36AAC1]" /></div>
-                       Visibilidad multi-cloud
+                       {tr.platform.calloutsShort[0].title}
                     </h4>
-                    <p className="text-xs text-slate-600 leading-relaxed pl-9">Consolida AWS, Azure, Google Cloud y Oracle Cloud en una sola vista.</p>
+                    <p className="text-xs text-slate-600 leading-relaxed pl-9">{tr.platform.calloutsShort[0].desc}</p>
                  </div>
                  <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
                     <h4 className="text-sm font-extrabold text-[#023660] mb-2 flex items-center gap-2">
                        <div className="w-7 h-7 rounded-lg bg-[#FE1F3D]/10 flex items-center justify-center flex-shrink-0"><ShieldAlert className="w-3.5 h-3.5 text-[#FE1F3D]" /></div>
-                       Desvíos a tiempo
+                       {tr.platform.calloutsShort[1].title}
                     </h4>
-                    <p className="text-xs text-slate-600 leading-relaxed pl-9">Identifica variaciones relevantes antes del cierre de mes.</p>
+                    <p className="text-xs text-slate-600 leading-relaxed pl-9">{tr.platform.calloutsShort[1].desc}</p>
                  </div>
                  <div className="bg-[#023660] p-5 rounded-2xl border border-[#36AAC1]/20 shadow-md">
                     <h4 className="text-sm font-extrabold text-white mb-2 flex items-center gap-2">
                        <div className="w-7 h-7 rounded-lg bg-[#36AAC1]/20 flex items-center justify-center flex-shrink-0"><LineChart className="w-3.5 h-3.5 text-[#36AAC1]" /></div>
-                       Proyecciones más claras
+                       {tr.platform.calloutsShort[2].title}
                     </h4>
-                    <p className="text-xs text-[#E7F4F6]/80 leading-relaxed pl-9">Revisa tendencias y anticipa el comportamiento del gasto.</p>
+                    <p className="text-xs text-[#E7F4F6]/80 leading-relaxed pl-9">{tr.platform.calloutsShort[2].desc}</p>
                  </div>
                  <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
                     <h4 className="text-sm font-extrabold text-[#023660] mb-2 flex items-center gap-2">
                        <div className="w-7 h-7 rounded-lg bg-[#E7F4F6] flex items-center justify-center flex-shrink-0"><LayoutDashboard className="w-3.5 h-3.5 text-[#36AAC1]" /></div>
-                       Reportes por equipo y servicio
+                       {tr.platform.calloutsShort[3].title}
                     </h4>
-                    <p className="text-xs text-slate-600 leading-relaxed pl-9">Comparte contexto entre tecnología, finanzas y operaciones.</p>
+                    <p className="text-xs text-slate-600 leading-relaxed pl-9">{tr.platform.calloutsShort[3].desc}</p>
                  </div>
               </div>
 
@@ -155,22 +158,22 @@ export function PlatformPage() {
             <div>
               <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 mb-6 border border-white/20">
                 <PieChart className="w-4 h-4 text-white" />
-                <span className="text-xs font-semibold text-white uppercase tracking-wide">Resultados Inmediatos</span>
+                <span className="text-xs font-semibold text-white uppercase tracking-wide">{tr.platform.immediateResultsBadge}</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white mb-6">
-                Lo que podrás entender desde el primer día
+                {tr.platform.immediateResultsTitle}
               </h2>
               <p className="text-lg text-white/70 leading-relaxed mb-8">
-                Deja de luchar con excels y descargas manuales. Al conectar tus entornos a CloudAltio, nuestra plataforma procesa tus facturas y te entrega un mapa claro de tu infraestructura.
+                {tr.platform.immediateResultsSubtitle}
               </p>
               <div className="grid sm:grid-cols-2 gap-6">
                 {[
-                  { text: "Gasto total consolidado entre clouds", icon: <Layers className="w-5 h-5 text-white" /> },
-                  { text: "Distribución por proveedor cloud", icon: <Cloud className="w-5 h-5 text-white" /> },
-                  { text: "Consumo por cuenta, equipo o proyecto", icon: <Users className="w-5 h-5 text-white" /> },
-                  { text: "Evolución del gasto en el tiempo", icon: <LineChart className="w-5 h-5 text-white" /> },
-                  { text: "Alertas y desvíos relevantes", icon: <ShieldAlert className="w-5 h-5 text-white" /> },
-                  { text: "Más contexto financiero", icon: <BarChart3 className="w-5 h-5 text-white" /> },
+                  { text: tr.platform.immediateItems[0], icon: <Layers className="w-5 h-5 text-white" /> },
+                  { text: tr.platform.immediateItems[1], icon: <Cloud className="w-5 h-5 text-white" /> },
+                  { text: tr.platform.immediateItems[2], icon: <Users className="w-5 h-5 text-white" /> },
+                  { text: tr.platform.immediateItems[3], icon: <LineChart className="w-5 h-5 text-white" /> },
+                  { text: tr.platform.immediateItems[4], icon: <ShieldAlert className="w-5 h-5 text-white" /> },
+                  { text: tr.platform.immediateItems[5], icon: <BarChart3 className="w-5 h-5 text-white" /> },
                 ].map((item, idx) => (
                   <div key={idx} className="flex gap-4 items-start">
                     <div className="mt-1 p-2 bg-white/10 rounded-lg shrink-0">
@@ -181,13 +184,13 @@ export function PlatformPage() {
                 ))}
               </div>
             </div>
-            
+
             <div className="relative">
                <div className="absolute inset-0 bg-white/5 rounded-[32px] transform rotate-3 scale-105 -z-10"></div>
                <div className="rounded-[24px] overflow-hidden border border-white/20 shadow-xl shadow-black/30 aspect-square relative bg-white/10">
                   <img
                     src={asset("/lo-que-podras-entender.jpg")}
-                    alt="Equipo revisando datos cloud"
+                    alt={tr.platform.imgAlt}
                     className="w-full h-full object-cover object-center"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#023660]/40 to-transparent pointer-events-none"></div>
@@ -219,10 +222,10 @@ export function PlatformPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-20">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-[#023660] mb-6">
-              Una plataforma completa para tomar el control de tu infraestructura
+              {tr.platform.capabilitiesTitle}
             </h2>
             <p className="text-lg text-slate-600 leading-relaxed">
-              Diseñada para escalar con tus necesidades, desde la visibilidad básica hasta modelos avanzados de proyección y optimización.
+              {tr.platform.capabilitiesSubtitle}
             </p>
           </div>
 
@@ -233,15 +236,15 @@ export function PlatformPage() {
                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-[#023660] text-white mb-6 shadow-lg shadow-[#023660]/20">
                    <Cloud className="w-6 h-6" />
                  </div>
-                 <h3 className="text-2xl font-bold text-[#023660] mb-4">Multi-cloud</h3>
+                 <h3 className="text-2xl font-bold text-[#023660] mb-4">{tr.platform.multicloudTitle}</h3>
                  <p className="text-slate-600 text-lg leading-relaxed">
-                   Unifica AWS, Azure, Google Cloud y Oracle Cloud en una sola vista para evitar consolidaciones manuales y entender el gasto total con más claridad.
+                   {tr.platform.multicloudDesc}
                  </p>
                </div>
                <div className="lg:w-1/2 w-full aspect-[4/3] rounded-2xl overflow-hidden border border-slate-200 relative bg-slate-100">
                   <img
                     src={asset("/Multi-nube.jpg")}
-                    alt="Equipos trabajando en multi-cloud"
+                    alt={tr.platform.multicloudImgAlt}
                     className="w-full h-full object-cover object-center"
                   />
                </div>
@@ -250,25 +253,25 @@ export function PlatformPage() {
             {/* Sub-capabilities Grid */}
             {[
               {
-                title: "Alertas y control",
+                title: tr.platform.subCapabilities[0].title,
                 icon: <ShieldAlert className="w-6 h-6" />,
-                desc: "Permite detectar cambios inesperados en el gasto y configurar alertas según servicio, cuenta, región, equipo o presupuesto."
+                desc: tr.platform.subCapabilities[0].desc,
               },
               {
-                title: "Proyecciones",
+                title: tr.platform.subCapabilities[1].title,
                 icon: <LineChart className="w-6 h-6" />,
-                desc: "Ayuda a anticipar tendencias de consumo usando el historial real y da más contexto para revisar cierres y presupuestos."
+                desc: tr.platform.subCapabilities[1].desc,
               },
               {
-                title: "Reportes",
+                title: tr.platform.subCapabilities[2].title,
                 icon: <LayoutDashboard className="w-6 h-6" />,
-                desc: "Convierte información técnica en reportes más claros para tecnología, finanzas y operaciones. Exportables y automatizables."
+                desc: tr.platform.subCapabilities[2].desc,
               },
               {
-                title: "Optimización próximamente",
+                title: tr.platform.subCapabilities[3].title,
                 icon: <Zap className="w-6 h-6" />,
-                desc: "La plataforma evolucionará para detectar oportunidades de ahorro con mayor precisión y priorizar acciones según impacto económico."
-              }
+                desc: tr.platform.subCapabilities[3].desc,
+              },
             ].map((cap, idx) => (
               <div key={idx} className="md:col-span-6 bg-white rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-[#E7F4F6] text-[#36AAC1] mb-6">
@@ -293,30 +296,17 @@ export function PlatformPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-2xl mx-auto mb-16 lg:mb-24">
             <h2 className="text-3xl font-bold tracking-tight text-[#023660] sm:text-4xl mb-6">
-              Implementación sin fricciones
+              {tr.platform.howItWorksTitle}
             </h2>
             <p className="text-lg text-slate-600">
-              Despliega CloudAltio y empieza a entender tu nube de forma estratégica.
+              {tr.platform.howItWorksSubtitle}
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-3 gap-8 lg:gap-12 relative">
             <div className="hidden md:block absolute top-12 left-[15%] right-[15%] h-px bg-[#36AAC1]/30 z-0"></div>
 
-            {[
-              {
-                title: "Conecta tus clouds",
-                desc: "La integración se realiza con permisos de solo lectura. No requiere agentes ni cambios sobre la infraestructura."
-              },
-              {
-                title: "Normaliza y organiza la información",
-                desc: "CloudAltio toma los datos de costos y uso, los estandariza y los presenta de forma más clara y comparable."
-              },
-              {
-                title: "Analiza y toma decisiones",
-                desc: "Con una vista más ordenada del gasto, los equipos pueden detectar desvíos, revisar tendencias y actuar con más contexto."
-              }
-            ].map((step, i) => (
+            {tr.platform.steps.map((step, i) => (
               <div key={i} className="relative z-10 flex flex-col items-center text-center group">
                 <div
                   className="w-24 h-24 rounded-full flex items-center justify-center text-3xl font-bold text-white mb-8 shadow-xl transition-transform group-hover:-translate-y-1"
@@ -339,33 +329,20 @@ export function PlatformPage() {
       <section className="py-24 relative overflow-hidden" style={{ background: "linear-gradient(90deg, #003d80 0%, #7f2f8c 50%, #fb2e50 100%)" }}>
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay"></div>
         <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
-          
+
           <div className="mb-16 md:flex md:items-end md:justify-between">
             <div className="max-w-2xl">
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white mb-6">
-                Diseñado para equipos que necesitan hablar el mismo idioma
+                {tr.platform.teamsTitle}
               </h2>
               <p className="text-[#E7F4F6]/80 text-lg">
-                La nube dejó de ser un tema exclusivo de ingeniería. CloudAltio empodera a todos los roles para tomar decisiones informadas.
+                {tr.platform.teamsSubtitle}
               </p>
             </div>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
-            {[
-              {
-                role: "Tecnología",
-                desc: "Entiende mejor qué servicios, cuentas y entornos están impulsando el gasto. Reduce el tiempo invertido en consolidar información y responder preguntas financieras."
-              },
-              {
-                role: "Finanzas",
-                desc: "Accede a una lectura más clara del gasto cloud, su evolución y sus principales desviaciones. Mejora la conversación presupuestaria con datos más confiables."
-              },
-              {
-                role: "Operaciones",
-                desc: "Facilita la priorización, el seguimiento y la toma de decisiones con más visibilidad transversal a través de toda la organización."
-              }
-            ].map((team, idx) => (
+            {tr.platform.teams.map((team, idx) => (
               <div key={idx} className="bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-sm hover:bg-white/10 transition-colors">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center border border-white/30">
@@ -383,7 +360,7 @@ export function PlatformPage() {
           <div className="mt-12 rounded-3xl overflow-hidden h-64 md:h-96 border border-white/10 relative shadow-2xl">
              <img
                 src={asset("/equipos-bg.jpg")}
-                alt="Equipos colaborando en CloudAltio"
+                alt={tr.platform.teamsImgAlt}
                 className="w-full h-full object-cover object-center"
              />
              <div className="absolute inset-0 bg-gradient-to-t from-[#023660]/80 via-transparent to-transparent pointer-events-none"></div>
@@ -415,22 +392,22 @@ export function PlatformPage() {
           <div className="text-center mb-20">
             <div className="inline-flex items-center gap-2 mb-4 text-[#36AAC1]">
               <Layers className="w-5 h-5" />
-              <span className="text-sm font-bold uppercase tracking-widest">El Proceso</span>
+              <span className="text-sm font-bold uppercase tracking-widest">{tr.platform.focusBadge}</span>
             </div>
-            <h2 className="text-3xl md:text-5xl font-extrabold text-[#023660] mb-6">De la fragmentación a la claridad</h2>
+            <h2 className="text-3xl md:text-5xl font-extrabold text-[#023660] mb-6">{tr.platform.focusTitle}</h2>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
-              Estandariza tus consumos cloud con <strong>FOCUS</strong> y obtén una visión clara, comparable y multi-cloud desde AWS, Azure, GCP y OCI.
+              {tr.platform.focusSubtitle}
             </p>
           </div>
 
           {/* Horizontal Flow Visual */}
           <div className="relative max-w-6xl mx-auto">
             <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-4">
-              
+
               {/* Left: Input Sources */}
               <div className="w-full lg:w-1/4 space-y-4">
                 <div className="text-center lg:text-left mb-6">
-                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Entradas Fragmentadas</span>
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{tr.platform.fragmentedLabel}</span>
                 </div>
                 {[
                   { name: "AWS", format: "CUR" },
@@ -465,10 +442,10 @@ export function PlatformPage() {
                   </div>
                   <h3 className="text-2xl font-black text-[#023660] mb-2 uppercase tracking-tight">CloudAltio</h3>
                   <div className="inline-flex items-center px-3 py-1 bg-[#023660] text-white rounded-full text-[10px] font-bold tracking-widest uppercase mb-4">
-                    Motor FOCUS
+                    {tr.platform.focusMotorLabel}
                   </div>
                   <p className="text-slate-500 text-sm leading-relaxed max-w-[200px] mx-auto">
-                    Normalización, limpieza y conversión automática en tiempo real.
+                    {tr.platform.focusMotorDesc}
                   </p>
                 </div>
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-[#36AAC1]/5 blur-[100px] -z-0"></div>
@@ -485,15 +462,15 @@ export function PlatformPage() {
               {/* Right: Unified Outcome */}
               <div className="w-full lg:w-1/4">
                 <div className="text-center lg:text-right mb-6">
-                  <span className="text-[10px] font-bold text-[#36AAC1] uppercase tracking-widest">Vista Unificada</span>
+                  <span className="text-[10px] font-bold text-[#36AAC1] uppercase tracking-widest">{tr.platform.unifiedLabel}</span>
                 </div>
                 <div className="bg-[#023660] p-6 rounded-[32px] text-white shadow-xl relative overflow-hidden group">
                   <div className="absolute inset-0 bg-gradient-to-br from-[#36AAC1]/20 to-transparent"></div>
                   <div className="relative z-10">
                     <LayoutDashboard className="w-10 h-10 text-[#36AAC1] mb-6" />
-                    <h4 className="text-xl font-bold mb-4">Fuente Única de Verdad</h4>
+                    <h4 className="text-xl font-bold mb-4">{tr.platform.truthSource}</h4>
                     <div className="space-y-3">
-                      {["Tecnología", "Finanzas", "Operaciones"].map((team) => (
+                      {tr.platform.focusTeams.map((team) => (
                         <div key={team} className="flex items-center gap-2 text-xs font-medium opacity-80 group-hover:opacity-100 transition-opacity">
                           <CheckCircle2 className="w-4 h-4 text-[#36AAC1]" />
                           {team}
@@ -510,15 +487,15 @@ export function PlatformPage() {
           <div className="mt-20 flex flex-wrap justify-center gap-12 lg:gap-24 opacity-60">
             <div className="text-center">
               <div className="text-2xl font-bold text-[#023660]">100%</div>
-              <div className="text-[10px] uppercase font-bold tracking-widest text-slate-400">Automatizado</div>
+              <div className="text-[10px] uppercase font-bold tracking-widest text-slate-400">{tr.platform.stat1Label}</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold text-[#023660]">0</div>
-              <div className="text-[10px] uppercase font-bold tracking-widest text-slate-400">Hojas de Cálculo</div>
+              <div className="text-[10px] uppercase font-bold tracking-widest text-slate-400">{tr.platform.stat2Label}</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold text-[#023660]">Multi</div>
-              <div className="text-[10px] uppercase font-bold tracking-widest text-slate-400">Cloud Nativo</div>
+              <div className="text-[10px] uppercase font-bold tracking-widest text-slate-400">{tr.platform.stat3Label}</div>
             </div>
           </div>
         </div>
@@ -526,8 +503,8 @@ export function PlatformPage() {
 
       {/* 7. Final CTA */}
       <FinalCTA
-        title="Empieza a ver tu operación cloud con más claridad"
-        subtitle="Centraliza tu gasto multi-cloud, mejora la lectura financiera y toma decisiones con mejor contexto."
+        title={tr.platform.ctaTitle}
+        subtitle={tr.platform.ctaSubtitle}
         backgroundImage="/cta-bg.jpg"
       />
 
