@@ -15,6 +15,14 @@ function CheckIcon({ color }: { color: string }) {
 
 export function Plans({ showHeader = true, eyebrow, title, subtitle, slider = false }: { showHeader?: boolean; eyebrow?: string; title?: string; subtitle?: string; slider?: boolean }) {
   const { tr } = useLanguage();
+  const [isMobile, setIsMobile] = useState(() => typeof window !== "undefined" && window.innerWidth < 768);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  const useSlider = slider && isMobile;
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false, align: "start", skipSnaps: false });
   const [selectedIndex, setSelectedIndex] = useState(0);
 
@@ -132,7 +140,7 @@ export function Plans({ showHeader = true, eyebrow, title, subtitle, slider = fa
         )}
 
         {/* Cards */}
-        {slider ? (
+        {useSlider ? (
           <>
             <div ref={emblaRef} style={{ overflow: "hidden", margin: "0 -8px" }}>
               <div style={{ display: "flex", gap: 20, paddingBottom: 8 }}>
