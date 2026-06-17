@@ -27,7 +27,7 @@ export function HomePage() {
       <HowItWorks />
       <WhyFinOps />
       <Capabilities />
-      <Plans />
+      <Plans slider />
       <FAQ />
       <FinalCTA 
         subtitle="CloudAltio se integra sin fricciones. Sin instalaciones complejas ni agentes. Solo visibilidad real y proyecciones precisas de tu gasto cloud."

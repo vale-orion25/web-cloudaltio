@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router";
 import { motion } from "motion/react";
 import { asset } from "@/lib/asset";
 import { useLanguage } from "@/lib/i18n";
+import useEmblaCarousel from "embla-carousel-react";
 
 function CheckIcon({ color }: { color: string }) {
   return (
@@ -12,9 +13,21 @@ function CheckIcon({ color }: { color: string }) {
   );
 }
 
-export function Plans({ showHeader = true, eyebrow, title, subtitle }: { showHeader?: boolean; eyebrow?: string; title?: string; subtitle?: string }) {
+export function Plans({ showHeader = true, eyebrow, title, subtitle, slider = false }: { showHeader?: boolean; eyebrow?: string; title?: string; subtitle?: string; slider?: boolean }) {
   const { tr } = useLanguage();
-  const [ctaHovered, setCtaHovered] = useState(false);
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false, align: "start", skipSnaps: false });
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    emblaApi.on("select", onSelect);
+    return () => { emblaApi.off("select", onSelect); };
+  }, [emblaApi, onSelect]);
 
   const plans = [
     {
@@ -119,9 +132,12 @@ export function Plans({ showHeader = true, eyebrow, title, subtitle }: { showHea
         )}
 
         {/* Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4" style={{ gap: 20, alignItems: "stretch" }}>
-          {plans.map((plan) => (
-            <div key={plan.id} style={{ paddingTop: 20, display: "flex", flexDirection: "column" }}>
+        {slider ? (
+          <>
+            <div ref={emblaRef} style={{ overflow: "hidden", margin: "0 -8px" }}>
+              <div style={{ display: "flex", gap: 20, paddingBottom: 8 }}>
+                {plans.map((plan) => (
+                  <div key={plan.id} style={{ flex: "0 0 clamp(280px, 78vw, 320px)", paddingTop: 20, display: "flex", flexDirection: "column" }}>
               {/* Card — sin opacity para que el badge no se vea afectado */}
               <div style={{
                 background: "#FFFFFF",
@@ -249,7 +265,76 @@ export function Plans({ showHeader = true, eyebrow, title, subtitle }: { showHea
               </div>{/* fin card */}
             </div>
           ))}
-        </div>
+        </div>{/* fin slider track */}
+      </div>{/* fin emblaRef */}
+            {/* Dots */}
+            <div style={{ display: "flex", gap: 8, justifyContent: "center", marginTop: 28 }}>
+              {plans.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => emblaApi?.scrollTo(i)}
+                  style={{
+                    width: i === selectedIndex ? 24 : 8,
+                    height: 8,
+                    borderRadius: 100,
+                    background: i === selectedIndex ? "#FE1F3D" : "#CBD5E1",
+                    border: "none",
+                    cursor: "pointer",
+                    transition: "all 0.3s",
+                    padding: 0,
+                  }}
+                />
+              ))}
+            </div>
+          </>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4" style={{ gap: 20, alignItems: "stretch" }}>
+            {plans.map((plan) => (
+              <div key={plan.id} style={{ paddingTop: 20, display: "flex", flexDirection: "column" }}>
+              <div style={{
+                background: "#FFFFFF",
+                border: "1px solid #E2E8F0",
+                borderRadius: 18,
+                display: "flex",
+                flexDirection: "column",
+                flex: 1,
+                boxShadow: plan.available ? "0 4px 24px rgba(15,23,42,0.08)" : "0 2px 8px rgba(15,23,42,0.03)",
+                overflow: "visible",
+              }}>
+              <div style={{ display: "flex", justifyContent: "center", marginTop: -14 }}>
+                <div style={{
+                  background: "linear-gradient(90deg, #023660 0%, #7f2f8c 50%, #fb2e50 100%)",
+                  color: "#FFFFFF", fontSize: 10, fontWeight: 700, padding: "5px 16px",
+                  borderRadius: 100, letterSpacing: "0.08em", textTransform: "uppercase" as const,
+                  boxShadow: "0 4px 14px rgba(251,46,80,0.3)",
+                }}>{plan.badgeLabel}</div>
+              </div>
+              <div style={{ padding: "24px 32px 32px", display: "flex", flexDirection: "column", flex: 1, opacity: 1 }}>
+                <div style={{ fontSize: 11, fontWeight: 700, color: plan.accentColor, textTransform: "uppercase" as const, letterSpacing: "0.1em", marginBottom: 10 }}>{plan.name}</div>
+                <div style={{ fontSize: 32, fontWeight: 800, color: "#0F172A", lineHeight: 1, marginBottom: 4 }}>{plan.price}</div>
+                <div style={{ fontSize: 11, color: "#64748b", fontWeight: 500, marginBottom: 16 }}>{tr.plans.billingPeriod}</div>
+                <div style={{ display: "inline-flex", alignItems: "center", background: `${plan.accentColor}12`, border: `1px solid ${plan.accentColor}30`, borderRadius: 6, padding: "5px 12px", marginBottom: 20, alignSelf: "flex-start" as const }}>
+                  <span style={{ fontSize: 11, fontWeight: 700, color: plan.accentColor }}>{plan.spendRange}</span>
+                </div>
+                <div style={{ height: 1, background: "#E2E8F0", marginBottom: 20 }} />
+                <div style={{ display: "flex", flexDirection: "column", gap: 10, flex: 1, marginBottom: 24 }}>
+                  {plan.features.map((feat) => (
+                    <div key={feat} style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
+                      <CheckIcon color={plan.accentColor} />
+                      <span style={{ fontSize: 13, color: "#475569", lineHeight: 1.45 }}>{feat}</span>
+                    </div>
+                  ))}
+                </div>
+                <Link to={plan.ctaLink} style={{ display: "block", textAlign: "center", fontSize: 14, fontWeight: 700, color: "#FFFFFF", textDecoration: "none", padding: "14px", borderRadius: 100, background: "#FE1F3D", boxShadow: "0 4px 20px rgba(254,31,61,0.2)", transition: "background 0.2s", cursor: "pointer", fontFamily: "Inter, sans-serif" }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#d81932"; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "#FE1F3D"; }}
+                >{tr.plans.ctaDemo} {plan.name}</Link>
+              </div>
+              </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
