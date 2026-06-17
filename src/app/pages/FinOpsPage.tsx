@@ -19,7 +19,6 @@ import {
 import { motion } from "motion/react";
 import { Link } from "react-router";
 import { FinalCTA } from "../components/FinalCTA";
-import { Plans } from "../components/Plans";
 import { asset } from "@/lib/asset";
 import { useLanguage } from "@/lib/i18n";
 
@@ -403,8 +402,6 @@ export function FinOpsPage() {
             </div>
           </div>
         </section>
-
-        <Plans />
 
         {/* FINAL CTA SECTION */}
         <FinalCTA
