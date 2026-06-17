@@ -2,13 +2,11 @@ import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { ArrowRight, Play, CheckCircle2, LayoutDashboard, LineChart, PieChart, ShieldAlert, Zap, Layers, BarChart3, Users, Cloud, ArrowUpRight } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { asset } from "@/lib/asset";
+import { motion } from "motion/react";
 
 // Import screenshots
 import dashImg from "../../imports/screencapture-dev-cloudaltio-es-dashboard-2026-04-20-13_56_19.png";
-import budgetsImg from "../../imports/screencapture-dev-cloudaltio-es-inventory-budgets-and-alerts-2026-04-20-13_56_40.png";
-import costReportsImg from "../../imports/screencapture-dev-cloudaltio-es-reports-cost-2026-04-20-13_57_20.png";
-import customReportsImg from "../../imports/screencapture-dev-cloudaltio-es-reports-custom-2026-04-20-13_57_03.png";
-
 import { FinalCTA } from "../components/FinalCTA";
 
 export function PlatformPage() {
@@ -17,8 +15,25 @@ export function PlatformPage() {
       <Navbar />
       
       {/* 1. Compact Intro */}
-      <section className="bg-white pt-32 pb-12 lg:pt-40 lg:pb-16 px-6 lg:px-8 text-center border-b border-slate-200/50">
-        <div className="mx-auto max-w-4xl">
+      <section className="pt-32 pb-12 lg:pt-40 lg:pb-16 px-6 lg:px-8 text-center border-b border-slate-200/50 relative overflow-hidden">
+        <div
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundImage: `url('${asset("/degradado-matices.png")}')`,
+            backgroundSize: "120%",
+            backgroundPosition: "center",
+            animation: "heroBgDrift 10s ease-in-out infinite",
+          }}
+        />
+        <style>{`
+          @keyframes heroBgDrift {
+            0%   { background-position: 0% 0%;   background-size: 130%; }
+            33%  { background-position: 80% 20%;  background-size: 160%; }
+            66%  { background-position: 20% 80%;  background-size: 145%; }
+            100% { background-position: 0% 0%;   background-size: 130%; }
+          }
+        `}</style>
+        <div className="mx-auto max-w-4xl relative z-10">
           <div className="inline-flex items-center gap-2 rounded-full bg-[#E7F4F6] px-3 py-1 mb-6 border border-[#36AAC1]/20">
             <span className="flex h-2 w-2 rounded-full bg-[#36AAC1]"></span>
             <span className="text-xs font-semibold text-[#023660] tracking-wide uppercase">La Plataforma</span>
@@ -134,46 +149,46 @@ export function PlatformPage() {
       </section>
 
       {/* 2. What you can understand from day one */}
-      <section className="py-24 bg-white relative">
+      <section className="py-24 relative" style={{ background: "linear-gradient(90deg, #003d80 0%, #7f2f8c 50%, #fb2e50 100%)" }}>
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full bg-[#E7F4F6] px-3 py-1 mb-6 border border-[#36AAC1]/20">
-                <PieChart className="w-4 h-4 text-[#36AAC1]" />
-                <span className="text-xs font-semibold text-[#023660] uppercase tracking-wide">Resultados Inmediatos</span>
+              <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 mb-6 border border-white/20">
+                <PieChart className="w-4 h-4 text-white" />
+                <span className="text-xs font-semibold text-white uppercase tracking-wide">Resultados Inmediatos</span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-[#023660] mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white mb-6">
                 Lo que podrás entender desde el primer día
               </h2>
-              <p className="text-lg text-slate-600 leading-relaxed mb-8">
+              <p className="text-lg text-white/70 leading-relaxed mb-8">
                 Deja de luchar con excels y descargas manuales. Al conectar tus entornos a CloudAltio, nuestra plataforma procesa tus facturas y te entrega un mapa claro de tu infraestructura.
               </p>
               <div className="grid sm:grid-cols-2 gap-6">
                 {[
-                  { text: "Gasto total consolidado entre clouds", icon: <Layers className="w-5 h-5 text-[#36AAC1]" /> },
-                  { text: "Distribución por proveedor cloud", icon: <Cloud className="w-5 h-5 text-[#36AAC1]" /> },
-                  { text: "Consumo por cuenta, equipo o proyecto", icon: <Users className="w-5 h-5 text-[#36AAC1]" /> },
-                  { text: "Evolución del gasto en el tiempo", icon: <LineChart className="w-5 h-5 text-[#36AAC1]" /> },
-                  { text: "Alertas y desvíos relevantes", icon: <ShieldAlert className="w-5 h-5 text-[#36AAC1]" /> },
-                  { text: "Más contexto financiero", icon: <BarChart3 className="w-5 h-5 text-[#36AAC1]" /> },
+                  { text: "Gasto total consolidado entre clouds", icon: <Layers className="w-5 h-5 text-white" /> },
+                  { text: "Distribución por proveedor cloud", icon: <Cloud className="w-5 h-5 text-white" /> },
+                  { text: "Consumo por cuenta, equipo o proyecto", icon: <Users className="w-5 h-5 text-white" /> },
+                  { text: "Evolución del gasto en el tiempo", icon: <LineChart className="w-5 h-5 text-white" /> },
+                  { text: "Alertas y desvíos relevantes", icon: <ShieldAlert className="w-5 h-5 text-white" /> },
+                  { text: "Más contexto financiero", icon: <BarChart3 className="w-5 h-5 text-white" /> },
                 ].map((item, idx) => (
                   <div key={idx} className="flex gap-4 items-start">
-                    <div className="mt-1 p-2 bg-[#E7F4F6] rounded-lg shrink-0">
+                    <div className="mt-1 p-2 bg-white/10 rounded-lg shrink-0">
                       {item.icon}
                     </div>
-                    <span className="text-slate-700 font-medium text-sm leading-snug pt-1">{item.text}</span>
+                    <span className="text-white/80 font-medium text-sm leading-snug pt-1">{item.text}</span>
                   </div>
                 ))}
               </div>
             </div>
             
             <div className="relative">
-               <div className="absolute inset-0 bg-[#023660]/5 rounded-[32px] transform rotate-3 scale-105 -z-10"></div>
-               <div className="rounded-[24px] overflow-hidden border border-slate-200/60 shadow-xl shadow-slate-200/50 aspect-square relative bg-white">
-                  <ImageWithFallback 
-                    src={costReportsImg} 
-                    alt="Gráficos Financieros"
-                    className="w-full h-full object-cover object-left-top"
+               <div className="absolute inset-0 bg-white/5 rounded-[32px] transform rotate-3 scale-105 -z-10"></div>
+               <div className="rounded-[24px] overflow-hidden border border-white/20 shadow-xl shadow-black/30 aspect-square relative bg-white/10">
+                  <img
+                    src={asset("/lo-que-podras-entender.jpg")}
+                    alt="Equipo revisando datos cloud"
+                    className="w-full h-full object-cover object-center"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#023660]/40 to-transparent pointer-events-none"></div>
                </div>
@@ -183,8 +198,25 @@ export function PlatformPage() {
       </section>
 
       {/* 3. Product Capabilities */}
-      <section className="py-32 bg-slate-50 border-y border-slate-200/50 relative">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <section className="py-32 border-y border-slate-200/50 relative overflow-hidden bg-slate-50">
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <motion.img
+            src={asset("/bg-texture.svg")}
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 w-full h-full object-cover"
+            animate={{
+              scale: [1.3, 1.7, 1.5, 1.9, 1.4, 1.3],
+              rotate: [0, 10, -6, 14, -4, 0],
+              x: ["0%", "-10%", "8%", "-6%", "5%", "0%"],
+              y: ["0%", "5%", "-8%", "4%", "-3%", "0%"],
+            }}
+            transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+            style={{ transformOrigin: "center center" }}
+          />
+        </div>
+        <div className="absolute inset-0 z-0 bg-white/30" />
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-20">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-[#023660] mb-6">
               Una plataforma completa para tomar el control de tu infraestructura
@@ -207,10 +239,10 @@ export function PlatformPage() {
                  </p>
                </div>
                <div className="lg:w-1/2 w-full aspect-[4/3] rounded-2xl overflow-hidden border border-slate-200 relative bg-slate-100">
-                  <ImageWithFallback 
-                    src={budgetsImg} 
-                    alt="Infraestructura Cloud"
-                    className="w-full h-full object-cover object-top"
+                  <img
+                    src={asset("/Multi-nube.jpg")}
+                    alt="Equipos trabajando en multi-cloud"
+                    className="w-full h-full object-cover object-center"
                   />
                </div>
             </div>
@@ -251,8 +283,14 @@ export function PlatformPage() {
       </section>
 
       {/* 4. How it works */}
-      <section className="py-24 lg:py-32 bg-white relative">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <section className="py-24 lg:py-32 relative overflow-hidden">
+        <img
+          src={asset("/bg-gradient.png")}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-2xl mx-auto mb-16 lg:mb-24">
             <h2 className="text-3xl font-bold tracking-tight text-[#023660] sm:text-4xl mb-6">
               Implementación sin fricciones
@@ -280,8 +318,13 @@ export function PlatformPage() {
               }
             ].map((step, i) => (
               <div key={i} className="relative z-10 flex flex-col items-center text-center group">
-                <div className="w-24 h-24 bg-white border border-[#36AAC1]/30 shadow-xl shadow-[#36AAC1]/10 rounded-2xl flex items-center justify-center text-3xl font-bold text-[#023660] mb-8 relative transition-transform group-hover:-translate-y-1 group-hover:border-[#36AAC1]">
-                  <div className="absolute inset-0 bg-[#E7F4F6] rounded-2xl transform rotate-3 scale-105 -z-10 transition-transform group-hover:rotate-6"></div>
+                <div
+                  className="w-24 h-24 rounded-full flex items-center justify-center text-3xl font-bold text-white mb-8 shadow-xl transition-transform group-hover:-translate-y-1"
+                  style={i % 2 === 0
+                    ? { background: "linear-gradient(135deg, #fb2e50 0%, #7f2f8c 50%, #003d80 100%)" }
+                    : { background: "#003d80" }
+                  }
+                >
                   {i + 1}
                 </div>
                 <h3 className="text-xl font-bold text-[#023660] mb-4">{step.title}</h3>
@@ -293,7 +336,7 @@ export function PlatformPage() {
       </section>
 
       {/* 5. Built for cross-functional teams */}
-      <section className="py-24 bg-[#023660] relative overflow-hidden">
+      <section className="py-24 relative overflow-hidden" style={{ background: "linear-gradient(90deg, #003d80 0%, #7f2f8c 50%, #fb2e50 100%)" }}>
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay"></div>
         <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
           
@@ -325,8 +368,8 @@ export function PlatformPage() {
             ].map((team, idx) => (
               <div key={idx} className="bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-sm hover:bg-white/10 transition-colors">
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 rounded-full bg-[#36AAC1]/20 flex items-center justify-center border border-[#36AAC1]/30">
-                    <Users className="w-5 h-5 text-[#36AAC1]" />
+                  <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center border border-white/30">
+                    <Users className="w-5 h-5 text-white" />
                   </div>
                   <h3 className="text-xl font-bold text-white">{team.role}</h3>
                 </div>
@@ -337,11 +380,11 @@ export function PlatformPage() {
             ))}
           </div>
 
-          <div className="mt-12 rounded-3xl overflow-hidden h-64 md:h-96 border border-white/10 relative shadow-2xl bg-white">
-             <ImageWithFallback 
-                src={customReportsImg} 
-                alt="Equipos colaborando"
-                className="w-full h-full object-cover object-top opacity-90"
+          <div className="mt-12 rounded-3xl overflow-hidden h-64 md:h-96 border border-white/10 relative shadow-2xl">
+             <img
+                src={asset("/equipos-bg.jpg")}
+                alt="Equipos colaborando en CloudAltio"
+                className="w-full h-full object-cover object-center"
              />
              <div className="absolute inset-0 bg-gradient-to-t from-[#023660]/80 via-transparent to-transparent pointer-events-none"></div>
           </div>
@@ -350,8 +393,25 @@ export function PlatformPage() {
       </section>
 
       {/* 6. Estandarización Multi-cloud (FOCUS) - Rediseño Horizontal */}
-      <section id="estandarizacion" className="py-24 lg:py-32 px-6 lg:px-8 bg-slate-50 overflow-hidden">
-        <div className="mx-auto max-w-7xl">
+      <section id="estandarizacion" className="py-24 lg:py-32 px-6 lg:px-8 bg-slate-50 relative overflow-hidden">
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <motion.img
+            src={asset("/bg-texture.svg")}
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 w-full h-full object-cover"
+            animate={{
+              scale: [1.4, 1.8, 1.5, 2.0, 1.6, 1.4],
+              rotate: [0, -12, 8, -16, 6, 0],
+              x: ["0%", "10%", "-8%", "6%", "-5%", "0%"],
+              y: ["0%", "-6%", "9%", "-5%", "4%", "0%"],
+            }}
+            transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
+            style={{ transformOrigin: "center center" }}
+          />
+        </div>
+        <div className="absolute inset-0 z-0 bg-white/10" />
+        <div className="mx-auto max-w-7xl relative z-10">
           <div className="text-center mb-20">
             <div className="inline-flex items-center gap-2 mb-4 text-[#36AAC1]">
               <Layers className="w-5 h-5" />
@@ -465,10 +525,10 @@ export function PlatformPage() {
       </section>
 
       {/* 7. Final CTA */}
-      <FinalCTA 
+      <FinalCTA
         title="Empieza a ver tu operación cloud con más claridad"
         subtitle="Centraliza tu gasto multi-cloud, mejora la lectura financiera y toma decisiones con mejor contexto."
-        variant="light"
+        backgroundImage="/cta-bg.jpg"
       />
 
       <Footer />

@@ -12,7 +12,7 @@ function CheckIcon({ color }: { color: string }) {
   );
 }
 
-export function Plans() {
+export function Plans({ showHeader = true, eyebrow, title, subtitle }: { showHeader?: boolean; eyebrow?: string; title?: string; subtitle?: string }) {
   const { tr } = useLanguage();
   const [ctaHovered, setCtaHovered] = useState(false);
 
@@ -84,17 +84,19 @@ export function Plans() {
 
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 40px", position: "relative", zIndex: 1 }}>
         {/* Header */}
-        <div style={{ textAlign: "center", marginBottom: 72 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: "#023660", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: 16 }}>
-            {tr.plans.eyebrow}
+        {showHeader && (
+          <div style={{ textAlign: "center", marginBottom: 72 }}>
+            <div style={{ fontSize: 11, fontWeight: 700, color: "#023660", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: 16 }}>
+              {eyebrow ?? tr.plans.eyebrow}
+            </div>
+            <h2 style={{ fontSize: 40, fontWeight: 800, color: "#023660", letterSpacing: "-1px", marginBottom: 14, lineHeight: 1.15 }}>
+              {title ?? tr.plans.title}
+            </h2>
+            <p style={{ fontSize: 16, color: "#023660", opacity: 0.65, maxWidth: 520, margin: "0 auto" }}>
+              {subtitle ?? tr.plans.subtitle}
+            </p>
           </div>
-          <h2 style={{ fontSize: 40, fontWeight: 800, color: "#023660", letterSpacing: "-1px", marginBottom: 14, lineHeight: 1.15 }}>
-            {tr.plans.title}
-          </h2>
-          <p style={{ fontSize: 16, color: "#023660", opacity: 0.65, maxWidth: 520, margin: "0 auto" }}>
-            {tr.plans.subtitle}
-          </p>
-        </div>
+        )}
 
         {/* Cards */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20, alignItems: "stretch" }}>

@@ -160,36 +160,32 @@ export function BlogPage() {
       </section>
 
       {/* Newsletter CTA */}
-      <section className="py-20 lg:py-24 bg-white border-t border-slate-200">
+      <section className="py-20 lg:py-24" style={{ background: "linear-gradient(90deg, #003d80 0%, #7f2f8c 50%, #fb2e50 100%)" }}>
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <div className="bg-[#E7F4F6] rounded-[32px] p-8 lg:p-12 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-[#36AAC1]/10 blur-[80px] rounded-full pointer-events-none"></div>
-            
-            <h2 className="text-3xl font-extrabold text-[#023660] mb-4 relative z-10">
-              Mantente actualizado en FinOps
-            </h2>
-            <p className="text-lg text-slate-600 mb-8 max-w-xl mx-auto relative z-10">
-              Recibe nuestras mejores guías y casos de uso de optimización cloud directamente en tu bandeja de entrada una vez al mes.
-            </p>
-            
-            <form className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto relative z-10" onSubmit={(e) => e.preventDefault()}>
-              <input 
-                type="email" 
-                placeholder="tu@empresa.com" 
-                className="flex-grow px-5 py-4 rounded-xl border border-[#36AAC1]/30 bg-white text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#36AAC1] focus:border-transparent shadow-sm"
-                required
-              />
-              <button 
-                type="submit"
-                className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-[#023660] text-white font-bold hover:bg-[#034b85] shadow-lg shadow-[#023660]/20 transition-all sm:w-auto w-full"
-              >
-                Suscribirme
-              </button>
-            </form>
-            <p className="text-xs text-slate-500 mt-4 relative z-10">
-              Cero spam. Solo contenido técnico de alto valor.
-            </p>
-          </div>
+          <h2 className="text-3xl font-extrabold text-white mb-4">
+            Mantente actualizado en FinOps
+          </h2>
+          <p className="text-lg text-white/75 mb-8 max-w-xl mx-auto">
+            Recibe nuestras mejores guías y casos de uso de optimización cloud directamente en tu bandeja de entrada una vez al mes.
+          </p>
+
+          <form className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto" onSubmit={(e) => e.preventDefault()}>
+            <input
+              type="email"
+              placeholder="tu@empresa.com"
+              className="flex-grow px-5 py-4 rounded-xl border border-white/20 bg-white/10 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-white/40 focus:border-transparent backdrop-blur-sm"
+              required
+            />
+            <button
+              type="submit"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-white text-[#023660] font-bold hover:bg-white/90 shadow-lg transition-all sm:w-auto w-full"
+            >
+              Suscribirme
+            </button>
+          </form>
+          <p className="text-xs text-white/50 mt-4">
+            Cero spam. Solo contenido técnico de alto valor.
+          </p>
         </div>
       </section>
 

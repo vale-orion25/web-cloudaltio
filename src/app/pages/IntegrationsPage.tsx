@@ -1,6 +1,8 @@
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
-import { ArrowRight, Link as LinkIcon, ShieldCheck, Settings, LineChart, XCircle, Zap, HelpCircle, AlertCircle } from "lucide-react";
+import { FinalCTA } from "../components/FinalCTA";
+import { ArrowRight, Link as LinkIcon, ShieldCheck, XCircle, Zap, HelpCircle, AlertCircle, ChevronRight } from "lucide-react";
+import { motion } from "motion/react";
 import { asset } from "@/lib/asset";
 const cloudProviders = [
   {
@@ -47,8 +49,11 @@ export function IntegrationsPage() {
       <Navbar />
 
       {/* 1. Compact Intro */}
-      <section className="bg-white pt-32 pb-12 lg:pt-40 lg:pb-16 px-6 lg:px-8 text-center border-b border-slate-200/50">
-        <div className="mx-auto max-w-4xl">
+      <section className="relative pt-32 pb-12 lg:pt-40 lg:pb-16 px-6 lg:px-8 text-center border-b border-slate-200/50 overflow-hidden">
+        {/* Background */}
+        <img src={asset("/degradado-matices.png")} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover" />
+
+        <div className="relative z-10 mx-auto max-w-4xl">
           <div className="inline-flex items-center gap-2 rounded-full bg-[#E7F4F6] px-3 py-1 mb-6 border border-[#36AAC1]/20">
             <LinkIcon className="w-3.5 h-3.5 text-[#36AAC1]" />
             <span className="text-xs font-semibold text-[#023660] tracking-wide uppercase">Integraciones Nativas</span>
@@ -72,8 +77,16 @@ export function IntegrationsPage() {
       </section>
 
       {/* 2. Cloud provider cards with logos */}
-      <section className="py-16 lg:py-24 bg-slate-50 relative">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <section className="py-16 lg:py-24 bg-[#f8fafb] relative overflow-hidden">
+        <motion.img
+          src={asset("/bg-textura-fondo.svg")}
+          alt="" aria-hidden="true"
+          className="absolute pointer-events-none"
+          style={{ inset: "-8%", width: "116%", height: "116%", objectFit: "cover", objectPosition: "center" }}
+          animate={{ x: [0, -50, 30, -20, 0], y: [0, -30, 50, -20, 0] }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
           <div className="text-center mb-14">
             <h2 className="text-3xl font-bold tracking-tight text-[#023660] mb-4">
               Proveedores soportados
@@ -92,7 +105,7 @@ export function IntegrationsPage() {
                 <div className="flex items-center gap-5 mb-6">
                   <div
                     className="w-16 h-16 rounded-2xl flex items-center justify-center border"
-                    style={{ background: cloud.accentBg, borderColor: `${cloud.accent}22` }}
+                    style={{ background: "#ffffff", borderColor: "#e2e8f0" }}
                   >
                     <img src={cloud.logo} alt={cloud.short} style={{ width: 36, height: 36, objectFit: "contain" }} />
                   </div>
@@ -125,25 +138,27 @@ export function IntegrationsPage() {
       </section>
 
       {/* 3. What you need / What you don't need */}
-      <section className="py-24 bg-white border-y border-slate-200/50">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <section className="py-24 relative overflow-hidden">
+        <img src={asset("/Header_1.jpg")} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover object-center" />
+        <div className="absolute inset-0 bg-black/65" />
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-[#023660] mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white mb-4">
               Qué necesitas (y qué no) para empezar
             </h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+            <p className="text-lg text-white/70 max-w-2xl mx-auto">
               Modelo plug & play: sin agentes, sin cambios en infraestructura, sin proyectos largos.
             </p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8">
             {/* What you need */}
-            <div className="bg-[#E7F4F6]/50 rounded-3xl p-8 lg:p-10 border border-[#36AAC1]/20">
+            <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 lg:p-10 border border-white/25">
               <div className="flex items-center gap-3 mb-8">
-                <div className="w-10 h-10 rounded-xl bg-[#36AAC1]/20 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center">
                   <ShieldCheck className="w-5 h-5 text-[#36AAC1]" />
                 </div>
-                <h3 className="text-xl font-bold text-[#023660]">Lo que sí necesitas</h3>
+                <h3 className="text-xl font-bold text-white">Lo que sí necesitas</h3>
               </div>
               <div className="space-y-5">
                 {[
@@ -153,12 +168,12 @@ export function IntegrationsPage() {
                   { label: "Validación de conexión", note: "CloudAltio verifica el acceso antes de procesar datos" },
                 ].map((item, i) => (
                   <div key={i} className="flex gap-4 items-start">
-                    <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center border border-[#36AAC1]/20 flex-shrink-0 shadow-sm text-[#36AAC1] mt-0.5">
+                    <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center border border-[#36AAC1]/40 flex-shrink-0 text-[#36AAC1] mt-0.5">
                       <ShieldCheck className="w-3.5 h-3.5" />
                     </div>
                     <div>
-                      <span className="text-[#023660] font-semibold text-sm block mb-0.5">{item.label}</span>
-                      <span className="text-slate-500 text-xs">{item.note}</span>
+                      <span className="text-white font-semibold text-sm block mb-0.5">{item.label}</span>
+                      <span className="text-white/50 text-xs">{item.note}</span>
                     </div>
                   </div>
                 ))}
@@ -166,12 +181,12 @@ export function IntegrationsPage() {
             </div>
 
             {/* What you don't need */}
-            <div className="bg-slate-50 rounded-3xl p-8 lg:p-10 border border-slate-200">
+            <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 lg:p-10 border border-white/25">
               <div className="flex items-center gap-3 mb-8">
-                <div className="w-10 h-10 rounded-xl bg-[#FE1F3D]/10 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center">
                   <XCircle className="w-5 h-5 text-[#FE1F3D]" />
                 </div>
-                <h3 className="text-xl font-bold text-[#023660]">Lo que NO necesitas</h3>
+                <h3 className="text-xl font-bold text-white">Lo que NO necesitas</h3>
               </div>
               <div className="space-y-5">
                 {[
@@ -186,8 +201,8 @@ export function IntegrationsPage() {
                       <XCircle className="w-5 h-5" />
                     </div>
                     <div>
-                      <span className="text-slate-700 font-semibold text-sm block mb-0.5">{item.label}</span>
-                      <span className="text-slate-400 text-xs">{item.note}</span>
+                      <span className="text-white font-semibold text-sm block mb-0.5">{item.label}</span>
+                      <span className="text-white/50 text-xs">{item.note}</span>
                     </div>
                   </div>
                 ))}
@@ -208,29 +223,48 @@ export function IntegrationsPage() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 relative">
-            <div className="hidden md:block absolute top-12 left-[15%] right-[15%] h-px bg-[#36AAC1]/30 z-0"></div>
+            {/* Step connectors */}
+            {[0, 1].map((connIdx) => (
+              <div
+                key={connIdx}
+                className="hidden md:flex absolute items-center gap-0.5 z-0"
+                style={{ top: "2.3rem", left: connIdx === 0 ? "28%" : "61.5%", transform: "translateX(-50%)" }}
+              >
+                {[0, 1, 2, 3].map((i) => (
+                  <motion.div
+                    key={i}
+                    animate={{ opacity: [0.1, 1, 0.1], x: [0, 3, 0] }}
+                    transition={{ duration: 1.2, repeat: Infinity, delay: connIdx * 0.4 + i * 0.2, ease: "easeInOut" }}
+                  >
+                    <ChevronRight className="w-6 h-6" style={{ color: i < 2 ? "#7f2f8c" : "#023660" }} />
+                  </motion.div>
+                ))}
+              </div>
+            ))}
 
             {[
               {
                 title: "Configura permisos",
                 desc: "Habilita acceso de solo lectura según el proveedor cloud para que CloudAltio pueda consultar costos y uso. Sin escribir ni modificar nada.",
-                icon: <Settings className="w-6 h-6" />
+                bg: "linear-gradient(135deg, #fb2e50 0%, #7f2f8c 50%, #003d80 100%)",
               },
               {
                 title: "Conecta tus cuentas",
                 desc: "Agrega las cuentas, proyectos o suscripciones que quieres visualizar. Puedes empezar con uno y agregar más después.",
-                icon: <LinkIcon className="w-6 h-6" />
+                bg: "#023660",
               },
               {
                 title: "Visualiza y controla",
                 desc: "CloudAltio normaliza los datos al estándar FOCUS y los presenta en un dashboard unificado. Datos listos tras la sincronización inicial.",
-                icon: <LineChart className="w-6 h-6" />
+                bg: "linear-gradient(135deg, #fb2e50 0%, #7f2f8c 50%, #003d80 100%)",
               }
             ].map((step, i) => (
               <div key={i} className="relative z-10 flex flex-col items-center text-center group">
-                <div className="w-24 h-24 bg-white border border-[#36AAC1]/30 shadow-xl shadow-[#36AAC1]/10 rounded-2xl flex items-center justify-center text-[#36AAC1] mb-8 relative transition-transform group-hover:-translate-y-1">
-                  <div className="absolute inset-0 bg-[#E7F4F6] rounded-2xl transform rotate-3 scale-105 -z-10 transition-transform group-hover:rotate-6"></div>
-                  {step.icon}
+                <div
+                  className="w-20 h-20 rounded-full flex items-center justify-center mb-8 shadow-lg transition-transform group-hover:-translate-y-1"
+                  style={{ background: step.bg }}
+                >
+                  <span className="text-white font-black text-3xl leading-none">{i + 1}</span>
                 </div>
                 <div className="text-[#36AAC1] font-bold mb-2 text-sm uppercase tracking-wide">Paso {i + 1}</div>
                 <h3 className="text-xl font-bold text-[#023660] mb-4">{step.title}</h3>
@@ -242,15 +276,15 @@ export function IntegrationsPage() {
       </section>
 
       {/* 5. Quick time / friction */}
-      <section className="py-24 bg-[#E7F4F6] relative overflow-hidden">
+      <section className="py-24 relative overflow-hidden" style={{ background: "linear-gradient(90deg, #003d80 0%, #7f2f8c 50%, #fb2e50 100%)" }}>
         <div className="mx-auto max-w-4xl px-6 lg:px-8 relative z-10 text-center">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white text-[#36AAC1] mb-8 shadow-sm border border-[#36AAC1]/10">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white/15 text-white mb-8 border border-white/20">
             <Zap className="w-8 h-8" />
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-[#023660] mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white mb-6">
             Conexión ágil y transparente
           </h2>
-          <p className="text-xl text-slate-700 leading-relaxed max-w-3xl mx-auto">
+          <p className="text-xl text-white/80 leading-relaxed max-w-3xl mx-auto">
             Cuando los permisos están listos, la conexión inicial es directa. Sin proyectos largos, sin consultoras, sin semanas de configuración. Tus equipos de tecnología, finanzas y operaciones pueden empezar a ver datos de forma consistente.
           </p>
         </div>
@@ -302,24 +336,12 @@ export function IntegrationsPage() {
       </section>
 
       {/* 7. Final CTA */}
-      <section className="py-24 sm:py-32 bg-[#023660] text-center relative overflow-hidden">
-        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#36AAC1]/50 to-transparent"></div>
-        
-        <div className="mx-auto max-w-3xl px-6 lg:px-8 relative z-10">
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-6">
-            Empieza con una implementación simple
-          </h2>
-          <p className="text-xl text-[#E7F4F6]/80 mb-10 max-w-2xl mx-auto">
-            Conecta tu operación cloud con una configuración mínima y empieza a visualizar tu gasto con más claridad.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <button className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#FE1F3D] px-8 py-4 text-base font-semibold text-white shadow-[0_0_24px_rgba(254,31,61,0.3)] hover:shadow-[0_0_32px_rgba(254,31,61,0.5)] hover:-translate-y-0.5 transition-all duration-200">
-              Solicitar demo
-              <ArrowRight className="h-5 w-5" />
-            </button>
-          </div>
-        </div>
-      </section>
+      <FinalCTA
+        title="Empieza con una implementación simple"
+        subtitle="Conecta tu operación cloud con una configuración mínima y empieza a visualizar tu gasto con más claridad."
+        showFeatures={false}
+        backgroundImage="/cta-bg.jpg"
+      />
 
       <Footer />
     </div>

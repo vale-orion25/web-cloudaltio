@@ -1,32 +1,68 @@
+import React from "react";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router";
 import { motion } from "motion/react";
 import { useLanguage } from "@/lib/i18n";
+import { asset } from "@/lib/asset";
 
 interface FinalCTAProps {
   title?: string;
   subtitle?: string;
   showFeatures?: boolean;
   variant?: 'dark' | 'light';
+  backgroundImage?: string;
+  backgroundColor?: string;
 }
 
 export function FinalCTA({
   title,
   subtitle,
   showFeatures = true,
-  variant = 'dark'
+  variant = 'dark',
+  backgroundImage,
+  backgroundColor
 }: FinalCTAProps) {
   const { tr } = useLanguage();
-  const isDark = variant === 'dark';
+  const isDark = variant === 'light' ? false : (variant === 'dark' || !!backgroundImage || !!backgroundColor);
   const resolvedTitle = title ?? tr.cta.title;
   const resolvedSubtitle = subtitle ?? tr.cta.subtitle;
-  
+
+  const sectionStyle: React.CSSProperties = backgroundImage
+    ? {}
+    : backgroundColor
+    ? { background: backgroundColor }
+    : isDark
+    ? { background: "linear-gradient(90deg, #003d80 0%, #7f2f8c 50%, #fb2e50 100%)" }
+    : { background: "#ffffff" };
+
   return (
     <section
       className="relative overflow-hidden py-20 sm:py-24 font-sans"
-      style={isDark ? { background: "linear-gradient(90deg, #003d80 0%, #7f2f8c 50%, #fb2e50 100%)" } : { background: "#ffffff" }}
+      style={sectionStyle}
     >
-      {/* sin patterns — el gradiente es el protagonista */}
+      {backgroundImage && (
+        <img
+          src={asset(backgroundImage)}
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+          aria-hidden="true"
+        />
+      )}
+      {backgroundColor && (
+        <motion.div
+          aria-hidden="true"
+          className="absolute pointer-events-none"
+          style={{
+            inset: "-10%",
+            width: "120%",
+            height: "120%",
+            backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.15) 1px, transparent 1px)",
+            backgroundSize: "32px 32px",
+          }}
+          animate={{ x: [0, -60, 30, -40, 0], y: [0, -40, 60, -25, 0] }}
+          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+        />
+      )}
       
       <div className="relative mx-auto max-w-4xl px-6 lg:px-8 text-center z-10">
         <motion.div

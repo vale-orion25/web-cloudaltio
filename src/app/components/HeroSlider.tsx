@@ -229,9 +229,10 @@ export function HeroSlider() {
     {
       id: 2,
       type: "pain",
-      theme: "light",
+      theme: "dark",
       bg: "bg-[#f1f5f9]",
       bgGradient: "",
+      bgPhoto: "/Header_2-El problema del multicloud.jpg",
       badgeIcon: <Layers className="w-4 h-4 text-[#36AAC1]" />,
       badge: tr.hero.s2.badge,
       title: `${tr.hero.s2.titlePre}${tr.hero.s2.highlight}${tr.hero.s2.titlePost}`,
@@ -250,6 +251,7 @@ export function HeroSlider() {
       theme: "light",
       bg: "bg-slate-100",
       bgGradient: "",
+      bgPhoto: "/Header_3-Una sola plataforma.jpg",
       badgeIcon: <Eye className="w-4 h-4 text-[#FE1F3D]" />,
       badge: tr.hero.s3.badge,
       title: `${tr.hero.s3.titlePre}${tr.hero.s3.highlight}${tr.hero.s3.titlePost}`,
@@ -273,6 +275,7 @@ export function HeroSlider() {
       theme: "light",
       bg: "bg-[#f1f5f9]",
       bgGradient: "",
+      bgPhoto: "/Header_4-No puedes optimizar.jpg",
       badgeIcon: <TrendingUp className="w-4 h-4 text-[#36AAC1]" />,
       badge: tr.hero.s4.badge,
       title: tr.hero.s4.title,
@@ -295,9 +298,9 @@ export function HeroSlider() {
             <div key={slide.id} className="flex-[0_0_100%] min-w-0 relative h-full">
 
               {/* Background */}
-              <div className={`absolute inset-0 z-0 ${slide.type === "problem" ? "" : slide.bg}`}>
+              <div className="absolute inset-0 z-0">
 
-                {/* Slide 1 — foto sin filtro */}
+                {/* Slide 1 — foto de fondo */}
                 {slide.type === "problem" && (
                   <div
                     className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -305,9 +308,20 @@ export function HeroSlider() {
                   />
                 )}
 
-                {/* Otros slides oscuros — gradiente */}
-                {slide.type !== "problem" && isDark(slide) && slide.bgGradient && (
-                  <div className={`absolute inset-0 bg-gradient-to-br ${slide.bgGradient} opacity-95`} />
+                {/* Slides 2-4 — foto con overlay */}
+                {"bgPhoto" in slide && slide.bgPhoto && (
+                  <>
+                    <div
+                      className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                      style={{ backgroundImage: `url('${asset(slide.bgPhoto as string)}')` }}
+                    />
+                    {/* Overlay direccional: cubre texto, deja respirar el visual */}
+                    <div className={`absolute inset-0 ${
+                      isDark(slide)
+                        ? "bg-gradient-to-r from-[#011e38]/90 via-[#011e38]/60 to-[#011e38]/20"
+                        : "bg-gradient-to-r from-white/85 via-white/55 to-white/10"
+                    }`} />
+                  </>
                 )}
 
               </div>
@@ -356,9 +370,9 @@ export function HeroSlider() {
                         </>
                       ) : slide.type === "solution" ? (
                         <>
-                          <span className="text-[#023660]">{tr.hero.s3.titlePre}</span>
+                          <span className="text-white">{tr.hero.s3.titlePre}</span>
                           <span className="text-[#FE1F3D]">{tr.hero.s3.highlight}</span>
-                          <span className="text-[#023660]">{tr.hero.s3.titlePost}</span>
+                          <span className="text-white">{tr.hero.s3.titlePost}</span>
                         </>
                       ) : (
                         <>

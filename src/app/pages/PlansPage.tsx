@@ -24,6 +24,7 @@ const faqs = [
 ];
 
 import { FinalCTA } from "../components/FinalCTA";
+import { Plans } from "../components/Plans";
 
 export function PlansPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
@@ -90,121 +91,15 @@ export function PlansPage() {
       <Navbar />
 
       <main>
-        {/* HERO SECTION */}
-        <section className="relative pt-32 pb-24 md:pt-40 md:pb-32 px-6 border-b border-slate-100">
-          <div className="absolute inset-0 z-0 opacity-[0.03]" style={{ backgroundImage: "linear-gradient(#023660 1px, transparent 1px), linear-gradient(90deg, #023660 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
-          
-          <div className="relative z-10 max-w-7xl mx-auto text-center">
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-[#023660] mb-8"
-            >
-              <span className="text-[10px] font-black text-white tracking-[0.2em] uppercase">Planes y Precios</span>
-            </motion.div>
-            
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight text-[#023660] mb-6 leading-tight"
-            >
-              Escalabilidad bajo control
-            </motion.h1>
-
-        <p className="text-sm md:text-base text-slate-500 max-w-xl mx-auto leading-relaxed">
-          Estandariza tus consumos cloud con FOCUS y elige el plan que mejor se adapte a la escala de tu organización.
-        </p>
-          </div>
-        </section>
-
         {/* PRICING CARDS */}
-        <section className="py-20 px-6 lg:px-8 bg-slate-50">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid lg:grid-cols-3 gap-6 items-stretch">
-              {plans.map((plan, i) => (
-                <motion.div
-                  key={plan.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.1 }}
-                  className={`group relative flex flex-col p-7 rounded-2xl bg-white transition-all duration-300 border ${
-                    plan.comingSoon
-                      ? "border-slate-200 opacity-80"
-                      : "border-[#023660] shadow-2xl shadow-[#023660]/5 z-10"
-                  }`}
-                >
-                  {!plan.comingSoon && (
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-[#FE1F3D] text-[9px] font-black uppercase tracking-widest rounded-full shadow-lg text-white">
-                      Disponible
-                    </div>
-                  )}
-
-                  <div className="mb-8 flex justify-between items-center">
-                    <div className={`p-3 rounded-xl ${plan.comingSoon ? "bg-slate-50 text-slate-300" : "bg-slate-50 text-[#023660]"}`}>
-                      {React.cloneElement(plan.icon as React.ReactElement, { className: "w-5 h-5" })}
-                    </div>
-                    {plan.comingSoon && (
-                      <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest bg-slate-100 px-2 py-1 rounded-full">
-                        Roadmap 2026
-                      </span>
-                    )}
-                  </div>
-
-                  <div className="mb-8">
-                    <h3 className="text-lg font-black text-[#023660] mb-2 uppercase tracking-tighter">{plan.name}</h3>
-                    <p className="text-[13px] text-slate-500 leading-relaxed min-h-[38px]">
-                      {plan.tagline}
-                    </p>
-                  </div>
-
-                  <div className="mb-8">
-                    <div className="flex items-baseline gap-1">
-                      <span className={`text-2xl font-black ${plan.comingSoon ? "text-slate-200" : "text-[#023660]"} uppercase tracking-tight`}>
-                        {plan.comingSoon ? "—" : "A medida"}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-2 mt-3 text-[9px] font-black text-slate-400 uppercase tracking-widest">
-                      <Cloud className={`w-3.5 h-3.5 ${plan.comingSoon ? "text-slate-200" : "text-[#FE1F3D]"}`} />
-                      {plan.clouds}
-                    </div>
-                  </div>
-
-                  <div className="w-full h-px bg-slate-100 mb-8" />
-
-                  <div className="flex-grow">
-                    <ul className="space-y-3.5 mb-10">
-                      {plan.features.map((f, idx) => (
-                        <li key={idx} className="flex gap-2.5 items-start">
-                          <Check className={`w-3.5 h-3.5 mt-0.5 shrink-0 ${plan.comingSoon ? "text-slate-200" : "text-[#FE1F3D]"}`} strokeWidth={4} />
-                          <span className={`text-[12px] font-medium leading-tight ${plan.comingSoon ? "text-slate-400" : "text-slate-600"}`}>
-                            {f}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="mt-auto">
-                    {plan.comingSoon ? (
-                      <div className="w-full py-3.5 rounded-full text-[9px] font-black text-center bg-slate-100 text-slate-300 border border-slate-200 cursor-not-allowed uppercase tracking-widest">
-                        Próximamente
-                      </div>
-                    ) : (
-                      <button className="group w-full inline-flex items-center justify-center gap-2 rounded-full bg-[#FE1F3D] px-6 py-3.5 text-[10px] font-black text-white uppercase tracking-widest hover:bg-[#FE1F3D]/90 transition-all duration-300 shadow-lg shadow-[#FE1F3D]/10">
-                        Solicitar demo
-                        <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
-                      </button>
-                    )}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <Plans
+          eyebrow="Planes y Precios"
+          title="Escalabilidad bajo control"
+          subtitle="Estandariza tus consumos cloud con FOCUS y elige el plan que mejor se adapte a la escala de tu organización."
+        />
 
         {/* TECHNICAL BLOCK */}
-        <section className="py-24 bg-white px-6 lg:px-8">
+        <section className="py-24 px-6 lg:px-8" style={{ background: "linear-gradient(90deg, #003d80 0%, #7f2f8c 50%, #fb2e50 100%)" }}>
           <div className="max-w-7xl mx-auto">
             <div className="grid md:grid-cols-3 gap-10">
               {[
@@ -231,11 +126,11 @@ export function PlansPage() {
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
                 >
-                  <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-[#023660] mb-6">
+                  <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-white mb-6">
                     {item.icon}
                   </div>
-                  <h3 className="text-xs font-black text-[#023660] mb-3 uppercase tracking-widest">{item.title}</h3>
-                  <p className="text-[13px] text-slate-500 leading-relaxed font-medium">{item.desc}</p>
+                  <h3 className="text-xs font-black text-white mb-3 uppercase tracking-widest">{item.title}</h3>
+                  <p className="text-[13px] text-white/70 leading-relaxed font-medium">{item.desc}</p>
                 </motion.div>
               ))}
             </div>
@@ -288,10 +183,11 @@ export function PlansPage() {
         </section>
 
         {/* Final CTA */}
-        <FinalCTA 
+        <FinalCTA
           title="¿Listo para hablar con nuestro equipo?"
           subtitle="Cuéntanos sobre tu operación cloud y encontramos juntos la mejor forma de empezar."
           showFeatures={false}
+          backgroundColor="#023660"
         />
       </main>
 
