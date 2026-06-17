@@ -1,11 +1,12 @@
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import { Menu, X, Globe } from "lucide-react";
 import { asset } from "@/lib/asset";
 import { useLanguage, Lang } from "@/lib/i18n";
 
 export function Navbar() {
   const { tr, lang, setLang } = useLanguage();
+  const { pathname } = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [ctaHover, setCtaHover] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -80,31 +81,37 @@ export function Navbar() {
 
         {/* Desktop Nav */}
         <div className="navbar-desktop-nav hidden md:flex" style={{ alignItems: "center", gap: 6 }}>
-          {navLinks.map((link) => (
-            <Link
-              key={link.label}
-              to={link.href}
-              style={{
-                fontSize: 14,
-                fontWeight: 500,
-                color: linkColor,
-                textDecoration: "none",
-                padding: "8px 16px",
-                borderRadius: 100,
-                transition: "color 0.2s, background 0.2s",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.color = linkHoverColor;
-                (e.currentTarget as HTMLElement).style.background = linkHoverBg;
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.color = linkColor;
-                (e.currentTarget as HTMLElement).style.background = "transparent";
-              }}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
+            const activeColor = scrolled ? "#023660" : "#ffffff";
+            const activeBg = scrolled ? "rgba(2,54,96,0.1)" : "rgba(255,255,255,0.22)";
+            return (
+              <Link
+                key={link.label}
+                to={link.href}
+                style={{
+                  fontSize: 14,
+                  fontWeight: isActive ? 700 : 500,
+                  color: isActive ? activeColor : linkColor,
+                  textDecoration: "none",
+                  padding: "8px 16px",
+                  borderRadius: 100,
+                  background: isActive ? activeBg : "transparent",
+                  transition: "color 0.2s, background 0.2s, font-weight 0.2s",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.color = linkHoverColor;
+                  (e.currentTarget as HTMLElement).style.background = linkHoverBg;
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.color = isActive ? activeColor : linkColor;
+                  (e.currentTarget as HTMLElement).style.background = isActive ? activeBg : "transparent";
+                }}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </div>
 
         {/* Desktop CTA Actions */}
@@ -226,26 +233,31 @@ export function Navbar() {
           }}
         >
           <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-            {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                to={link.href}
-                onClick={() => setMobileOpen(false)}
-                style={{
-                  fontSize: 15,
-                  fontWeight: 500,
-                  color: "#023660",
-                  textDecoration: "none",
-                  padding: "12px 16px",
-                  borderRadius: 10,
-                  transition: "background 0.15s",
-                }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "rgba(2,54,96,0.05)"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "transparent"; }}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
+              return (
+                <Link
+                  key={link.label}
+                  to={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  style={{
+                    fontSize: 15,
+                    fontWeight: isActive ? 700 : 500,
+                    color: isActive ? "#023660" : "#334155",
+                    textDecoration: "none",
+                    padding: "12px 16px",
+                    borderRadius: 10,
+                    background: isActive ? "rgba(2,54,96,0.07)" : "transparent",
+                    borderLeft: isActive ? "3px solid #7f2f8c" : "3px solid transparent",
+                    transition: "background 0.15s",
+                  }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "rgba(2,54,96,0.05)"; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = isActive ? "rgba(2,54,96,0.07)" : "transparent"; }}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </div>
           <div style={{ marginTop: 16, paddingTop: 16, borderTop: "1px solid #E2E8F0", display: "flex", flexDirection: "column", gap: 10 }}>
             <div style={{ display: "flex", gap: 8 }}>
