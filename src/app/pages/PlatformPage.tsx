@@ -309,11 +309,10 @@ export function PlatformPage() {
             {tr.platform.steps.map((step, i) => (
               <div key={i} className="relative z-10 flex flex-col items-center text-center group">
                 <div
-                  className="w-24 h-24 rounded-full flex items-center justify-center text-3xl font-bold text-white mb-8 shadow-xl transition-transform group-hover:-translate-y-1"
-                  style={i % 2 === 0
-                    ? { background: "linear-gradient(135deg, #fb2e50 0%, #7f2f8c 50%, #003d80 100%)" }
-                    : { background: "#003d80" }
-                  }
+                  className="w-24 h-24 rounded-full flex items-center justify-center text-3xl font-bold text-white mb-8 shadow-xl transition-all duration-300 group-hover:-translate-y-1"
+                  style={{ background: "linear-gradient(135deg, #fb2e50 0%, #7f2f8c 50%, #003d80 100%)" }}
+                  onMouseEnter={e => (e.currentTarget as HTMLElement).style.background = "#023660"}
+                  onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = "linear-gradient(135deg, #fb2e50 0%, #7f2f8c 50%, #003d80 100%)"}
                 >
                   {i + 1}
                 </div>
