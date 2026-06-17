@@ -248,7 +248,7 @@ export function Navbar() {
           }}
         >
           <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-            {[...navLinks, ...mobileOnlyLinks].map((link) => {
+            {navLinks.map((link) => {
               const isActive = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
               return (
                 <Link
