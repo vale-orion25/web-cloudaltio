@@ -20,9 +20,11 @@ export function Plans({ showHeader = true, eyebrow, title, subtitle }: { showHea
     {
       id: "starter",
       name: "Starter",
-      badgeLabel: tr.plans.soon,
-      badgeStyle: "soon",
-      available: false,
+      badgeLabel: tr.plans.available,
+      badgeStyle: "available",
+      available: true,
+      price: tr.plans.prices[0],
+      spendRange: tr.plans.spendRanges[0],
       tagline: tr.plans.taglines[0],
       clouds: tr.plans.clouds[0],
       accentColor: "#36AAC1",
@@ -32,9 +34,11 @@ export function Plans({ showHeader = true, eyebrow, title, subtitle }: { showHea
     {
       id: "professional",
       name: "Professional",
-      badgeLabel: tr.plans.soon,
-      badgeStyle: "soon",
-      available: false,
+      badgeLabel: tr.plans.available,
+      badgeStyle: "available",
+      available: true,
+      price: tr.plans.prices[1],
+      spendRange: tr.plans.spendRanges[1],
       tagline: tr.plans.taglines[1],
       clouds: tr.plans.clouds[1],
       accentColor: "#FE1F3D",
@@ -42,15 +46,31 @@ export function Plans({ showHeader = true, eyebrow, title, subtitle }: { showHea
       ctaLink: "/contacto?motivo=Hola%2C%20me%20gustar%C3%ADa%20solicitar%20una%20demo%20del%20plan%20Professional%20de%20CloudAltio.",
     },
     {
+      id: "business",
+      name: "Business",
+      badgeLabel: tr.plans.available,
+      badgeStyle: "available",
+      available: true,
+      price: tr.plans.prices[2],
+      spendRange: tr.plans.spendRanges[2],
+      tagline: tr.plans.taglines[2],
+      clouds: tr.plans.clouds[2],
+      accentColor: "#7f2f8c",
+      features: tr.plans.features[2],
+      ctaLink: "/contacto?motivo=Hola%2C%20me%20gustar%C3%ADa%20solicitar%20una%20demo%20del%20plan%20Business%20de%20CloudAltio.",
+    },
+    {
       id: "enterprise",
       name: "Enterprise",
       badgeLabel: tr.plans.available,
       badgeStyle: "available",
       available: true,
-      tagline: tr.plans.taglines[2],
-      clouds: tr.plans.clouds[2],
+      price: tr.plans.prices[3],
+      spendRange: tr.plans.spendRanges[3],
+      tagline: tr.plans.taglines[3],
+      clouds: tr.plans.clouds[3],
       accentColor: "#023660",
-      features: tr.plans.features[2],
+      features: tr.plans.features[3],
       ctaLink: `/contacto?motivo=${encodeURIComponent(tr.plans.ctaDemoMotivo)}`,
     },
   ];
@@ -99,7 +119,7 @@ export function Plans({ showHeader = true, eyebrow, title, subtitle }: { showHea
         )}
 
         {/* Cards */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20, alignItems: "stretch" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 20, alignItems: "stretch" }}>
           {plans.map((plan) => (
             <div key={plan.id} style={{ paddingTop: 20, display: "flex", flexDirection: "column" }}>
               {/* Card — sin opacity para que el badge no se vea afectado */}
@@ -160,12 +180,15 @@ export function Plans({ showHeader = true, eyebrow, title, subtitle }: { showHea
                   {plan.name}
                 </div>
 
-                {/* Tagline */}
-                <div style={{ fontSize: plan.available ? 15 : 18, fontWeight: 700, color: "#0F172A", marginBottom: 16, lineHeight: 1.45 }}>
-                  {plan.tagline}
+                {/* Price */}
+                <div style={{ fontSize: 32, fontWeight: 800, color: "#0F172A", lineHeight: 1, marginBottom: 4 }}>
+                  {plan.price}
+                </div>
+                <div style={{ fontSize: 11, color: "#64748b", fontWeight: 500, marginBottom: 16 }}>
+                  {tr.plans.billingPeriod}
                 </div>
 
-                {/* Cloud pill */}
+                {/* Spend range pill */}
                 <div style={{
                   display: "inline-flex",
                   alignItems: "center",
@@ -174,14 +197,10 @@ export function Plans({ showHeader = true, eyebrow, title, subtitle }: { showHea
                   border: `1px solid ${plan.accentColor}30`,
                   borderRadius: 6,
                   padding: "5px 12px",
-                  marginBottom: 24,
+                  marginBottom: 20,
                   alignSelf: "flex-start",
                 }}>
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                    <path d="M2 6C2 3.79 3.79 2 6 2H7C8.66 2 10 3.34 10 5C10 6.66 8.66 8 7 8H2" stroke={plan.accentColor} strokeWidth="1.4" strokeLinecap="round" />
-                    <circle cx="3.5" cy="8" r="1.2" fill={plan.accentColor} />
-                  </svg>
-                  <span style={{ fontSize: 11, fontWeight: 600, color: plan.accentColor }}>{plan.clouds}</span>
+                  <span style={{ fontSize: 11, fontWeight: 700, color: plan.accentColor }}>{plan.spendRange}</span>
                 </div>
 
                 {/* Divider */}
@@ -224,7 +243,7 @@ export function Plans({ showHeader = true, eyebrow, title, subtitle }: { showHea
                     (e.currentTarget as HTMLElement).style.background = plan.available ? "#FE1F3D" : "#023660";
                   }}
                 >
-                  {plan.available ? tr.plans.cta : tr.plans.ctaDemo}
+                  {tr.plans.ctaDemo} {plan.name}
                 </Link>
               </div>{/* fin contenido interno */}
               </div>{/* fin card */}
