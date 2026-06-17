@@ -22,7 +22,7 @@ export function Footer() {
             <Link to="/" style={{ display: "inline-block", marginBottom: 16 }}>
               <img src={asset("/Logo-CloudAltio-color-by-Orion.png")} alt="CloudAltio by Orión" style={{ height: 44, width: "auto", display: "block" }} />
             </Link>
-            <p style={{ fontSize: 13, color: "#475569", lineHeight: 1.7, maxWidth: 240, marginBottom: 24 }}>
+            <p className="max-w-full md:max-w-[240px]" style={{ fontSize: 13, color: "#475569", lineHeight: 1.7, marginBottom: 24 }}>
               {tr.footer.tagline}
             </p>
             {/* LinkedIn */}
