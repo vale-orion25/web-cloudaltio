@@ -206,25 +206,36 @@ export function Navbar() {
           </Link>
         </div>
 
-        {/* Mobile hamburger */}
-        <button
-          className="navbar-mobile-btn md:hidden"
-          onClick={() => setMobileOpen((v) => !v)}
-          style={{
-            background: "none",
-            border: "none",
-            cursor: "pointer",
-            color: scrolled ? "#023660" : "#ffffff",
-            padding: 8,
-            borderRadius: 8,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-          aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
-        >
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        {/* Mobile: globe + hamburger */}
+        <div className="md:hidden flex items-center gap-1">
+          <button
+            onClick={() => setLang(lang === "es" ? "en" : "es")}
+            style={{
+              background: "none", border: "none", cursor: "pointer",
+              color: scrolled ? "#023660" : "#ffffff",
+              padding: 8, borderRadius: 8,
+              display: "flex", alignItems: "center", justifyContent: "center",
+              transition: "color 0.4s ease",
+            }}
+            aria-label="Cambiar idioma"
+          >
+            <Globe size={20} />
+          </button>
+          <button
+            className="navbar-mobile-btn"
+            onClick={() => setMobileOpen((v) => !v)}
+            style={{
+              background: "none", border: "none", cursor: "pointer",
+              color: scrolled ? "#023660" : "#ffffff",
+              padding: 8, borderRadius: 8,
+              display: "flex", alignItems: "center", justifyContent: "center",
+              transition: "color 0.4s ease",
+            }}
+            aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
+          >
+            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile dropdown */}
@@ -252,7 +263,6 @@ export function Navbar() {
                     padding: "12px 16px",
                     borderRadius: 10,
                     background: isActive ? "rgba(2,54,96,0.07)" : "transparent",
-                    borderLeft: isActive ? "3px solid #7f2f8c" : "3px solid transparent",
                     transition: "background 0.15s",
                   }}
                   onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "rgba(2,54,96,0.05)"; }}
