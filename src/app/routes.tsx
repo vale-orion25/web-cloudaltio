@@ -1,4 +1,4 @@
-import { createBrowserRouter, Navigate } from "react-router";
+import { createHashRouter, Navigate } from "react-router";
 import { HomePage } from "./pages/HomePage";
 import { PlatformPage } from "./pages/PlatformPage";
 import { FinOpsPage } from "./pages/FinOpsPage";
@@ -15,7 +15,7 @@ import { BlogEditor } from "../admin/pages/blog/BlogEditor";
 import { NewsletterList } from "../admin/pages/newsletter/NewsletterList";
 import { NewsletterEditor } from "../admin/pages/newsletter/NewsletterEditor";
 
-export const router = createBrowserRouter([
+export const router = createHashRouter([
   {
     path: "/",
     Component: HomePage,
@@ -69,4 +69,4 @@ export const router = createBrowserRouter([
       { path: "newsletter/:id/editar", Component: NewsletterEditor },
     ],
   },
-], { basename: '/web-cloudaltio' });
+]);
