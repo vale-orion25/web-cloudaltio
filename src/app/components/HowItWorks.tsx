@@ -242,13 +242,7 @@ export function HowItWorks() {
         </div>
 
         {/* Steps */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: 24,
-          }}
-        >
+        <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: 24 }}>
           {steps.map((step, i) => (
             <motion.div
               key={step.number}

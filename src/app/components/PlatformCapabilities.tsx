@@ -243,9 +243,8 @@ export function PlatformCapabilities() {
             return (
               <div
                 key={i}
+                className="grid grid-cols-1 md:grid-cols-2"
                 style={{
-                  display: 'grid',
-                  gridTemplateColumns: isEven ? '1fr 1fr' : '1fr 1fr',
                   gap: 48,
                   alignItems: 'center',
                   background: 'rgba(255,255,255,0.015)',

@@ -119,7 +119,7 @@ export function Plans({ showHeader = true, eyebrow, title, subtitle }: { showHea
         )}
 
         {/* Cards */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 20, alignItems: "stretch" }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4" style={{ gap: 20, alignItems: "stretch" }}>
           {plans.map((plan) => (
             <div key={plan.id} style={{ paddingTop: 20, display: "flex", flexDirection: "column" }}>
               {/* Card — sin opacity para que el badge no se vea afectado */}

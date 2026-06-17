@@ -198,14 +198,14 @@ export function WhyFinOps() {
         fontFamily: "Inter, sans-serif",
       }}
     >
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 40px" }}>
+      <div className="px-4 md:px-10" style={{ maxWidth: 1280, margin: "0 auto" }}>
 
         {/* Header */}
         <div style={{ marginBottom: 48 }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: "#023660", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: 16 }}>
             {tr.why.eyebrow}
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "flex-start" }}>
+          <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 60, alignItems: "flex-start" }}>
             <h2 style={{ fontSize: 40, fontWeight: 800, color: "#023660", letterSpacing: "-1px", lineHeight: 1.15 }}>
               {tr.why.title1}<br />{tr.why.title2}
             </h2>
@@ -216,7 +216,7 @@ export function WhyFinOps() {
         </div>
 
         {/* Problem cards with images */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16, marginBottom: 72 }}>
+        <div className="grid grid-cols-2 md:grid-cols-4" style={{ gap: 16, marginBottom: 72 }}>
           {problems.map((p) => (
             <div
               key={p.title}
@@ -252,7 +252,7 @@ export function WhyFinOps() {
         </div>
 
         {/* Forecast + FOCUS */}
-        <div style={{ display: "grid", gridTemplateColumns: "1.3fr 1fr", gap: 24, marginBottom: 24 }}>
+        <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 24, marginBottom: 24 }}>
           <div style={{ background: "#FFFFFF", border: "1px solid #E2E8F0", borderRadius: 16, padding: "28px 28px 20px", boxShadow: "0 2px 16px rgba(15,23,42,0.04)", display: "flex", flexDirection: "column" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 20, flexShrink: 0 }}>
               <div>
@@ -306,11 +306,9 @@ export function WhyFinOps() {
         </div>
 
         {/* Bottom banner with photo */}
-        <div style={{
+        <div className="grid grid-cols-1 md:grid-cols-[3fr_2fr]" style={{
           background: "linear-gradient(90deg, #003d80 0%, #7f2f8c 50%, #fb2e50 100%)",
           borderRadius: 16,
-          display: "grid",
-          gridTemplateColumns: "3fr 2fr",
           overflow: "hidden",
         }}>
           {/* Left: text */}
@@ -332,7 +330,7 @@ export function WhyFinOps() {
             </div>
           </div>
           {/* Right: photo flush */}
-          <div style={{ position: "relative" }}>
+          <div className="min-h-[200px] md:min-h-0" style={{ position: "relative" }}>
             <img
               src={asset("/Disenado-para-equipos-transversales.jpg")}
               alt="Equipos transversales"

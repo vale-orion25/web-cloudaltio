@@ -341,13 +341,12 @@ export function Capabilities() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            className="grid grid-cols-1 lg:grid-cols-2"
             style={{
               background: "#FFFFFF",
               borderRadius: 24,
               padding: "48px 56px",
               boxShadow: "0 8px 48px rgba(15,23,42,0.18)",
-              display: "grid",
-              gridTemplateColumns: "1fr 1.1fr",
               gap: 64,
               alignItems: "center",
             }}
