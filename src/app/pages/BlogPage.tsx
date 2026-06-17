@@ -1,10 +1,23 @@
+import { useState } from "react";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
-import { ArrowRight, Tag, Box, PieChart, ShieldAlert, Zap, BellRing, Calendar, Clock, BookOpen } from "lucide-react";
+import { ArrowRight, Tag, Box, PieChart, ShieldAlert, Zap, BellRing, Calendar, Clock, BookOpen, Check } from "lucide-react";
 import { Link } from "react-router";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { addSubscriber } from "@/lib/subscribers";
 
 export function BlogPage() {
+  const [subEmail, setSubEmail] = useState("");
+  const [subState, setSubState] = useState<"idle" | "success" | "duplicate">("idle");
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    const added = addSubscriber(subEmail);
+    setSubState(added ? "success" : "duplicate");
+    if (added) setSubEmail("");
+    setTimeout(() => setSubState("idle"), 3500);
+  };
+
   const posts = [
     {
       id: 1,
@@ -169,22 +182,28 @@ export function BlogPage() {
             Recibe nuestras mejores guías y casos de uso de optimización cloud directamente en tu bandeja de entrada una vez al mes.
           </p>
 
-          <form className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto" onSubmit={(e) => e.preventDefault()}>
+          <form className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto" onSubmit={handleSubscribe}>
             <input
               type="email"
+              value={subEmail}
+              onChange={(e) => setSubEmail(e.target.value)}
               placeholder="tu@empresa.com"
-              className="flex-grow px-5 py-4 rounded-xl border border-white/20 bg-white/10 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-white/40 focus:border-transparent backdrop-blur-sm"
               required
+              disabled={subState === "success"}
+              className="flex-grow px-5 py-4 rounded-xl border border-white/20 bg-white/10 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-white/40 focus:border-transparent backdrop-blur-sm disabled:opacity-60"
             />
             <button
               type="submit"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-white text-[#023660] font-bold hover:bg-white/90 shadow-lg transition-all sm:w-auto w-full"
+              disabled={subState === "success"}
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-white text-[#023660] font-bold hover:bg-white/90 shadow-lg transition-all sm:w-auto w-full disabled:opacity-70"
             >
-              Suscribirme
+              {subState === "success" ? <><Check className="w-4 h-4 text-green-600" /> ¡Suscrito!</> : "Suscribirme"}
             </button>
           </form>
-          <p className="text-xs text-white/50 mt-4">
-            Cero spam. Solo contenido técnico de alto valor.
+          <p className="text-xs text-white/50 mt-4 min-h-[1.25rem]">
+            {subState === "duplicate"
+              ? "Este correo ya está suscrito."
+              : "Cero spam. Solo contenido técnico de alto valor."}
           </p>
         </div>
       </section>

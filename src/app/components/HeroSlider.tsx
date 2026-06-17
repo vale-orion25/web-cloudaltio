@@ -83,103 +83,117 @@ function DashboardScreenshot() {
 // ─────────────────────────────────────────────
 function MulticloudPainVisual() {
   const clouds = [
-    { name: "AWS",   color: "#FF9900" },
-    { name: "GCP",   color: "#4285F4" },
-    { name: "Azure", color: "#0078D4" },
-    { name: "OCI",   color: "#F80000" },
+    { name: "AWS",   color: "#FF9900", ay: [0, -8, 0], dur: 3.5 },
+    { name: "GCP",   color: "#4285F4", ay: [0, -6, 0], dur: 4.2 },
+    { name: "Azure", color: "#0078D4", ay: [0, -10, 0], dur: 3.8 },
+    { name: "OCI",   color: "#F80000", ay: [0, -7, 0], dur: 4.6 },
   ];
   return (
     <div className="relative w-full max-w-md mx-auto py-4">
       {/* Grid de nubes */}
       <div className="grid grid-cols-2 gap-4 mb-6">
-        {clouds.map((c) => (
-          <div
+        {clouds.map((c, i) => (
+          <motion.div
             key={c.name}
-            className="bg-white border border-slate-200 rounded-2xl p-5 flex flex-col items-center gap-2 shadow-sm"
+            className="bg-white border border-slate-200 rounded-2xl p-5 flex flex-col items-center gap-3 shadow-md"
+            animate={{ y: c.ay }}
+            transition={{ duration: c.dur, repeat: Infinity, ease: "easeInOut", delay: i * 0.4 }}
           >
             <div
-              className="w-10 h-10 rounded-xl flex items-center justify-center shadow"
+              className="w-14 h-14 rounded-2xl flex items-center justify-center shadow-sm"
               style={{ backgroundColor: c.color + "18", border: `1.5px solid ${c.color}44` }}
             >
-              <img src={cloudLogos[c.name]} alt={c.name} style={{ width: 22, height: 22, objectFit: "contain" }} />
+              <img src={cloudLogos[c.name]} alt={c.name} style={{ width: 34, height: 34, objectFit: "contain" }} />
             </div>
-            <div className="space-y-1 w-full">
+            <div className="space-y-1.5 w-full">
               <div className="h-1.5 bg-slate-200 rounded-full w-full" />
-              <div className="h-1.5 bg-slate-200 rounded-full w-3/4" />
+              <div className="h-1.5 bg-slate-200 rounded-full w-2/3" />
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
       {/* Convergencia */}
       <div className="flex items-center justify-center gap-2 mb-4">
-        <div className="flex-1 h-px bg-gradient-to-r from-transparent to-[#023660]/40" />
-        <GitMerge className="w-6 h-6 text-[#023660]" />
-        <div className="flex-1 h-px bg-gradient-to-l from-transparent to-[#023660]/40" />
+        <div className="flex-1 h-px bg-gradient-to-r from-transparent to-white/40" />
+        <GitMerge className="w-6 h-6 text-white/70" />
+        <div className="flex-1 h-px bg-gradient-to-l from-transparent to-white/40" />
       </div>
       {/* Resultado */}
-      <div className="bg-[#FE1F3D]/10 border border-[#FE1F3D]/30 rounded-2xl px-5 py-3 text-center">
-        <p className="text-[#FE1F3D] font-black text-sm uppercase tracking-widest">Más complejidad, menos control.</p>
+      <div className="bg-[#FE1F3D] rounded-2xl px-5 py-3 text-center shadow-lg shadow-[#FE1F3D]/30">
+        <p className="text-white font-black text-sm uppercase tracking-widest">Más complejidad, menos control.</p>
       </div>
     </div>
   );
 }
 
 // ─────────────────────────────────────────────
-// Slide 4 visual: flujo FinOps horizontal
+// Slide 3 visual: métricas cloud en glass
+// ─────────────────────────────────────────────
+function CloudMetricsVisual() {
+  const metrics = [
+    { label: "Gasto Total", value: "$153K", sub: "+8.2% vs mes ant.", color: "#36AAC1" },
+    { label: "Ahorro Detectado", value: "$24K", sub: "este mes", color: "#FE1F3D" },
+    { label: "Nubes Activas", value: "4", sub: "AWS · GCP · Azure · OCI", color: "#7f2f8c" },
+    { label: "Anomalías", value: "3", sub: "detectadas hoy", color: "#fb2e50" },
+  ];
+  return (
+    <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
+      {metrics.map((m, i) => (
+        <motion.div
+          key={m.label}
+          className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-5 flex flex-col gap-1"
+          animate={{ y: [0, -7, 0] }}
+          transition={{ duration: 3.2 + i * 0.5, repeat: Infinity, ease: "easeInOut", delay: i * 0.35 }}
+        >
+          <div className="text-white/55 text-[10px] font-bold uppercase tracking-widest">{m.label}</div>
+          <div className="font-black text-3xl text-white leading-none" style={{ color: m.color }}>{m.value}</div>
+          <div className="text-white/45 text-[11px]">{m.sub}</div>
+        </motion.div>
+      ))}
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────
+// Slide 4 visual: flujo FinOps glass
 // ─────────────────────────────────────────────
 function FinOpsFlowVisual() {
   const steps = [
-    { label: "Cost Allocation", icon: <Target className="w-6 h-6" />, primary: true, desc: "Primer paso" },
-    { label: "Visibilidad", icon: <Eye className="w-6 h-6" />, primary: false, desc: "Entender el gasto" },
-    { label: "Optimización", icon: <TrendingUp className="w-6 h-6" />, primary: false, desc: "Reducir y mejorar" },
+    { label: "Cost Allocation", icon: <Target className="w-5 h-5" />, desc: "Primer paso — asignar el gasto", active: true },
+    { label: "Visibilidad", icon: <Eye className="w-5 h-5" />, desc: "Entender cada peso cloud", active: false },
+    { label: "Optimización", icon: <TrendingUp className="w-5 h-5" />, desc: "Reducir, mejorar, escalar", active: false },
   ];
   return (
-    <div className="relative w-full max-w-md mx-auto">
-      <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-xl">
-        <p className="text-slate-400 text-xs uppercase tracking-widest font-bold mb-6 text-center">Metodología FinOps</p>
-        <div className="flex flex-col gap-3">
-          {steps.map((step, i) => (
-            <React.Fragment key={step.label}>
-              <div
-                className={`flex items-center gap-4 rounded-2xl p-4 border transition-all ${
-                  step.primary
-                    ? "bg-[#FE1F3D]/8 border-[#FE1F3D]/30 shadow-sm"
-                    : "bg-slate-50 border-slate-200"
-                }`}
-              >
-                <div
-                  className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${
-                    step.primary ? "bg-[#FE1F3D] text-white shadow-md shadow-[#FE1F3D]/25" : "bg-slate-200 text-slate-500"
-                  }`}
-                >
-                  {step.icon}
-                </div>
-                <div>
-                  <p className={`font-black text-sm ${step.primary ? "text-[#023660]" : "text-slate-500"}`}>
-                    {step.label}
-                    {step.primary && (
-                      <span className="ml-2 text-[10px] bg-[#FE1F3D] text-white px-2 py-0.5 rounded-full uppercase tracking-wide font-black">
-                        Clave
-                      </span>
-                    )}
-                  </p>
-                  <p className="text-slate-400 text-xs">{step.desc}</p>
-                </div>
-                <div className="ml-auto">
-                  <CheckCircle2 className={`w-5 h-5 ${step.primary ? "text-[#FE1F3D]" : "text-slate-300"}`} />
-                </div>
-              </div>
-              {i < steps.length - 1 && (
-                <div className="flex justify-center">
-                  <div className="w-px h-4 bg-slate-200" />
-                </div>
-              )}
-            </React.Fragment>
-          ))}
-        </div>
-        <div className="mt-6 bg-slate-50 border border-slate-200 rounded-2xl px-4 py-3 text-center">
-          <p className="text-slate-400 text-xs italic">"FinOps no empieza por ahorrar. Empieza por ordenar."</p>
-        </div>
+    <div className="w-full max-w-md mx-auto flex flex-col gap-3">
+      <p className="text-white/40 text-[10px] font-black uppercase tracking-[0.2em] text-center mb-1">Metodología FinOps</p>
+      {steps.map((step, i) => (
+        <motion.div
+          key={step.label}
+          className={`flex items-center gap-4 rounded-2xl p-4 border backdrop-blur-md ${
+            step.active
+              ? "bg-[#FE1F3D]/20 border-[#FE1F3D]/50 shadow-lg shadow-[#FE1F3D]/10"
+              : "bg-white/8 border-white/15"
+          }`}
+          animate={{ x: [0, step.active ? 4 : 2, 0] }}
+          transition={{ duration: 3 + i, repeat: Infinity, ease: "easeInOut", delay: i * 0.5 }}
+        >
+          <div className={`w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 ${
+            step.active ? "bg-[#FE1F3D] text-white shadow-md shadow-[#FE1F3D]/30" : "bg-white/15 text-white/60"
+          }`}>
+            {step.icon}
+          </div>
+          <div className="flex-1">
+            <p className="font-black text-sm text-white flex items-center gap-2">
+              {step.label}
+              {step.active && <span className="text-[9px] bg-[#FE1F3D] px-2 py-0.5 rounded-full uppercase tracking-wide font-black">Clave</span>}
+            </p>
+            <p className="text-white/45 text-xs mt-0.5">{step.desc}</p>
+          </div>
+          <CheckCircle2 className={`w-5 h-5 flex-shrink-0 ${step.active ? "text-[#FE1F3D]" : "text-white/20"}`} />
+        </motion.div>
+      ))}
+      <div className="mt-1 bg-white/8 border border-white/15 rounded-2xl px-4 py-3 text-center backdrop-blur-md">
+        <p className="text-white/50 text-xs italic">"FinOps no empieza por ahorrar. Empieza por ordenar."</p>
       </div>
     </div>
   );
@@ -192,7 +206,7 @@ function FinOpsFlowVisual() {
 export function HeroSlider() {
   const { tr, lang } = useLanguage();
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
-    Autoplay({ delay: 6000, stopOnInteraction: false }),
+    Autoplay({ delay: 10000, stopOnInteraction: false }),
   ]);
   const [selectedIndex, setSelectedIndex] = useState(0);
 
@@ -248,7 +262,7 @@ export function HeroSlider() {
     {
       id: 3,
       type: "solution",
-      theme: "light",
+      theme: "dark",
       bg: "bg-slate-100",
       bgGradient: "",
       bgPhoto: "/Header_3-Una sola plataforma.jpg",
@@ -266,13 +280,13 @@ export function HeroSlider() {
       cta: tr.hero.s3.cta,
       ctaLink: `/contacto?motivo=${encodeURIComponent("Hola, me gustaría solicitar una demo de la plataforma CloudAltio.")}`,
       ctaStyle: "red",
-      visual: <DashboardMockup />,
+      visual: <CloudMetricsVisual />,
     },
     // SLIDE 4 — Método FinOps
     {
       id: 4,
       type: "finops",
-      theme: "light",
+      theme: "dark",
       bg: "bg-[#f1f5f9]",
       bgGradient: "",
       bgPhoto: "/Header_4-No puedes optimizar.jpg",
@@ -315,9 +329,11 @@ export function HeroSlider() {
                       className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                       style={{ backgroundImage: `url('${asset(slide.bgPhoto as string)}')` }}
                     />
-                    {/* Overlay direccional: cubre texto, deja respirar el visual */}
+                    {/* Overlay direccional */}
                     <div className={`absolute inset-0 ${
-                      isDark(slide)
+                      slide.type === "finops"
+                        ? "bg-gradient-to-r from-black/60 via-black/30 to-black/10"
+                        : isDark(slide)
                         ? "bg-gradient-to-r from-[#011e38]/90 via-[#011e38]/60 to-[#011e38]/20"
                         : "bg-gradient-to-r from-white/85 via-white/55 to-white/10"
                     }`} />
@@ -340,11 +356,11 @@ export function HeroSlider() {
                     <div className={`inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-5 border ${
                       isDark(slide)
                         ? slide.type === "pain"
-                          ? "bg-[#36AAC1]/15 border-[#36AAC1]/30"
+                          ? "bg-[#36AAC1]/30 border-[#36AAC1]/60"
                           : slide.type === "finops"
-                          ? "bg-[#36AAC1]/15 border-[#36AAC1]/30"
-                          : "bg-[#FE1F3D]/15 border-[#FE1F3D]/30"
-                        : "bg-[#FE1F3D]/10 border-[#FE1F3D]/30"
+                          ? "bg-[#36AAC1]/30 border-[#36AAC1]/60"
+                          : "bg-[#FE1F3D]/30 border-[#FE1F3D]/60"
+                        : "bg-[#FE1F3D]/15 border-[#FE1F3D]/40"
                     }`}>
                       {slide.badgeIcon}
                       <span className={`text-xs font-black tracking-widest uppercase ${
@@ -409,9 +425,9 @@ export function HeroSlider() {
                     {slide.benefits && (
                       <div className="flex flex-wrap gap-3 mb-6">
                         {slide.benefits.map((b) => (
-                          <div key={b.label} className="flex items-center gap-2 px-3 py-1.5 bg-white border border-slate-200 rounded-full shadow-sm">
-                            <div className="text-[#023660]">{b.icon}</div>
-                            <span className="text-xs font-semibold text-slate-700">{b.label}</span>
+                          <div key={b.label} className="flex items-center gap-2 px-3 py-1.5 bg-white/15 border border-white/25 rounded-full backdrop-blur-sm">
+                            <div className="text-white/80">{b.icon}</div>
+                            <span className="text-xs font-semibold text-white">{b.label}</span>
                           </div>
                         ))}
                       </div>
