@@ -13,12 +13,12 @@ export function Footer() {
       padding: "64px 0 40px",
       fontFamily: "Inter, sans-serif",
     }}>
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 40px" }}>
+      <div className="px-4 md:px-10" style={{ maxWidth: 1280, margin: "0 auto" }}>
         {/* Top */}
-        <div style={{ display: "grid", gridTemplateColumns: "1.8fr repeat(3, 1fr)", gap: 48, marginBottom: 48 }}>
+        <div className="grid grid-cols-2 md:grid-cols-[1.8fr_repeat(3,1fr)]" style={{ gap: 48, marginBottom: 48 }}>
 
           {/* Brand */}
-          <div>
+          <div className="col-span-2 md:col-span-1">
             <Link to="/" style={{ display: "inline-block", marginBottom: 16 }}>
               <img src={asset("/Logo-CloudAltio-color-by-Orion.png")} alt="CloudAltio by Orión" style={{ height: 44, width: "auto", display: "block" }} />
             </Link>
