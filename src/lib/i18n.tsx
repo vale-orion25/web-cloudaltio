@@ -20,7 +20,7 @@ const es = {
     badge: "Pilar Fundamental",
     title: "Gestión Multi-cloud con",
     highlight: "Criterio Financiero",
-    subtitle: "CloudAltio elimina la complejidad de comparar facturas de distintos proveedores. Unificamos bajo estándares internacionales de transparencia y cumplimiento técnico.",
+    subtitle: "CloudAltio elimina la complejidad de comparar consumos de distintos proveedores. Unificamos bajo estándares internacionales de transparencia y cumplimiento técnico.",
     cards: [
       { title: "Estándar FOCUS", desc: "Normalizamos los datos de AWS, Azure, GCP y OCI bajo el estándar FOCUS para comparaciones precisas entre proveedores." },
       { title: "Cultura FinOps", desc: "Unificamos a Finanzas, Tecnología y Operaciones en un solo lenguaje de datos para decisiones estratégicas." },
@@ -39,7 +39,7 @@ const es = {
     monthly: "Inversión Mensual",
     focusMeta: "Metadata FOCUS",
     alertBadge: "Detección FOCUS",
-    alertText: "Variación detectada: +$3,400 en EC2",
+    alertText: "Variación detectada: +$3,400 en Cómputo",
     features: ["Consolidación", "Sin Código", "Sin Impacto"],
     featuresDesc: ["4 nubes principales integradas nativamente.", "Implementación técnica sin agentes ni fricción.", "Lectura de costos sin afectar tu infraestructura."],
     connected: "Conectado",
@@ -124,7 +124,7 @@ const es = {
       { q: "¿CloudAltio modifica recursos en mi nube?", a: "No. CloudAltio es una plataforma de solo lectura. Nos conectamos a las APIs de billing y metadata de AWS, Azure, GCP y Oracle Cloud para analizar tu gasto, pero nunca ejecutamos acciones sobre tu infraestructura. La decisión siempre es tuya." },
       { q: "¿Cuánto tarda la implementación?", a: "Contamos con un proceso de onboarding asistido para asegurar una integración correcta de tus datos. El proceso consiste en otorgar permisos de lectura a través de roles IAM o equivalentes en cada cloud, y CloudAltio hace el resto. No se requieren agentes ni cambios en tu infraestructura." },
       { q: "¿Qué nubes soporta CloudAltio?", a: "CloudAltio soporta Amazon Web Services (AWS), Microsoft Azure, Google Cloud Platform (GCP) y Oracle Cloud Infrastructure (OCI)." },
-      { q: "¿Necesito conocimiento técnico para usar CloudAltio?", a: "No. CloudAltio está diseñado para ser usado tanto por equipos de ingeniería como por equipos de finanzas y operaciones. Los dashboards traducen datos técnicos de cloud en lenguaje financiero claro. No necesitas saber qué es una instancia EC2 para entender cuánto estás gastando en cómputo." },
+      { q: "¿Necesito conocimiento técnico para usar CloudAltio?", a: "No. CloudAltio está diseñado para ser usado tanto por equipos de ingeniería como por equipos de finanzas y operaciones. Los dashboards traducen datos técnicos de cloud en lenguaje financiero claro. No necesitas saber cómo llaman a sus recursos de cómputo en cada proveedor para entender cuánto estás gastando en infraestructura." },
       { q: "¿Qué datos procesa CloudAltio?", a: "CloudAltio procesa únicamente datos de costos y metadata de uso entregados por las APIs de cada proveedor cloud. Nunca accedemos a datos de negocio, PII ni contenido de tus workloads. Si tienes requisitos específicos de seguridad o privacidad, podemos conversarlo en detalle durante la evaluación." },
       { q: "¿Puedo asignar costos por equipo o proyecto sin tener tagging perfecto?", a: "Sí. CloudAltio incluye herramientas de cost allocation que permiten asignar costos incluso cuando el tagging no está al 100%. Puedes usar reglas de negocio, nombres de cuentas y heurísticas configurables para distribuir costos entre equipos y proyectos desde el primer día." },
       { q: "¿Hay costos adicionales por usar CloudAltio?", a: "CloudAltio tiene su propia tarifa por uso de la plataforma. El acceso a las APIs de billing de tus proveedores cloud es generalmente de bajo costo o gratuito, dependiendo de cada proveedor." },
@@ -156,7 +156,7 @@ const es = {
     name: "Nombre", namePlh: "Tu nombre", email: "Email", emailPlh: "tu@empresa.com",
     company: "Empresa", companyPlh: "Nombre de tu empresa", country: "País", countryPlh: "Selecciona tu país",
     clouds: "¿Qué nubes utilizas?",
-    message: "Mensaje", messagePlh: "Cuéntanos sobre tu infraestructura cloud y qué necesitas...",
+    message: "Mensaje", messagePlh: "Cuéntanos sobre tu operación cloud y qué necesitas...",
     send: "Enviar mensaje",
     sentTitle: "¡Mensaje enviado!", sentDesc: "Gracias por contactarnos. Te responderemos en menos de 24 horas hábiles.",
   },
@@ -179,7 +179,7 @@ const es = {
     ],
     immediateResultsBadge: "Resultados Inmediatos",
     immediateResultsTitle: "Lo que podrás entender desde el primer día",
-    immediateResultsSubtitle: "Deja de luchar con excels y descargas manuales. Al conectar tus entornos a CloudAltio, nuestra plataforma procesa tus facturas y te entrega un mapa claro de tu infraestructura.",
+    immediateResultsSubtitle: "Deja de luchar con excels y descargas manuales. Al conectar tus entornos a CloudAltio, nuestra plataforma consolida y normaliza la información de consumo cloud y te entrega un mapa claro de tu operación.",
     immediateItems: [
       "Gasto total consolidado entre clouds",
       "Distribución por proveedor cloud",
@@ -254,13 +254,13 @@ const es = {
     lifecycleTitle: "El ciclo de vida FinOps",
     lifecycleSteps: [
       { num: "1", phase: "Inform", desc: "Visibilidad total y asignación técnica granular basada en el estándar FOCUS para la toma de decisiones.", tags: ["Etiquetado", "Atribución", "Presupuestos"] },
-      { num: "2", phase: "Optimize", desc: "Identificación de eficiencias, eliminación de desperdicio y optimización de compromisos de compra cloud.", tags: ["Rightsizing", "Savings Plans", "Anomalías"] },
+      { num: "2", phase: "Optimize", desc: "Identificación de eficiencias, eliminación de desperdicio y optimización de compromisos de compra cloud.", tags: ["Rightsizing", "Compromisos de compra", "Anomalías"] },
       { num: "3", phase: "Operate", desc: "Establecimiento de gobernanza, automatización de políticas y alineación con los KPIs de negocio.", tags: ["Gobernanza", "Cumplimiento", "Escalado"] },
     ],
     frameworkCertBadge: "Framework Certificado",
     focusStandardBadge: "Estándar Abierto",
     focusTitle: "Qué es FOCUS",
-    focusP1: "FOCUS es el estándar de la FinOps Foundation para normalizar datos de facturación entre AWS, GCP y Azure.",
+    focusP1: "FOCUS es el estándar de la FinOps Foundation para normalizar datos de facturación entre AWS, Azure, GCP y OCI.",
     focusP2: "Con FOCUS, unificar y comparar consumos entre AWS, Azure, GCP y OCI deja de ser una pesadilla de formatos distintos. CloudAltio utiliza este estándar para estandarizar la información en un esquema común y transparente para tu gasto cloud.",
     focusP3: "Estandariza tus consumos cloud con FOCUS y obtén una visión clara, comparable y multi-cloud desde el primer día. Esto permite unificar tu facturación sin requerir transformaciones manuales, garantizando datos consistentes y trazables.",
     focusImgAlt: "Qué es FOCUS — estándar de facturación cloud",
@@ -276,7 +276,7 @@ const es = {
     productTitle: "CloudAltio inspirado en el Framework FinOps",
     productSubtitle: "Aplicamos los principios de FinOps de manera práctica, estructurada y automatizada a través de nuestras capacidades nativas.",
     productItems: [
-      { label: "Estandarización Multicloud", text: "Procesamiento basado íntegramente en FOCUS para AWS, GCP y Azure, consolidando la facturación en un modelo de datos único." },
+      { label: "Estandarización Multicloud", text: "Procesamiento basado íntegramente en FOCUS para AWS, Azure, GCP y OCI, consolidando la información de consumo en un modelo de datos único." },
       { label: "Detección de Anomalías", text: "Identificación temprana de picos de consumo y gastos imprevistos mediante análisis algorítmico continuo." },
       { label: "Presupuestos y Alertas", text: "Control exhaustivo del gasto planificado, con notificaciones proactivas antes de superar los límites establecidos." },
       { label: "Reportes y Visibilidad", text: "Dashboards detallados y granulares diseñados para brindar visibilidad a todos los niveles de la organización tecnológica." },
@@ -294,8 +294,8 @@ const es = {
     providersSubtitle: "Conecta uno o todos tus proveedores cloud. Cada integración usa las APIs nativas del proveedor con permisos mínimos de solo lectura.",
     cloudProviders: [
       {
-        desc: "Conecta tus cuentas AWS para consolidar datos de Cost Explorer, S3 Cost & Usage Reports y APIs de billing en una vista unificada.",
-        details: ["Cost Explorer API", "S3 CUR (Cost & Usage Reports)", "Permisos IAM de solo lectura", "Soporte multi-cuenta y Organizations"],
+        desc: "Conecta tus cuentas AWS para consolidar datos de Cost Explorer, Cost & Usage Reports (CUR) y APIs de billing en una vista unificada.",
+        details: ["Cost Explorer API", "Cost & Usage Reports (CUR)", "Permisos IAM de solo lectura", "Soporte multi-cuenta y Organizations"],
       },
       {
         desc: "Integra datos de consumo y billing desde Azure Cost Management para analizar tu gasto junto al resto de tu operación cloud.",
@@ -303,7 +303,7 @@ const es = {
       },
       {
         desc: "Centraliza costos y uso desde Google Cloud Billing para compararlos junto al resto de tu operación multi-cloud.",
-        details: ["Cloud Billing API", "BigQuery Billing Export", "Service Account de solo lectura", "Soporte multi-proyecto"],
+        details: ["Cloud Billing API", "Cloud Billing Export", "Service Account de solo lectura", "Soporte multi-proyecto"],
       },
       {
         desc: "Agrega visibilidad sobre consumo y costos desde Oracle Cloud Infrastructure dentro de una sola plataforma unificada.",
@@ -316,7 +316,7 @@ const es = {
     whatYouNeedSubtitle: "Modelo plug & play: sin agentes, sin cambios en infraestructura, sin proyectos largos.",
     needTitle: "Lo que sí necesitas",
     needItems: [
-      { label: "Permisos de solo lectura en tu cuenta de cloud", note: "IAM Role en AWS, Service Principal en Azure, Service Account en GCP" },
+      { label: "Permisos de solo lectura en tu cuenta de cloud", note: "IAM Role en AWS, Service Principal en Azure, Service Account en GCP, API Key en OCI" },
       { label: "Acceso a datos de billing o costos habilitado", note: "Cost Explorer, Azure Cost Management, Cloud Billing, OCI Cost Reports" },
       { label: "Configuración inicial por proveedor", note: "Proceso guiado y asistido por proveedor" },
       { label: "Validación de conexión", note: "CloudAltio verifica el acceso antes de procesar datos" },
@@ -386,7 +386,7 @@ const es = {
     duplicateEmail: "Este correo ya está suscrito.",
     posts: [
       {
-        title: "Cómo implementar una estrategia de etiquetado (Tagging) exitosa en AWS y Azure",
+        title: "Cómo implementar una estrategia de etiquetado (Tagging) exitosa en entornos multicloud",
         excerpt: "El primer paso para la madurez FinOps es la visibilidad. Descubre cómo definir una convención de etiquetas que tu equipo de ingeniería realmente utilice y mantenga.",
         category: "Guías Prácticas",
         date: "12 Abr 2026",
@@ -394,7 +394,7 @@ const es = {
       },
       {
         title: "Derecho de piso: Reduciendo el desperdicio en entornos de Kubernetes",
-        excerpt: "Un análisis profundo sobre las recomendaciones de capacidad (rightsizing) en clústeres de EKS y GKE para maximizar el uso de recursos sin afectar el rendimiento.",
+        excerpt: "Un análisis profundo sobre las recomendaciones de capacidad (rightsizing) en clústeres Kubernetes gestionados (EKS, GKE, AKS y OKE) para maximizar el uso de recursos sin afectar el rendimiento.",
         category: "Casos de Uso",
         date: "28 Mar 2026",
         readingTime: "8 min",
@@ -415,7 +415,7 @@ const es = {
       },
       {
         title: "El impacto de la arquitectura Serverless en tu factura mensual",
-        excerpt: "Migrar a Lambda o Cloud Run cambia el modelo de costos de fijo a variable. Estrategias para monitorear el gasto por ejecución y evitar facturas sorpresa.",
+        excerpt: "Migrar a funciones serverless (Lambda, Cloud Run, Azure Functions…) cambia el modelo de costos de fijo a variable. Estrategias para monitorear el gasto por ejecución y evitar costos inesperados.",
         category: "Arquitectura Cloud",
         date: "18 Feb 2026",
         readingTime: "4 min",
@@ -448,7 +448,7 @@ const en: typeof es = {
     badge: "Core foundation",
     title: "Multi-cloud management with",
     highlight: "Financial Criteria",
-    subtitle: "CloudAltio eliminates the complexity of comparing invoices from different providers. We unify under international standards of transparency and technical compliance.",
+    subtitle: "CloudAltio eliminates the complexity of comparing consumption data from different providers. We unify under international standards of transparency and technical compliance.",
     cards: [
       { title: "FOCUS Standard", desc: "We normalize data from AWS, Azure, GCP and OCI under the FOCUS standard for precise cross-provider comparisons." },
       { title: "FinOps Culture", desc: "We unify Finance, Technology and Operations into a single data language for strategic decisions." },
@@ -467,7 +467,7 @@ const en: typeof es = {
     monthly: "Monthly Investment",
     focusMeta: "FOCUS Metadata",
     alertBadge: "FOCUS Detection",
-    alertText: "Variation detected: +$3,400 on EC2",
+    alertText: "Variation detected: +$3,400 on Compute",
     features: ["Consolidation", "No Code", "Zero Impact"],
     featuresDesc: ["4 main clouds integrated natively.", "Technical implementation without agents or friction.", "Cost reading without affecting your infrastructure."],
     connected: "Connected",
@@ -552,7 +552,7 @@ const en: typeof es = {
       { q: "Does CloudAltio modify resources in my cloud?", a: "No. CloudAltio is a read-only platform. We connect to the billing and metadata APIs of AWS, Azure, GCP and Oracle Cloud to analyze your spend, but we never execute actions on your infrastructure. The decision is always yours." },
       { q: "How long does implementation take?", a: "We have an assisted onboarding process to ensure correct integration of your data. The process consists of granting read permissions through IAM roles or equivalents in each cloud, and CloudAltio does the rest. No agents or changes to your infrastructure are required." },
       { q: "What clouds does CloudAltio support?", a: "CloudAltio supports Amazon Web Services (AWS), Microsoft Azure, Google Cloud Platform (GCP) and Oracle Cloud Infrastructure (OCI)." },
-      { q: "Do I need technical knowledge to use CloudAltio?", a: "No. CloudAltio is designed to be used by both engineering teams and finance and operations teams. Dashboards translate technical cloud data into clear financial language. You don't need to know what an EC2 instance is to understand how much you're spending on compute." },
+      { q: "Do I need technical knowledge to use CloudAltio?", a: "No. CloudAltio is designed to be used by both engineering teams and finance and operations teams. Dashboards translate technical cloud data into clear financial language. You don't need to know what compute instances are called in each provider to understand how much you're spending on infrastructure." },
       { q: "What data does CloudAltio process?", a: "CloudAltio processes only cost data and usage metadata delivered by each cloud provider's APIs. We never access business data, PII or content from your workloads. If you have specific security or privacy requirements, we can discuss them in detail during the evaluation." },
       { q: "Can I allocate costs by team or project without perfect tagging?", a: "Yes. CloudAltio includes cost allocation tools that allow you to allocate costs even when tagging isn't 100%. You can use business rules, account names and configurable heuristics to distribute costs between teams and projects from day one." },
       { q: "Are there additional costs for using CloudAltio?", a: "CloudAltio has its own usage fee for the platform. Access to your cloud providers' billing APIs is generally low-cost or free, depending on each provider." },
@@ -584,7 +584,7 @@ const en: typeof es = {
     name: "Name", namePlh: "Your name", email: "Email", emailPlh: "you@company.com",
     company: "Company", companyPlh: "Your company name", country: "Country", countryPlh: "Select your country",
     clouds: "Which clouds do you use?",
-    message: "Message", messagePlh: "Tell us about your cloud infrastructure and what you need...",
+    message: "Message", messagePlh: "Tell us about your cloud operation and what you need...",
     send: "Send message",
     sentTitle: "Message sent!", sentDesc: "Thanks for contacting us. We'll get back to you within 24 business hours.",
   },
@@ -607,7 +607,7 @@ const en: typeof es = {
     ],
     immediateResultsBadge: "Immediate Results",
     immediateResultsTitle: "What you'll understand from day one",
-    immediateResultsSubtitle: "Stop struggling with spreadsheets and manual downloads. When you connect your environments to CloudAltio, our platform processes your invoices and delivers a clear map of your infrastructure.",
+    immediateResultsSubtitle: "Stop struggling with spreadsheets and manual downloads. When you connect your environments to CloudAltio, our platform consolidates and normalizes your cloud consumption data and delivers a clear map of your operation.",
     immediateItems: [
       "Total consolidated spend across clouds",
       "Distribution by cloud provider",
@@ -682,13 +682,13 @@ const en: typeof es = {
     lifecycleTitle: "The FinOps lifecycle",
     lifecycleSteps: [
       { num: "1", phase: "Inform", desc: "Total visibility and granular technical allocation based on the FOCUS standard for decision-making.", tags: ["Tagging", "Attribution", "Budgets"] },
-      { num: "2", phase: "Optimize", desc: "Efficiency identification, waste elimination and optimization of cloud purchase commitments.", tags: ["Rightsizing", "Savings Plans", "Anomalies"] },
+      { num: "2", phase: "Optimize", desc: "Efficiency identification, waste elimination and optimization of cloud purchase commitments.", tags: ["Rightsizing", "Purchase Commitments", "Anomalies"] },
       { num: "3", phase: "Operate", desc: "Governance establishment, policy automation and alignment with business KPIs.", tags: ["Governance", "Compliance", "Scaling"] },
     ],
     frameworkCertBadge: "Certified Framework",
     focusStandardBadge: "Open Standard",
     focusTitle: "What is FOCUS",
-    focusP1: "FOCUS is the FinOps Foundation standard for normalizing billing data across AWS, GCP and Azure.",
+    focusP1: "FOCUS is the FinOps Foundation standard for normalizing billing data across AWS, Azure, GCP and OCI.",
     focusP2: "With FOCUS, unifying and comparing consumption between AWS, Azure, GCP and OCI is no longer a nightmare of different formats. CloudAltio uses this standard to normalize information into a common, transparent schema for your cloud spend.",
     focusP3: "Standardize your cloud consumption with FOCUS and get a clear, comparable, multi-cloud view from day one. This allows you to unify your billing without manual transformations, ensuring consistent and traceable data.",
     focusImgAlt: "What is FOCUS — cloud billing standard",
@@ -704,7 +704,7 @@ const en: typeof es = {
     productTitle: "CloudAltio inspired by the FinOps Framework",
     productSubtitle: "We apply FinOps principles in a practical, structured and automated way through our native capabilities.",
     productItems: [
-      { label: "Multicloud Standardization", text: "Processing fully based on FOCUS for AWS, GCP and Azure, consolidating billing into a single data model." },
+      { label: "Multicloud Standardization", text: "Processing fully based on FOCUS for AWS, Azure, GCP and OCI, consolidating consumption data into a single data model." },
       { label: "Anomaly Detection", text: "Early identification of consumption spikes and unexpected expenses through continuous algorithmic analysis." },
       { label: "Budgets and Alerts", text: "Comprehensive control of planned spend, with proactive notifications before established limits are exceeded." },
       { label: "Reports and Visibility", text: "Detailed and granular dashboards designed to provide visibility at all levels of the technology organization." },
@@ -722,8 +722,8 @@ const en: typeof es = {
     providersSubtitle: "Connect one or all of your cloud providers. Each integration uses the provider's native APIs with minimal read-only permissions.",
     cloudProviders: [
       {
-        desc: "Connect your AWS accounts to consolidate data from Cost Explorer, S3 Cost & Usage Reports and billing APIs in a unified view.",
-        details: ["Cost Explorer API", "S3 CUR (Cost & Usage Reports)", "Read-only IAM permissions", "Multi-account and Organizations support"],
+        desc: "Connect your AWS accounts to consolidate data from Cost Explorer, Cost & Usage Reports (CUR) and billing APIs in a unified view.",
+        details: ["Cost Explorer API", "Cost & Usage Reports (CUR)", "Read-only IAM permissions", "Multi-account and Organizations support"],
       },
       {
         desc: "Integrate consumption and billing data from Azure Cost Management to analyze your spend alongside the rest of your cloud operation.",
@@ -731,7 +731,7 @@ const en: typeof es = {
       },
       {
         desc: "Centralize costs and usage from Google Cloud Billing to compare them alongside the rest of your multi-cloud operation.",
-        details: ["Cloud Billing API", "BigQuery Billing Export", "Read-only Service Account", "Multi-project support"],
+        details: ["Cloud Billing API", "Cloud Billing Export", "Read-only Service Account", "Multi-project support"],
       },
       {
         desc: "Add visibility into consumption and costs from Oracle Cloud Infrastructure within a single unified platform.",
@@ -744,7 +744,7 @@ const en: typeof es = {
     whatYouNeedSubtitle: "Plug & play model: no agents, no infrastructure changes, no long projects.",
     needTitle: "What you do need",
     needItems: [
-      { label: "Read-only permissions in your cloud account", note: "IAM Role in AWS, Service Principal in Azure, Service Account in GCP" },
+      { label: "Read-only permissions in your cloud account", note: "IAM Role in AWS, Service Principal in Azure, Service Account in GCP, API Key in OCI" },
       { label: "Access to billing or cost data enabled", note: "Cost Explorer, Azure Cost Management, Cloud Billing, OCI Cost Reports" },
       { label: "Initial configuration per provider", note: "Guided and assisted process per provider" },
       { label: "Connection validation", note: "CloudAltio verifies access before processing data" },
@@ -814,7 +814,7 @@ const en: typeof es = {
     duplicateEmail: "This email is already subscribed.",
     posts: [
       {
-        title: "How to implement a successful Tagging strategy in AWS and Azure",
+        title: "How to implement a successful Tagging strategy in multicloud environments",
         excerpt: "The first step toward FinOps maturity is visibility. Discover how to define a tag convention that your engineering team actually uses and maintains.",
         category: "Practical Guides",
         date: "Apr 12, 2026",
@@ -822,7 +822,7 @@ const en: typeof es = {
       },
       {
         title: "Rightsizing: Reducing waste in Kubernetes environments",
-        excerpt: "An in-depth analysis of rightsizing recommendations in EKS and GKE clusters to maximize resource utilization without affecting performance.",
+        excerpt: "An in-depth analysis of rightsizing recommendations in managed Kubernetes clusters (EKS, GKE, AKS and OKE) to maximize resource utilization without affecting performance.",
         category: "Use Cases",
         date: "Mar 28, 2026",
         readingTime: "8 min",
@@ -843,7 +843,7 @@ const en: typeof es = {
       },
       {
         title: "The impact of Serverless architecture on your monthly bill",
-        excerpt: "Migrating to Lambda or Cloud Run changes the cost model from fixed to variable. Strategies to monitor spend per execution and avoid surprise bills.",
+        excerpt: "Migrating to serverless functions (Lambda, Cloud Run, Azure Functions…) changes the cost model from fixed to variable. Strategies to monitor spend per execution and avoid unexpected costs.",
         category: "Cloud Architecture",
         date: "Feb 18, 2026",
         readingTime: "4 min",

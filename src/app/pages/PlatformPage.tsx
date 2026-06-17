@@ -427,10 +427,10 @@ export function PlatformPage() {
                   <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{tr.platform.fragmentedLabel}</span>
                 </div>
                 {[
-                  { name: "AWS", format: "CUR" },
-                  { name: "Azure", format: "MCA" },
-                  { name: "Google Cloud", format: "BigQuery" },
-                  { name: "Oracle Cloud", format: "Usage" }
+                  { name: "AWS", format: "Billing" },
+                  { name: "Azure", format: "Billing" },
+                  { name: "Google Cloud", format: "Billing" },
+                  { name: "Oracle Cloud", format: "Billing" }
                 ].map((cloud) => (
                   <div key={cloud.name} className="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between group hover:border-[#36AAC1]/30 transition-colors">
                     <div className="flex items-center gap-3">

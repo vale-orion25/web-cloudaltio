@@ -18,12 +18,12 @@ export function FAQPage() {
 
   const faqData: Record<string, { q: string, a: string }[]> = {
     "Implementación": [
-      { q: "¿Cuánto tarda la implementación inicial?", a: "La conexión inicial es directa tras configurar los accesos. CloudAltio procesará los datos históricos (CUR/Exports) para entregarte una visibilidad completa de tus costos multi-cloud." },
-      { q: "¿Necesito conocimiento técnico avanzado o ingeniería de datos?", a: "No. Solo necesitas permisos de administración en tu proveedor cloud para crear un rol IAM o Service Principal con acceso de lectura (ReadOnlyAccess). Nosotros proveemos guías paso a paso." },
+      { q: "¿Cuánto tarda la implementación inicial?", a: "La conexión inicial es directa tras configurar los accesos. CloudAltio procesará los datos históricos de cada proveedor para entregarte una visibilidad completa de tus costos multi-cloud." },
+      { q: "¿Necesito conocimiento técnico avanzado o ingeniería de datos?", a: "No. Solo necesitas permisos de administración en tu proveedor cloud para crear un rol o principal con acceso de lectura. Nosotros proveemos guías paso a paso." },
       { q: "¿Puedo asignar costos por equipo sin un tagging perfecto?", a: "Sí. CloudAltio permite crear reglas de asignación virtual basadas en cuentas, suscripciones o filtros de recursos, independientemente del estado actual de tus etiquetas (tags)." },
     ],
     "Seguridad": [
-      { q: "¿Qué datos procesa CloudAltio?", a: "CloudAltio procesa únicamente datos de costos y metadata de uso entregados por las APIs de cada proveedor cloud (facturas, reportes de uso, CUR). No accedemos a datos de negocio, PII ni al contenido de tus workloads. Si tienes requisitos específicos de seguridad o privacidad, podemos conversarlo en detalle durante la evaluación." },
+      { q: "¿Qué datos procesa CloudAltio?", a: "CloudAltio consolida únicamente datos de costos y metadata de uso entregados por las APIs de cada proveedor cloud (reportes de costos y uso de cada proveedor). No accedemos a datos de negocio, PII ni al contenido de tus workloads. Si tienes requisitos específicos de seguridad o privacidad, podemos conversarlo en detalle durante la evaluación." },
       { q: "¿CloudAltio modifica recursos en mi infraestructura?", a: "Nunca. CloudAltio solicita acceso estrictamente de solo lectura. No tenemos permisos operativos para crear, borrar, escalar o modificar ningún recurso de tu red." },
     ],
     "Integraciones": [
@@ -33,7 +33,7 @@ export function FAQPage() {
       { q: "¿Cómo calculan las proyecciones y tendencias?", a: "Utilizamos modelos matemáticos que analizan tu histórico de consumo (hasta 12 meses atrás), tendencias estacionales y variaciones recientes para predecir con alta precisión el cierre del mes." },
     ],
     "Planes": [
-      { q: "¿Puedo cambiar de plan en cualquier momento?", a: "Sí, puedes escalar tu plan conforme crezca tu infraestructura. Las facturas se prorratean automáticamente según los días de uso en cada nivel." },
+      { q: "¿Puedo cambiar de plan en cualquier momento?", a: "Sí, puedes escalar tu plan conforme crezca tu operación cloud. El costo se prorratea automáticamente según los días de uso en cada nivel." },
     ]
   };
 
