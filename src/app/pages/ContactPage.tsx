@@ -23,17 +23,15 @@ export function ContactPage() {
       <Navbar />
 
       {/* Hero */}
-      <div style={{
+      <div className="pt-28 pb-16 px-6 md:px-10 text-center" style={{
         backgroundImage: `url('${asset("/bg-gradient.png")}')`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        padding: "120px 40px 80px",
-        textAlign: "center",
       }}>
         <div style={{ fontSize: 11, fontWeight: 700, color: "#023660", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: 16 }}>
           {tr.contact.eyebrow}
         </div>
-        <h1 style={{ fontSize: 48, fontWeight: 800, color: "#023660", letterSpacing: "-1.5px", lineHeight: 1.1, marginBottom: 16 }}>
+        <h1 className="text-4xl md:text-5xl" style={{ fontWeight: 800, color: "#023660", letterSpacing: "-1.5px", lineHeight: 1.1, marginBottom: 16 }}>
           {tr.contact.title}
         </h1>
         <p style={{ fontSize: 17, color: "#023660", opacity: 0.65, maxWidth: 500, margin: "0 auto" }}>
@@ -42,7 +40,7 @@ export function ContactPage() {
       </div>
 
       {/* Content */}
-      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "80px 40px 120px", display: "grid", gridTemplateColumns: "1fr 1.6fr", gap: 64, alignItems: "start" }}>
+      <div className="grid grid-cols-1 md:grid-cols-[1fr_1.6fr] gap-12 md:gap-16 px-6 md:px-10 py-16 md:py-24" style={{ maxWidth: 1100, margin: "0 auto" }}>
 
         {/* Left: info */}
         <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
@@ -79,10 +77,9 @@ export function ContactPage() {
         </div>
 
         {/* Right: form */}
-        <div style={{
+        <div className="p-6 sm:p-10" style={{
           background: "#FFFFFF",
           borderRadius: 20,
-          padding: "40px 44px",
           boxShadow: "0 4px 32px rgba(15,23,42,0.08)",
           border: "1px solid #E2E8F0",
         }}>
@@ -104,7 +101,7 @@ export function ContactPage() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+              <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 16 }}>
                 <div>
                   <label style={{ fontSize: 12, fontWeight: 600, color: "#023660", display: "block", marginBottom: 8 }}>{tr.contact.name}</label>
                   <input
@@ -127,7 +124,7 @@ export function ContactPage() {
                 </div>
               </div>
 
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+              <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 16 }}>
                 <div>
                   <label style={{ fontSize: 12, fontWeight: 600, color: "#023660", display: "block", marginBottom: 8 }}>{tr.contact.company}</label>
                   <input
