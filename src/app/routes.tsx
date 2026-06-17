@@ -14,59 +14,35 @@ import { BlogList } from "../admin/pages/blog/BlogList";
 import { BlogEditor } from "../admin/pages/blog/BlogEditor";
 import { NewsletterList } from "../admin/pages/newsletter/NewsletterList";
 import { NewsletterEditor } from "../admin/pages/newsletter/NewsletterEditor";
+import { ScrollToTop } from "./App";
 
 export const router = createHashRouter([
   {
-    path: "/",
-    Component: HomePage,
-  },
-  {
-    path: "/plataforma",
-    Component: PlatformPage,
-  },
-  {
-    path: "/finops",
-    Component: FinOpsPage,
-  },
-  {
-    path: "/integraciones",
-    Component: IntegrationsPage,
-  },
-  {
-    path: "/planes",
-    Component: PlansPage,
-  },
-  {
-    path: "/faq",
-    Component: FAQPage,
-  },
-  {
-    path: "/blog",
-    Component: BlogPage,
-  },
-  {
-    path: "/blog/:slug",
-    Component: BlogPostPage,
-  },
-  {
-    path: "/contacto",
-    Component: ContactPage,
-  },
-  {
-    path: "/admin/login",
-    Component: AdminLogin,
-  },
-  {
-    path: "/admin",
-    Component: AdminLayout,
+    Component: ScrollToTop,
     children: [
-      { index: true, element: <Navigate to="/admin/blog" replace /> },
-      { path: "blog", Component: BlogList },
-      { path: "blog/nuevo", Component: BlogEditor },
-      { path: "blog/:id/editar", Component: BlogEditor },
-      { path: "newsletter", Component: NewsletterList },
-      { path: "newsletter/nuevo", Component: NewsletterEditor },
-      { path: "newsletter/:id/editar", Component: NewsletterEditor },
+      { path: "/", Component: HomePage },
+      { path: "/plataforma", Component: PlatformPage },
+      { path: "/finops", Component: FinOpsPage },
+      { path: "/integraciones", Component: IntegrationsPage },
+      { path: "/planes", Component: PlansPage },
+      { path: "/faq", Component: FAQPage },
+      { path: "/blog", Component: BlogPage },
+      { path: "/blog/:slug", Component: BlogPostPage },
+      { path: "/contacto", Component: ContactPage },
+      { path: "/admin/login", Component: AdminLogin },
+      {
+        path: "/admin",
+        Component: AdminLayout,
+        children: [
+          { index: true, element: <Navigate to="/admin/blog" replace /> },
+          { path: "blog", Component: BlogList },
+          { path: "blog/nuevo", Component: BlogEditor },
+          { path: "blog/:id/editar", Component: BlogEditor },
+          { path: "newsletter", Component: NewsletterList },
+          { path: "newsletter/nuevo", Component: NewsletterEditor },
+          { path: "newsletter/:id/editar", Component: NewsletterEditor },
+        ],
+      },
     ],
   },
 ]);
