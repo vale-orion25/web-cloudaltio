@@ -287,26 +287,24 @@ export function Navbar() {
             >
               {tr.nav.contact}
             </Link>
-            {/* Language toggle */}
-            <div style={{ display: "flex", justifyContent: "center", gap: 8, paddingTop: 4 }}>
-              {[{ code: "es", label: "ES" }, { code: "en", label: "EN" }].map((item) => (
-                <button
-                  key={item.code}
-                  onClick={() => { setLang(item.code as Lang); setMobileOpen(false); }}
-                  style={{
-                    padding: "8px 20px", borderRadius: 100, fontSize: 13, fontWeight: 600,
-                    cursor: "pointer", border: "1.5px solid",
-                    borderColor: lang === item.code ? "#023660" : "#E2E8F0",
-                    background: lang === item.code ? "#023660" : "transparent",
-                    color: lang === item.code ? "#ffffff" : "#94a3b8",
-                    fontFamily: "Inter, sans-serif",
-                    transition: "all 0.15s",
-                  }}
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
+            {/* Language toggle — fila con globo */}
+            <button
+              onClick={() => setLang(lang === "es" ? "en" : "es")}
+              style={{
+                display: "flex", alignItems: "center", justifyContent: "center", gap: 10,
+                padding: "12px 16px", borderRadius: 10, border: "1px solid #E2E8F0",
+                background: "transparent", cursor: "pointer", fontFamily: "Inter, sans-serif",
+                width: "100%",
+              }}
+            >
+              <Globe size={16} style={{ color: "#94a3b8", flexShrink: 0 }} />
+              <span style={{ fontSize: 14, fontWeight: 600, color: "#023660" }}>
+                {lang === "es" ? "Español" : "English"}
+              </span>
+              <span style={{ fontSize: 13, color: "#94a3b8", marginLeft: 2 }}>
+                → {lang === "es" ? "English" : "Español"}
+              </span>
+            </button>
           </div>
         </div>
       )}
