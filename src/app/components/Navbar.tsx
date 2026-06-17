@@ -274,40 +274,19 @@ export function Navbar() {
             })}
           </div>
           <div style={{ marginTop: 16, paddingTop: 16, borderTop: "1px solid #E2E8F0", display: "flex", flexDirection: "column", gap: 10 }}>
-            <div style={{ display: "flex", gap: 8 }}>
-              <a
-                href="https://cloudaltio.com/es/"
-                onClick={() => setMobileOpen(false)}
-                style={{
-                  flex: 1, fontSize: 14, fontWeight: 500, color: "#64748b", textDecoration: "none",
-                  padding: "12px 16px", borderRadius: 10, textAlign: "center", border: "1px solid #E2E8F0",
-                }}
-              >
-                {tr.nav.login}
-              </a>
-              <div style={{ display: "flex", border: "1px solid #E2E8F0", borderRadius: 10, overflow: "hidden", fontSize: 12, fontWeight: 600 }}>
-                {[
-                  { code: "ES" },
-                  { code: "EN" },
-                ].map((item) => (
-                  <a
-                    key={item.code}
-                    href="#"
-                    onClick={(e) => { e.preventDefault(); setLang(item.code.toLowerCase() as Lang); setMobileOpen(false); }}
-                    style={{
-                      padding: "0 14px", display: "flex", alignItems: "center", height: "100%",
-                      textDecoration: "none",
-                      background: lang.toUpperCase() === item.code ? "#023660" : "transparent",
-                      color: lang.toUpperCase() === item.code ? "#ffffff" : "#64748b",
-                    }}
-                  >
-                    {item.code}
-                  </a>
-                ))}
-              </div>
-            </div>
+            <a
+              href="https://cloudaltio.com/es/"
+              onClick={() => setMobileOpen(false)}
+              style={{
+                fontSize: 14, fontWeight: 600, color: "#023660", textDecoration: "none",
+                padding: "12px 16px", borderRadius: 10, textAlign: "center",
+                border: "1.5px solid #023660",
+              }}
+            >
+              {tr.nav.login}
+            </a>
             <Link
-              to={`/contacto?motivo=${encodeURIComponent("Hola, me gustaría solicitar una demo de CloudAltio.")}`}
+              to="/contacto"
               onClick={() => setMobileOpen(false)}
               style={{
                 fontSize: 14,
@@ -321,7 +300,7 @@ export function Navbar() {
                 boxShadow: "0 4px 20px rgba(254,31,61,0.3)",
               }}
             >
-              {tr.nav.demo}
+              {tr.nav.contact}
             </Link>
           </div>
         </div>
