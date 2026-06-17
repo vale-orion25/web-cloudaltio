@@ -304,7 +304,25 @@ export function PlatformPage() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 lg:gap-12 relative">
-            <div className="hidden md:block absolute top-12 left-[15%] right-[15%] h-px bg-[#36AAC1]/30 z-0"></div>
+            {/* Connection line */}
+            <div className="hidden md:block absolute top-12 left-[15%] right-[15%] h-0.5 z-0 overflow-visible rounded-full"
+              style={{ background: "linear-gradient(90deg, #fb2e50 0%, #7f2f8c 50%, #003d80 100%)", opacity: 0.35 }}>
+              {/* Traveling dot */}
+              <motion.div
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  translateY: "-50%",
+                  width: 10,
+                  height: 10,
+                  borderRadius: "50%",
+                  background: "white",
+                  boxShadow: "0 0 10px 3px rgba(251,46,80,0.7), 0 0 20px 6px rgba(127,47,140,0.4)",
+                }}
+                animate={{ left: ["-1%", "101%"] }}
+                transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut", repeatDelay: 0.6 }}
+              />
+            </div>
 
             {tr.platform.steps.map((step, i) => (
               <div key={i} className="relative z-10 flex flex-col items-center text-center group">
