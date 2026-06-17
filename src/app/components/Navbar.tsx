@@ -37,6 +37,10 @@ export function Navbar() {
     { label: tr.nav.blog, href: "/blog" },
   ];
 
+  const mobileOnlyLinks = [
+    { label: tr.nav.contact, href: "/contacto" },
+  ];
+
   const linkColor = scrolled ? "#64748b" : "rgba(255,255,255,0.9)";
   const linkHoverColor = scrolled ? "#023660" : "#ffffff";
   const linkHoverBg = scrolled ? "rgba(2,54,96,0.06)" : "rgba(255,255,255,0.15)";
@@ -233,7 +237,7 @@ export function Navbar() {
           }}
         >
           <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-            {navLinks.map((link) => {
+            {[...navLinks, ...mobileOnlyLinks].map((link) => {
               const isActive = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
               return (
                 <Link

@@ -6,7 +6,7 @@ export type Lang = "es" | "en";
 const es = {
   nav: {
     home: "Inicio", platform: "Plataforma", finops: "FinOps",
-    integrations: "Integraciones", plans: "Planes", blog: "Blog",
+    integrations: "Integraciones", plans: "Planes", blog: "Blog", contact: "Contacto",
     login: "Ingresar", demo: "Solicitar demo",
   },
   hero: {
@@ -434,7 +434,7 @@ const es = {
 const en: typeof es = {
   nav: {
     home: "Home", platform: "Platform", finops: "FinOps",
-    integrations: "Integrations", plans: "Plans", blog: "Blog",
+    integrations: "Integrations", plans: "Plans", blog: "Blog", contact: "Contact",
     login: "Sign in", demo: "Request demo",
   },
   hero: {
