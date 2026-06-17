@@ -53,21 +53,21 @@ export function IntegrationsPage() {
       <Navbar />
 
       {/* 1. Compact Intro */}
-      <section className="relative pt-32 pb-12 lg:pt-40 lg:pb-16 px-6 lg:px-8 text-center border-b border-slate-200/50 overflow-hidden">
-        {/* Background */}
-        <img src={asset("/degradado-matices.png")} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover" />
-
+      <section
+        className="relative pt-32 pb-12 lg:pt-40 lg:pb-16 px-6 lg:px-8 text-center border-b border-white/10 overflow-hidden"
+        style={{ backgroundImage: `url('${asset("/integrations-header-bg.jpg")}')`, backgroundSize: "cover", backgroundPosition: "center" }}
+      >
         <div className="relative z-10 mx-auto max-w-4xl">
-          <div className="inline-flex items-center gap-2 rounded-full bg-[#E7F4F6] px-3 py-1 mb-6 border border-[#36AAC1]/20">
-            <LinkIcon className="w-3.5 h-3.5 text-[#36AAC1]" />
-            <span className="text-xs font-semibold text-[#023660] tracking-wide uppercase">{tr.integrations.badge}</span>
+          <div className="inline-flex items-center gap-2 rounded-full bg-white/15 backdrop-blur-sm px-3 py-1 mb-6 border border-white/30">
+            <LinkIcon className="w-3.5 h-3.5 text-white" />
+            <span className="text-xs font-semibold text-white tracking-wide uppercase">{tr.integrations.badge}</span>
           </div>
 
-          <h1 className="text-2xl md:text-[29px] lg:text-[37px] font-extrabold tracking-tight text-[#023660] mb-6 leading-tight">
+          <h1 className="text-2xl md:text-[29px] lg:text-[37px] font-extrabold tracking-tight text-white mb-6 leading-tight">
             {tr.integrations.title}
           </h1>
 
-          <p className="mx-auto max-w-2xl text-lg text-slate-600 mb-8 leading-relaxed">
+          <p className="mx-auto max-w-2xl text-lg text-white/80 mb-8 leading-relaxed">
             {tr.integrations.subtitle}
           </p>
 
@@ -143,8 +143,8 @@ export function IntegrationsPage() {
 
       {/* 3. What you need / What you don't need */}
       <section className="py-24 relative overflow-hidden">
-        <img src={asset("/Header_1.jpg")} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover object-center" />
-        <div className="absolute inset-0 bg-black/65" />
+        <img src={asset("/integrations-needs-bg.jpg")} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover object-center" />
+        <div className="absolute inset-0 bg-black/40" />
         <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white mb-4">
@@ -298,7 +298,7 @@ export function IntegrationsPage() {
         title={tr.integrations.ctaTitle}
         subtitle={tr.integrations.ctaSubtitle}
         showFeatures={false}
-        backgroundImage="/cta-bg.jpg"
+        backgroundImage="/integrations-cta-bg.jpg"
       />
 
       <Footer />

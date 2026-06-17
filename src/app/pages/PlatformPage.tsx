@@ -18,35 +18,21 @@ export function PlatformPage() {
       <Navbar />
 
       {/* 1. Compact Intro */}
-      <section className="pt-32 pb-12 lg:pt-40 lg:pb-16 px-6 lg:px-8 text-center border-b border-slate-200/50 relative overflow-hidden">
-        <div
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: `url('${asset("/degradado-matices.png")}')`,
-            backgroundSize: "120%",
-            backgroundPosition: "center",
-            animation: "heroBgDrift 10s ease-in-out infinite",
-          }}
-        />
-        <style>{`
-          @keyframes heroBgDrift {
-            0%   { background-position: 0% 0%;   background-size: 130%; }
-            33%  { background-position: 80% 20%;  background-size: 160%; }
-            66%  { background-position: 20% 80%;  background-size: 145%; }
-            100% { background-position: 0% 0%;   background-size: 130%; }
-          }
-        `}</style>
+      <section
+        className="pt-32 pb-12 lg:pt-40 lg:pb-16 px-6 lg:px-8 text-center border-b border-white/10 relative overflow-hidden"
+        style={{ backgroundImage: `url('${asset("/platform-header-bg.jpg")}')`, backgroundSize: "cover", backgroundPosition: "center" }}
+      >
         <div className="mx-auto max-w-4xl relative z-10">
-          <div className="inline-flex items-center gap-2 rounded-full bg-[#E7F4F6] px-3 py-1 mb-6 border border-[#36AAC1]/20">
+          <div className="inline-flex items-center gap-2 rounded-full bg-white/15 backdrop-blur-sm px-3 py-1 mb-6 border border-white/30">
             <span className="flex h-2 w-2 rounded-full bg-[#36AAC1]"></span>
-            <span className="text-xs font-semibold text-[#023660] tracking-wide uppercase">{tr.platform.badge}</span>
+            <span className="text-xs font-semibold text-white tracking-wide uppercase">{tr.platform.badge}</span>
           </div>
 
-          <h1 className="text-2xl md:text-[29px] lg:text-[37px] font-extrabold tracking-tight text-[#023660] mb-6 leading-tight">
+          <h1 className="text-2xl md:text-[29px] lg:text-[37px] font-extrabold tracking-tight text-white mb-6 leading-tight">
             {tr.platform.title}
           </h1>
 
-          <p className="mx-auto max-w-2xl text-lg text-slate-600 mb-8 leading-relaxed">
+          <p className="mx-auto max-w-2xl text-lg text-white/80 mb-8 leading-relaxed">
             {tr.platform.subtitle}
           </p>
 

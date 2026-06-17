@@ -6,6 +6,8 @@ import { Link } from "react-router";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { addSubscriber } from "@/lib/subscribers";
 import { useLanguage } from "@/lib/i18n";
+import { asset } from "@/lib/asset";
+import { motion } from "motion/react";
 
 const postImages = [
   "https://images.unsplash.com/photo-1759661966728-4a02e3c6ed91?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYXRhJTIwdmlzdWFsaXphdGlvbiUyMGRhc2hib2FyZHxlbnwxfHx8fDE3NzY4NzQ3MzZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
@@ -54,24 +56,39 @@ export function BlogPage() {
       <Navbar />
 
       {/* Compact Intro */}
-      <section className="bg-white pt-32 pb-12 lg:pt-40 lg:pb-16 px-6 lg:px-8 text-center border-b border-slate-200/50">
-        <div className="mx-auto max-w-3xl">
-          <div className="inline-flex items-center gap-2 rounded-full bg-[#E7F4F6] px-3 py-1 mb-6 border border-[#36AAC1]/20">
-            <BookOpen className="w-3.5 h-3.5 text-[#36AAC1]" />
-            <span className="text-xs font-semibold text-[#023660] tracking-wide uppercase">{tr.blog.badge}</span>
+      <section
+        className="relative pt-32 pb-12 lg:pt-40 lg:pb-16 px-6 lg:px-8 text-center border-b border-white/10 overflow-hidden"
+        style={{ backgroundImage: `url('${asset("/blog-header-bg.jpg")}')`, backgroundSize: "cover", backgroundPosition: "center" }}
+      >
+        <div className="mx-auto max-w-3xl relative z-10">
+          <div className="inline-flex items-center gap-2 rounded-full bg-white/15 backdrop-blur-sm px-3 py-1 mb-6 border border-white/30">
+            <BookOpen className="w-3.5 h-3.5 text-white" />
+            <span className="text-xs font-semibold text-white tracking-wide uppercase">{tr.blog.badge}</span>
           </div>
 
-          <h1 className="text-2xl md:text-[29px] font-extrabold tracking-tight text-[#023660] mb-6 leading-tight">
+          <h1 className="text-2xl md:text-[29px] font-extrabold tracking-tight text-white mb-6 leading-tight">
             {tr.blog.title}
           </h1>
-          <p className="text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-lg text-white/80 leading-relaxed max-w-2xl mx-auto">
             {tr.blog.subtitle}
           </p>
         </div>
       </section>
 
       {/* Blog Grid Section */}
-      <section className="py-16 lg:py-24 px-6 lg:px-8 bg-slate-50 relative">
+      <section className="relative py-16 lg:py-24 px-6 lg:px-8 overflow-hidden">
+        <motion.div
+          className="absolute pointer-events-none"
+          style={{ top: "-50%", left: "-50%", width: "200%", height: "200%", backgroundImage: `url('${asset("/bg-texture.svg")}')`, backgroundSize: "cover", backgroundPosition: "center" }}
+          animate={{ x: [-100, 130, -70, 110, -100], y: [-80, 100, -120, 60, -80] }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute pointer-events-none"
+          style={{ top: "-50%", left: "-50%", width: "200%", height: "200%", backgroundImage: `url('${asset("/bg-texture.svg")}')`, backgroundSize: "cover", backgroundPosition: "center", opacity: 0.55 }}
+          animate={{ x: [130, -110, 90, -130, 130], y: [100, -90, 120, -70, 100] }}
+          transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
+        />
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {posts.map((post) => (

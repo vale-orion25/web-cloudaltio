@@ -6,6 +6,7 @@ import { motion } from "motion/react";
 import { FinalCTA } from "../components/FinalCTA";
 import { Plans } from "../components/Plans";
 import { useLanguage } from "@/lib/i18n";
+import { asset } from "@/lib/asset";
 
 export function PlansPage() {
   const { tr } = useLanguage();
@@ -83,7 +84,7 @@ export function PlansPage() {
         />
 
         {/* TECHNICAL BLOCK */}
-        <section className="py-24 px-6 lg:px-8" style={{ background: "linear-gradient(90deg, #003d80 0%, #7f2f8c 50%, #fb2e50 100%)" }}>
+        <section className="py-24 px-6 lg:px-8" style={{ backgroundImage: `url('${asset("/implementacion-asistida.jpg")}')`, backgroundSize: "cover", backgroundPosition: "center" }}>
           <div className="max-w-7xl mx-auto">
             <div className="grid md:grid-cols-3 gap-10">
               {[
@@ -122,8 +123,27 @@ export function PlansPage() {
         </section>
 
         {/* FAQ SECTION */}
-        <section className="py-24 bg-slate-50 px-6">
-          <div className="max-w-2xl mx-auto">
+        <section className="relative py-24 px-6 overflow-hidden" style={{ background: "#f8f5f7" }}>
+          {/* Animated gradient blobs */}
+          <motion.div
+            className="absolute rounded-full pointer-events-none"
+            style={{ background: "#F9A8C0", filter: "blur(80px)", opacity: 0.85, width: "50%", height: "120%", top: "-10%", left: "-8%" }}
+            animate={{ x: [0, 35, -12, 20, 0], y: [0, -20, 30, -8, 0] }}
+            transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div
+            className="absolute rounded-full pointer-events-none"
+            style={{ background: "#C9A8E0", filter: "blur(70px)", opacity: 0.75, width: "42%", height: "100%", top: "10%", left: "28%" }}
+            animate={{ x: [0, -25, 18, -8, 0], y: [0, 22, -25, 12, 0] }}
+            transition={{ duration: 13, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div
+            className="absolute rounded-full pointer-events-none"
+            style={{ background: "#A8C0DC", filter: "blur(90px)", opacity: 0.80, width: "48%", height: "110%", bottom: "-15%", right: "-8%" }}
+            animate={{ x: [0, -20, 28, -12, 0], y: [0, 25, -18, 8, 0] }}
+            transition={{ duration: 19, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <div className="relative max-w-2xl mx-auto">
             <div className="text-center mb-16">
               <div className="text-[#FE1F3D] font-black text-[9px] uppercase tracking-[0.3em] mb-4">{tr.plansPage.faqEyebrow}</div>
               <h2 className="text-xl md:text-2xl font-black text-[#023660]">{tr.plansPage.faqTitle}</h2>
@@ -171,7 +191,7 @@ export function PlansPage() {
           title={tr.plansPage.ctaTitle}
           subtitle={tr.plansPage.ctaSubtitle}
           showFeatures={false}
-          backgroundColor="#023660"
+          backgroundImage="/plans-cta-bg.jpg"
         />
       </main>
 

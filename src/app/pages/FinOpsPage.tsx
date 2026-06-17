@@ -31,55 +31,24 @@ export function FinOpsPage() {
 
       <main>
         {/* HERO SECTION */}
-        <section className="relative pt-32 pb-24 md:pt-40 md:pb-32 px-6 border-b border-slate-100 bg-slate-50 overflow-hidden">
-          {/* Animated texture with mirror effect */}
-          <div className="absolute inset-0 z-0 overflow-hidden">
-            <motion.img
-              src={asset("/bg-texture.svg")}
-              alt=""
-              aria-hidden="true"
-              className="absolute inset-0 w-full h-full object-cover"
-              animate={{
-                scale: [1.3, 1.7, 1.5, 1.9, 1.4, 1.3],
-                rotate: [0, 8, -5, 12, -3, 0],
-                x: ["0%", "-8%", "6%", "-4%", "3%", "0%"],
-                y: ["0%", "4%", "-6%", "3%", "-2%", "0%"],
-              }}
-              transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
-              style={{ transformOrigin: "center center" }}
-            />
-            <div className="absolute inset-0" style={{ transform: "scaleX(-1)" }}>
-              <motion.img
-                src={asset("/bg-texture.svg")}
-                alt=""
-                aria-hidden="true"
-                className="absolute inset-0 w-full h-full object-cover"
-                animate={{
-                  scale: [1.5, 1.7, 1.4, 1.8, 1.6, 1.5],
-                  rotate: [0, -10, 6, -14, 4, 0],
-                  x: ["0%", "10%", "-7%", "5%", "-4%", "0%"],
-                  y: ["0%", "-5%", "7%", "-4%", "3%", "0%"],
-                }}
-                transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }}
-                style={{ transformOrigin: "center center" }}
-              />
-            </div>
-          </div>
-
+        <section
+          className="relative pt-32 pb-24 md:pt-40 md:pb-32 px-6 border-b border-white/10 overflow-hidden"
+          style={{ backgroundImage: `url('${asset("/finops-header-bg.jpg")}')`, backgroundSize: "cover", backgroundPosition: "center" }}
+        >
           <div className="relative z-10 max-w-5xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-sm bg-[#023660]/5 border border-[#023660]/10 mb-8"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-sm bg-white/15 backdrop-blur-sm border border-white/30 mb-8"
             >
-              <span className="text-[10px] font-black text-[#023660] tracking-[0.2em] uppercase">{tr.finops.heroBadge}</span>
+              <span className="text-[10px] font-black text-white tracking-[0.2em] uppercase">{tr.finops.heroBadge}</span>
             </motion.div>
 
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-2xl md:text-[29px] lg:text-[37px] font-extrabold tracking-tight text-[#023660] mb-8 leading-tight"
+              className="text-2xl md:text-[29px] lg:text-[37px] font-extrabold tracking-tight text-white mb-8 leading-tight"
             >
               {tr.finops.heroTitle}
             </motion.h1>
@@ -88,7 +57,7 @@ export function FinOpsPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="max-w-3xl mx-auto text-lg text-slate-600 leading-relaxed mb-10"
+              className="max-w-3xl mx-auto text-lg text-white/80 leading-relaxed mb-10"
             >
               {tr.finops.heroSubtitle}
             </motion.p>
@@ -108,13 +77,8 @@ export function FinOpsPage() {
         </section>
 
         {/* PROBLEM SECTION */}
-        <section className="px-6 lg:px-8 py-24 relative overflow-hidden">
-          <img
-            src={asset("/finops-desafio.jpg")}
-            alt=""
-            aria-hidden="true"
-            className="absolute inset-0 w-full h-full object-cover object-center"
-          />
+        <section className="px-6 lg:px-8 py-24 relative overflow-hidden" style={{ backgroundImage: `url('${asset("/finops-desafio.jpg")}')`, backgroundSize: "cover", backgroundPosition: "center" }}>
+          <div className="absolute inset-0" style={{ background: "rgba(2, 54, 96, 0.82)" }} />
           <div className="mx-auto max-w-7xl relative z-10">
             <div className="text-center mb-16">
               <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight mb-4">{tr.finops.problemTitle}</h2>
@@ -123,17 +87,17 @@ export function FinOpsPage() {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                { icon: <Eye className="w-6 h-6 text-[#FE1F3D]" />, title: tr.finops.problems[0].title, desc: tr.finops.problems[0].desc },
-                { icon: <Network className="w-6 h-6 text-[#FE1F3D]" />, title: tr.finops.problems[1].title, desc: tr.finops.problems[1].desc },
-                { icon: <AlertTriangle className="w-6 h-6 text-[#FE1F3D]" />, title: tr.finops.problems[2].title, desc: tr.finops.problems[2].desc },
-                { icon: <Target className="w-6 h-6 text-[#FE1F3D]" />, title: tr.finops.problems[3].title, desc: tr.finops.problems[3].desc },
+                { icon: <Eye className="w-6 h-6 text-white" />, title: tr.finops.problems[0].title, desc: tr.finops.problems[0].desc },
+                { icon: <Network className="w-6 h-6 text-white" />, title: tr.finops.problems[1].title, desc: tr.finops.problems[1].desc },
+                { icon: <AlertTriangle className="w-6 h-6 text-white" />, title: tr.finops.problems[2].title, desc: tr.finops.problems[2].desc },
+                { icon: <Target className="w-6 h-6 text-white" />, title: tr.finops.problems[3].title, desc: tr.finops.problems[3].desc },
               ].map((item, i) => (
-                <div key={i} className="p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
-                  <div className="mb-6 p-3 bg-white/10 inline-block rounded-xl border border-white/10">
+                <div key={i} className="p-8 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-sm">
+                  <div className="mb-6 p-3 bg-white/10 inline-block rounded-xl border border-white/20">
                     {item.icon}
                   </div>
                   <h3 className="text-sm font-black text-white uppercase tracking-wider mb-3">{item.title}</h3>
-                  <p className="text-sm text-white/70 leading-relaxed">{item.desc}</p>
+                  <p className="text-sm text-white/75 leading-relaxed">{item.desc}</p>
                 </div>
               ))}
             </div>
