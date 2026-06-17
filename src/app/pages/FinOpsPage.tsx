@@ -363,14 +363,7 @@ export function FinOpsPage() {
         </section>
 
         {/* PRODUCT SECTION */}
-        <section className="px-6 lg:px-8 py-24 relative overflow-hidden border-b border-slate-100">
-          <img
-            src={asset("/degradado-matices.png")}
-            alt=""
-            aria-hidden="true"
-            className="absolute inset-0 w-full h-full object-cover"
-            style={{ transform: "rotate(90deg) scale(1.5)" }}
-          />
+        <section className="px-6 lg:px-8 py-24 relative overflow-hidden border-b border-slate-100" style={{ backgroundImage: `url('${asset("/degradado-matices.png")}')`, backgroundSize: "cover", backgroundPosition: "center" }}>
           <div className="mx-auto max-w-7xl relative z-10">
             <div className="grid lg:grid-cols-12 gap-16 items-center">
               <div className="lg:col-span-4">
